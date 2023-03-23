@@ -35,7 +35,7 @@ export default function ReservationPage() {
         console.log(error);
     });
 
-    // Delete a movie
+    // Delete a reservation
     reservationController.delete(reservation, () => {
         console.log("Reservation deleted");
     }, (error) => { 
