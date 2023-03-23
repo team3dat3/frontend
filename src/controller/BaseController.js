@@ -1,4 +1,4 @@
-import { request, setAPIKey } from '../util/API';
+import { request, setAPIKey } from '../util/API.js';
 
 /**
  * Base controller class.
@@ -16,7 +16,7 @@ export default class BaseController {
      * 
      * @returns {undefined}
      */
-    get = (url, callback, error) => {
+    get (url, callback, error) {
         request(url, { method: 'GET', callback, error });
     }
 
@@ -30,7 +30,7 @@ export default class BaseController {
      * 
      * @returns {undefined}
      */
-    post = (url, body, callback, error) => {
+    post (url, body, callback, error) {
         request(url, { method: 'POST', body, callback, error });
     }
 
@@ -44,7 +44,7 @@ export default class BaseController {
      * 
      * @returns {undefined}
      */
-    put = (url, body, callback, error) => {
+    put (url, body, callback, error) {
         request(url, { method: 'PUT', body, callback, error });
     }
 
@@ -58,7 +58,7 @@ export default class BaseController {
      * 
      * @returns {undefined}
      */
-    patch = (url, body, callback, error) => {
+    patch (url, body, callback, error) {
         request(url, { method: 'PATCH', body, callback, error });
     }
 
@@ -71,8 +71,8 @@ export default class BaseController {
      *  
      * @returns {undefined}
      */
-    delete = (url, callback, error) => {
-        request(url, { method: 'DELETE', callback, error });
+    delete (url, body, callback, error) {
+        request(url, { method: 'DELETE', body, callback, error });
     }
 
     /**

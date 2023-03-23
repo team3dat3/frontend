@@ -1,5 +1,5 @@
-import ReservationController from "../controller/ReservationController";
-import Reservation from "../model/Reservation";
+import ReservationController from "../controller/ReservationController.js";
+import Reservation from "../model/Reservation.js";
 
 // Create a reservation controller
 const reservationController = new ReservationController();

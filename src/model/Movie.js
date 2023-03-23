@@ -1,3 +1,4 @@
+import BaseModel from "./BaseModel.js";
 
 /**
  * Movie model class.
@@ -32,10 +33,6 @@ export default class Movie {
      * @returns {Array}
      */
     static createCollectionFrom(json) {
-        const collection = [];
-        for (let i = 0; i < json.length; i++) {
-            collection.push(Movie.createFrom(json[i]));
-        }
-        return collection;
+        return BaseModel.createCollectionFrom(Movie, json);
     }
 }

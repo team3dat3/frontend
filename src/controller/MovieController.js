@@ -1,5 +1,5 @@
-import BaseController from './BaseController';
-import Movie from '../model/Movie';
+import BaseController from './BaseController.js';
+import Movie from '../model/Movie.js';
 
 /**
  * Movie controller class.
@@ -17,7 +17,7 @@ export default class MovieController extends BaseController {
      * @returns {undefined}
      */
     findAll(callback, error) {
-        this.get("/anonymous/movies", (json) => {callback(Movie.createCollectionFrom(json))}, error);
+        super.get("/anonymous/movies", (json) => {callback(Movie.createCollectionFrom(json))}, error);
     }
 
     /**
@@ -30,7 +30,7 @@ export default class MovieController extends BaseController {
      * @returns {undefined}
      */
     find(id, callback, error) {
-        this.get(`/anonymous/movies/${id}`, (json) => {callback(Movie.createFrom(json))}, error);
+        super.get(`/anonymous/movies/${id}`, (json) => {callback(Movie.createFrom(json))}, error);
     }
 
     /**
@@ -43,7 +43,7 @@ export default class MovieController extends BaseController {
      * @returns {undefined}
      */
     create(movie, callback, error) {
-        this.post("/admin/movies", movie, (json) => {callback(Movie.createFrom(json))}, error);
+        super.post("/admin/movies", movie, (json) => {callback(Movie.createFrom(json))}, error);
     }
 
     /**
@@ -56,7 +56,7 @@ export default class MovieController extends BaseController {
      * @returns {undefined} 
      */
     update(movie, callback, error) {
-        this.patch(`/admin/movies`, movie, (json) => {callback(Movie.createFrom(json))}, error);
+        super.patch(`/admin/movies`, movie, (json) => {callback(Movie.createFrom(json))}, error);
     }
 
     /**
@@ -69,6 +69,6 @@ export default class MovieController extends BaseController {
      * @returns {undefined}
      */
     delete(movie, callback, error) {
-        this.delete(`/admin/movies`, movie, callback, error);
+        super.delete("/admin/movies", movie, callback, error);
     }
 }

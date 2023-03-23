@@ -8,4 +8,4 @@ window.env = {};
  * Set the environment to production or development.
  * @type {string}
  */
-window.env.ENVIRONMENT = 'production';
+window.env.ENVIRONMENT = 'development';

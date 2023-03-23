@@ -1,5 +1,5 @@
-import MovieController from "../controller/MovieController";
-import Movie from "../model/Movie";
+import MovieController from "../controller/MovieController.js";
+import Movie from "../model/Movie.js";
 
 // Create a movie controller
 const movieController = new MovieController();

@@ -1,3 +1,4 @@
+import BaseModel from "./BaseModel.js";
 
 /**
  * Reservation model
@@ -32,10 +33,6 @@ export default class Reservation {
      * @returns {Array}
      */ 
     static createCollectionFrom(json) {
-        const collection = [];
-        for (let i = 0; i < json.length; i++) {
-            collection.push(Reservation.createFrom(json[i]));
-        }
-        return collection;
+        return BaseModel.createCollectionFrom(Reservation, json);
     }
 }

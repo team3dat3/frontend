@@ -1,5 +1,5 @@
-import BaseController from './BaseController';
-import Reservation from '../model/Reservation';
+import BaseController from './BaseController.js';
+import Reservation from '../model/Reservation.js';
 
 /**
  * Reservation controller class.
@@ -17,7 +17,7 @@ export default class ReservationController extends BaseController {
      * @returns {undefined}
      */
     findAll(callback, error) {
-        this.get("/anonymous/reservations", (json) => {callback(Reservation.createCollectionFrom(json))}, error);
+        super.get("/anonymous/reservations", (json) => {callback(Reservation.createCollectionFrom(json))}, error);
     }
 
     /**
@@ -30,7 +30,7 @@ export default class ReservationController extends BaseController {
      * @returns {undefined}
      */
     find(id, callback, error) {
-        this.get(`/anonymous/reservations/${id}`, (json) => {callback(Reservation.createFrom(json))}, error);
+        super.get(`/anonymous/reservations/${id}`, (json) => {callback(Reservation.createFrom(json))}, error);
     }
 
     /**
@@ -43,7 +43,7 @@ export default class ReservationController extends BaseController {
      * @returns {undefined}
      */
     create(reservation, callback, error) {
-        this.post("/admin/reservations", reservation, (json) => {callback(Reservation.createFrom(json))}, error);
+        super.post("/admin/reservations", reservation, (json) => {callback(Reservation.createFrom(json))}, error);
     }
 
     /**
@@ -56,7 +56,7 @@ export default class ReservationController extends BaseController {
      * @returns {undefined}
      */
     update(reservation, callback, error) {
-        this.patch(`/admin/reservations`, reservation, (json) => {callback(Reservation.createFrom(json))}, error);
+        super.patch(`/admin/reservations`, reservation, (json) => {callback(Reservation.createFrom(json))}, error);
     }
 
     /**
@@ -69,6 +69,6 @@ export default class ReservationController extends BaseController {
      * @returns {undefined}
      */
     delete(reservation, callback, error) {
-        this.delete(`/admin/reservations`, reservation, callback, error);
+        super.delete(`/admin/reservations`, reservation, callback, error);
     }
 }

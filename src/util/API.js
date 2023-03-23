@@ -3,8 +3,14 @@
  * The base URL for the API.
  * @type {string}
  */
-let baseUrl = window.env?.ENVIRONMENT === 'production' ?
+const baseUrl = window.env?.ENVIRONMENT === 'production' ?
     'https://api.bergandersen.com/v1' : 'http://localhost:8080/v1';
+
+/**
+ * Debug mode.
+ * @type {boolean}
+ */
+const debug = window.env?.ENVIRONMENT === 'development';
 
 /**
  * Sets the API key in local storage.
@@ -49,6 +55,11 @@ export async function request(endpoint, options) {
         options.method,
         options.body);
 
+    // If debug mode is enabled, print the debug info
+    if (debug) {
+        printDebugInfo(endpoint, options);
+    }
+
     // Fetch the API
     const response = await fetch(`${baseUrl}${endpoint}`, fetchOptions);
 
@@ -61,6 +72,10 @@ export async function request(endpoint, options) {
     } else {
         options.error(response);
     }
+}
+
+function printDebugInfo(endpoint, options) {
+    console.log(`Request Debug info => Endpoint: ${endpoint} Options: ${JSON.stringify(options)}`);
 }
 
 /**
