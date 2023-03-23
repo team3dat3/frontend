@@ -1,6 +1,7 @@
 
 /**
  * The base URL for the API.
+ * @type {string}
  */
 let baseUrl = window.env?.ENVIRONMENT === 'production' ?
     'https://api.bergandersen.com/v1' : 'http://localhost:8080/v1';
