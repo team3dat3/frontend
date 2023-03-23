@@ -1,8 +1,14 @@
 import MovieController from "../controller/MovieController";
 import Movie from "../model/Movie";
 
+// Create a movie controller
 const movieController = new MovieController();
 
+/**
+ * Movie page class.
+ *  
+ * @returns {MoviePage}
+ */
 export default function MoviePage() {
     
     // Find all movies

@@ -1,8 +1,14 @@
 import ReservationController from "../controller/ReservationController";
 import Reservation from "../model/Reservation";
 
+// Create a reservation controller
 const reservationController = new ReservationController();
 
+/**
+ * Reservation page class.
+ *  
+ * @returns {ReservationPage}
+ */
 export default function ReservationPage() {
     
     // Find all reservations
