@@ -7,7 +7,7 @@ const authenticationController = new AuthenticationController();
 /**
  * Authentication page class.
  *  
- * @returns {AuthenticationPage}
+ * @returns {undefined}
  */
 export default function AuthenticationPage() {
     
