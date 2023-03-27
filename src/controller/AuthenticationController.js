@@ -12,7 +12,7 @@ export default class AuthenticationController extends BaseController {
     /**
      * Create a new authentication request aka login
      * 
-     * @param {ReservationRequest} reservationRequest
+     * @param {AuthenticationRequest} authenticationRequest
      * @param {function} callback
      * @param {function} error
      * 
