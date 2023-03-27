@@ -3,14 +3,14 @@
  * @type {HTMLElement}
  * @private
  */
-const ROOT = document.getElementById('root');
+let ROOT = null;
 
 /**
  * Set the hide transition animation.
  * @type {string}
  * @private
  */
-let hideAnimation = "slideOutRight";
+let hideAnimation = "fadeOut";
 
 /**
  * Set the hide transition duration.
@@ -24,7 +24,7 @@ let hideDuration = 500;
  * @type {string}
  * @private
  */
-let showAnimation = "slideInLeft";
+let showAnimation = "fadeIn";
 
 /**
  * Set the show transition duration.
@@ -39,6 +39,17 @@ let showDuration = 500;
  * @private
  */
 let initialized = false;
+
+/**
+ * Set the root element.
+ * 
+ * @param {HTMLElement} root
+ * 
+ * @returns {undefined}
+ */
+export function setRoot(root) {
+    ROOT = root;
+}
 
 /**
  * Render the page.
