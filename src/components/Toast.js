@@ -13,6 +13,9 @@ function createToast (options) {
     // Add classes to toast
     div.classList.add('toast');
     div.classList.add(`${options.type}`);
+
+    // Set show animation
+    div.style.animation = `${options.show.animation.type} ${options.show.animation.duration}ms`;
     
     // Add text to toast
     const p = document.createElement('p');
@@ -53,7 +56,7 @@ export default function displayToast (options) {
             toast.remove();
         }, options.hide.animation.duration);
     }, options.duration);
-    
+
     // Append toast to toast wrapper
     toastWrapper.appendChild(toast);
 }
