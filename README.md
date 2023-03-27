@@ -9,3 +9,25 @@ Web application.
 5. Wait for status checks to pass.
 6. Assign reviewers and wait for a response.
 7. Merge.
+
+## Toast
+
+```js
+displayToast({
+    type: 'success',
+    text: 'This is a success toast',
+    duration: 5000,
+    show: {
+        animation: {
+            type: 'backInDown',
+            duration: 500
+        }
+    },
+    hide: {
+        animation: {
+            type: 'backOutUp',
+            duration: 500
+        }
+    }
+});
+```
