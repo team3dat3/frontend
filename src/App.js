@@ -1,6 +1,7 @@
 import { render } from "./util/Render.js";
 import MoviePage from "./view/MoviePage.js";
 import ReservationPage from "./view/ReservationPage.js";
+import "./util/navigo_EditedByLars.js";
 
 import Button from "./components/Button.js";
 import Link from "./components/Link.js";
@@ -39,6 +40,31 @@ const link = Link({
     }
 });
 
-render([link, button, button2]);
-MoviePage();
-ReservationPage();
+window.addEventListener("load", async () => {
+
+    const router = new Navigo("/", { hash: true });
+    window.router = router
+    
+    let path = window.location.hash
+    if (path == "") { //Do this only for hash
+        path = "#/"
+        window.history.pushState({}, path, window.location.href + path);
+    }
+
+    router
+        .hooks({
+            before(done, match) {
+                //setActiveLink("menu", match.url)
+                done()
+            }
+        })
+        .on({
+            "/": () => render([link, button, button2]),
+            "/movies": MoviePage,
+            "/reservations": ReservationPage
+        })
+        .notFound(() => {
+            alert("404");
+        })
+        .resolve()
+});

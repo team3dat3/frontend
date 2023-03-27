@@ -1,5 +1,5 @@
 import ReservationController from "../controller/ReservationController.js";
-import ReservationRequest from "../model/ReservationRequest.js";
+import ReservationRequest from "../dto/reservation/ReservationRequest.js";
 
 // Create a reservation controller
 const reservationController = new ReservationController();

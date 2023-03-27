@@ -1,6 +1,6 @@
 import BaseController from './BaseController.js';
-import ReservationRequest from '../model/ReservationRequest.js';
-import ReservationResponse from '../model/ReservationResponse.js';
+import ReservationRequest from '../dto/reservation/ReservationRequest.js';
+import ReservationResponse from '../dto/reservation/ReservationResponse.js';
 
 /**
  * Reservation controller class.

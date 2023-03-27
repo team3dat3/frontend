@@ -1,5 +1,5 @@
 import MovieController from "../controller/MovieController.js";
-import MovieRequest from "../model/MovieRequest.js";
+import MovieRequest from "../dto/movie/MovieRequest.js";
 
 // Create a movie controller
 const movieController = new MovieController();
