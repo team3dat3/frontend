@@ -1,8 +1,13 @@
 import "./config/Config.js"; // Load the config
 import { render, loadHtml, setRoot } from "./util/Render.js";
 
-//import MoviePage from "./view/MoviePage.js";
-//import ReservationPage from "./view/ReservationPage.js";
+// Reservation pages
+import ReservationAdminIndex from "./view/reservation/admin/index/Index.js";
+import ReservationAdminShow from "./view/reservation/admin/show/Show.js";
+import ReservationAdminEdit from "./view/reservation/admin/edit/Edit.js";
+import ReservationMemberShow from "./view/reservation/member/show/Show.js";
+import ReservationMemberIndex from "./view/reservation/member/index/Index.js";
+
 
 /**
  * Load the layout.

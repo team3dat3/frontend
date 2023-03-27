@@ -52,6 +52,21 @@ export function setRoot(root) {
 }
 
 /**
+ * Load and render the page.
+ *  
+ * @param {string} pathToFile
+ * 
+ * @returns {undefined}
+ */
+export function loadAndRender(pathToFile) {
+    loadHtml(pathToFile).then(html => {
+        render([html]);
+    }).catch(error => {
+        console.log(error);
+    });
+}
+
+/**
  * Render the page.
  * 
  * @param {Array} htmlElements

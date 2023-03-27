@@ -1,6 +1,5 @@
 import BaseController from './BaseController.js';
-import ReservationRequest from '../model/ReservationRequest.js';
-import ReservationResponse from '../model/ReservationResponse.js';
+import ReservationResponse from '../dto/reservation/ReservationResponse.js';
 
 /**
  * Reservation controller class.
@@ -71,5 +70,43 @@ export default class ReservationController extends BaseController {
      */
     delete(reservationRequest, callback, error) {
         super.delete(`/admin/reservations`, reservationRequest, callback, error);
+    }
+
+    /**
+     * Find all reservations for the authenticated user
+     * 
+     * @param {function} callback
+     * @param {function} error
+     * 
+     * @returns {undefined}
+     */
+    findUserReservations(callback, error) {
+        super.get("/member/reservations", (json) => {callback(ReservationResponse.createCollectionFrom(json))}, error);
+    }
+
+    /**
+     * Find a reservation by id for the authenticated user
+     * 
+     * @param {number} id
+     * @param {function} callback
+     * @param {function} error
+     * 
+     * @returns {undefined}
+     */
+    findUserReservation(id, callback, error) {
+        super.get(`/member/reservations/${id}`, (json) => {callback(ReservationResponse.createFrom(json))}, error);
+    }
+
+    /**
+     * Create a reservation for the authenticated user
+     * 
+     * @param {ReservationRequest} reservationRequest
+     * @param {function} callback
+     * @param {function} error
+     * 
+     * @returns {undefined}
+     */
+    createUserReservation(reservationRequest, callback, error) {
+        super.post("/member/reservations", reservationRequest, (json) => {callback(ReservationResponse.createFrom(json))}, error);
     }
 }
