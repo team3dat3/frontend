@@ -26,7 +26,7 @@ export default function MoviePage() {
     });
 
     // Create a movie
-    const movieRequest = new MovieRequest("The Matrix", 18);
+    //const movieRequest = new MovieRequest("The Matrix", 18);
     movieController.create(movieRequest, (movieResponse) => {
         console.log(movieResponse);
     }, (error) => {
@@ -34,7 +34,7 @@ export default function MoviePage() {
     });
 
     // Update a movie
-    movieRequest.age = 16;
+    //movieRequest.age = 16;
     movieController.update(movieRequest, (movieResponse) => {
         console.log(movieResponse);
     }, (error) => {

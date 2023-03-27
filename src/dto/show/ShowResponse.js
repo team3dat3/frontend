@@ -1,25 +1,25 @@
 import BaseModel from "../BaseModel.js";
 
 /**
- * Reservation response
+ * Show response
  * 
  * @param {number} id
- * @param {string} movieTitle
- * @param {number[]} reservations
- * @param {number[]} showDates
+ * @param {string} movietitle
+ * @param {Number[]} reservationsids
+ * @param {Number[]} showdatesids
  * @param {number} price
- * @param {number} theaterId
+ * @param {number} theaterid
  * 
- * @returns {ReservationResponse}
+ * @returns {ShowResponse}
  */
-export default class ReservationResponse {
-    constructor(id, movieTitle, reservations, showDates, price, theaterId) {
+export default class ShowResponse {
+    constructor(id, movietitle, reservationsids, showdatesids, price, theaterid) {
         this.id = id;
-        this.movieTitle = movieTitle;
-        this.reservations = reservations;
-        this.showDates = showDates;
+        this.movietitle = movietitle;
+        this.reservationsids = reservationsids;
+        this.showdatesids = showdatesids;
         this.price = price;
-        this.theaterId = theaterId;
+        this.theaterid = theaterid;
     }
 
     /**
@@ -30,7 +30,7 @@ export default class ReservationResponse {
      * @returns {ShowResponse}
      */
     static createFrom(json) {
-        return new ShowResponse(json.id, json.movieTitle, json.reservations, json.showDates, json.price, json.theaterId);
+        return new ShowResponse(json.id, json.movietitle, json.reservations, json.showdatesids, json.price, json.theaterid);
     }
 
     /**
