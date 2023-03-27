@@ -20,14 +20,14 @@ export default class UserResponse{
      * Creates a user request from a JSON object
      * 
      * @param {object} json
-     * @returns {ReservationResponse}
+     * @returns {UserResponse}
      */
     static createFrom(json){
-        return new ReservationResponse(json.email, json.phoneNumber, json.achievements, json.reservations, json.coupons)
+        return new UserResponse(json.email, json.phoneNumber, json.achievements, json.reservations, json.coupons)
     }
 
     /**
-     * Creates a collection of user reservations from a JSON array
+     * Creates a collection of user responses from a JSON array
      * 
      * @param {Array} json
      * @returns {Array}

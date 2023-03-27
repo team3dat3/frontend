@@ -1,7 +1,6 @@
 import BaseController from './BaseController.js';
-import ReservationRequest from '../model/UserRequest.js';
-import ReservationResponse from '../model/UserResponse.js';
-import UserResponse from '../dto/user/UserResponse.js';
+import UserRequest from '../dto/UserRequest.js';
+import UserResponse from '../dto/UserResponse.js';
 
 /**
  * User controller class
@@ -38,7 +37,7 @@ export default class UserController extends BaseController {
      * 
      * @returns {undefined}
      */
-    create(reservationRequest, callback, error){
+    create(userRequest, callback, error){
         super.post("/admin/users", userRequest, (json) => {callback(UserResponse.createFrom(json))}, error);
     }
 
@@ -51,7 +50,7 @@ export default class UserController extends BaseController {
      * 
      * @returns {undefined}
      */
-    update(reservationRequest, callback, error){
+    update(userRequest, callback, error){
         super.patch(`/admin/users`, userRequest, (json) => {callback(UserResponse.createFrom(json))}, error);
     }
 
@@ -64,7 +63,7 @@ export default class UserController extends BaseController {
      * 
      * @returns {undefined}
      */
-    delete(reservationRequest, callback, error){
+    delete(userRequest, callback, error){
         super.delete(`/admin/users`, userRequest, callback, error);
     }
 
