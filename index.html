@@ -1,9 +1,69 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <!--
+            https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title
+            Sets the title of the page
+        -->
         <title>Frontend</title>
+
+        <!--
+            https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta/charset
+            Sets the character encoding for the HTML document
+        -->
+        <meta charset="utf-8">
+
+        <!--
+            https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta/name
+            Sets the viewport to ensure the page is responsive
+        -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!--
+            https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy
+            Removes referrer from the request header
+        -->
+        <meta referrer="no-referrer">
+
+        <!--
+            https://fonts.google.com/
+            Adds fonts
+        -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+
+        <!--
+            ./dist/assets/stylesheets
+            Adds CSS styles
+        -->
+        <link rel="stylesheet" href="./dist/assets/stylesheets/var.css">
+        <link rel="stylesheet" href="./dist/assets/stylesheets/app.css">
+        <link rel="stylesheet" href="./dist/assets/stylesheets/button.css">
+        <link rel="stylesheet" href="./dist/assets/stylesheets/link.css">
+
+        <!-- 
+            http://daneden.github.io/animate.css/ 
+            Adds CSS animations 
+        -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     </head>
     <body>
-        <p>Velkommen til vores frontend.</p>
+        <div id="root"></div>
+
+        <div id="qrcode"></div>
+        
     </body>
+    <!-- 
+        https://davidshimjs.github.io/qrcodejs/
+        Add QR code generator
+    -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" 
+        integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript">
+        new QRCode(document.getElementById("qrcode"), "https://bergandersen.com/reservations/1/checkin");
+    </script>
+    <script src="./src/config/config.js" type="module"></script>
+    <script src="./src/App.js" type="module"></script>
 </html>
