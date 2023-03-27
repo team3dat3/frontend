@@ -62,6 +62,32 @@ export function render(htmlElements) {
 }
 
 /**
+ * Fetch the HTML file and return the outer div.
+ * 
+ * @param {string} pathToFile
+ *  
+ * @returns {HTMLElement}
+ */
+export async function loadHtml(pathToFile) {
+    const resHtml = await fetch(pathToFile).then(r => {
+        if (!r.ok) {
+            throw new Error(`Failed to load the page: '${pathToFile}' `)
+        }
+        return r.text();
+    });
+
+    const parser = new DOMParser();
+    const content = parser.parseFromString(resHtml, "text/html");
+    const div = content.querySelector(".template");
+    
+    if (!div) {
+        throw new Error(`No outer div with class 'template' found in file '${pathToFile}'`);
+    }
+
+    return div;
+};
+
+/**
  * Set the hide transition.
  * 
  * @param {string} animation
