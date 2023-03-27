@@ -1,5 +1,6 @@
 import BaseController from './BaseController.js';
-import Movie from '../model/Movie.js';
+import MovieRequest from '../model/MovieRequest.js';
+import MovieResponse from '../model/MovieResponse.js';
 
 /**
  * Movie controller class.
@@ -17,7 +18,7 @@ export default class MovieController extends BaseController {
      * @returns {undefined}
      */
     findAll(callback, error) {
-        super.get("/anonymous/movies", (json) => {callback(Movie.createCollectionFrom(json))}, error);
+        super.get("/anonymous/movies", (json) => {callback(MovieResponse.createCollectionFrom(json))}, error);
     }
 
     /**
@@ -30,45 +31,45 @@ export default class MovieController extends BaseController {
      * @returns {undefined}
      */
     find(id, callback, error) {
-        super.get(`/anonymous/movies/${id}`, (json) => {callback(Movie.createFrom(json))}, error);
+        super.get(`/anonymous/movies/${id}`, (json) => {callback(MovieResponse.createFrom(json))}, error);
     }
 
     /**
      * Create a movie
      *
-     * @param {Movie} movie
+     * @param {MovieRequest} movieRequest
      * @param {function} callback
      * @param {function} error
      * 
      * @returns {undefined}
      */
-    create(movie, callback, error) {
-        super.post("/admin/movies", movie, (json) => {callback(Movie.createFrom(json))}, error);
+    create(movieRequest, callback, error) {
+        super.post("/admin/movies", movieRequest, (json) => {callback(MovieResponse.createFrom(json))}, error);
     }
 
     /**
      * Update a movie
      *
-     * @param {Movie} movie
+     * @param {MovieRequest} movieRequest
      * @param {function} callback
      * @param {function} error
      *
      * @returns {undefined} 
      */
-    update(movie, callback, error) {
-        super.patch(`/admin/movies`, movie, (json) => {callback(Movie.createFrom(json))}, error);
+    update(movieRequest, callback, error) {
+        super.patch(`/admin/movies`, movieRequest, (json) => {callback(MovieResponse.createFrom(json))}, error);
     }
 
     /**
      * Delete a movie
      *
-     * @param {Movie} movie
+     * @param {MovieRequest} movieRequest
      * @param {function} callback
      * @param {function} error
      * 
      * @returns {undefined}
      */
-    delete(movie, callback, error) {
-        super.delete("/admin/movies", movie, callback, error);
+    delete(movieRequest, callback, error) {
+        super.delete("/admin/movies", movieRequest, callback, error);
     }
 }

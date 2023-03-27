@@ -1,5 +1,6 @@
 import BaseController from './BaseController.js';
-import Reservation from '../model/Reservation.js';
+import ReservationRequest from '../model/ReservationRequest.js';
+import ReservationResponse from '../model/ReservationResponse.js';
 
 /**
  * Reservation controller class.
@@ -17,7 +18,7 @@ export default class ReservationController extends BaseController {
      * @returns {undefined}
      */
     findAll(callback, error) {
-        super.get("/anonymous/reservations", (json) => {callback(Reservation.createCollectionFrom(json))}, error);
+        super.get("/anonymous/reservations", (json) => {callback(ReservationResponse.createCollectionFrom(json))}, error);
     }
 
     /**
@@ -30,45 +31,45 @@ export default class ReservationController extends BaseController {
      * @returns {undefined}
      */
     find(id, callback, error) {
-        super.get(`/anonymous/reservations/${id}`, (json) => {callback(Reservation.createFrom(json))}, error);
+        super.get(`/anonymous/reservations/${id}`, (json) => {callback(ReservationResponse.createFrom(json))}, error);
     }
 
     /**
      * Create a reservation
      * 
-     * @param {Reservation} reservation
+     * @param {ReservationRequest} reservationRequest
      * @param {function} callback
      * @param {function} error
      * 
      * @returns {undefined}
      */
-    create(reservation, callback, error) {
-        super.post("/admin/reservations", reservation, (json) => {callback(Reservation.createFrom(json))}, error);
+    create(reservationRequest, callback, error) {
+        super.post("/admin/reservations", reservationRequest, (json) => {callback(ReservationResponse.createFrom(json))}, error);
     }
 
     /**
      * Update a reservation
      * 
-     * @param {Reservation} reservation
+     * @param {ReservationRequest} reservationRequest
      * @param {function} callback
      * @param {function} error
      *  
      * @returns {undefined}
      */
-    update(reservation, callback, error) {
-        super.patch(`/admin/reservations`, reservation, (json) => {callback(Reservation.createFrom(json))}, error);
+    update(reservationRequest, callback, error) {
+        super.patch(`/admin/reservations`, reservationRequest, (json) => {callback(ReservationResponse.createFrom(json))}, error);
     }
 
     /**
      * Delete a reservation
      *  
-     * @param {Reservation} reservation
+     * @param {ReservationRequest} reservationRequest
      * @param {function} callback
      * @param {function} error
      *  
      * @returns {undefined}
      */
-    delete(reservation, callback, error) {
-        super.delete(`/admin/reservations`, reservation, callback, error);
+    delete(reservationRequest, callback, error) {
+        super.delete(`/admin/reservations`, reservationRequest, callback, error);
     }
 }

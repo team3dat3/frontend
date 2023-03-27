@@ -1,5 +1,5 @@
 import ReservationController from "../controller/ReservationController.js";
-import Reservation from "../model/Reservation.js";
+import ReservationRequest from "../model/ReservationRequest.js";
 
 // Create a reservation controller
 const reservationController = new ReservationController();
@@ -12,37 +12,37 @@ const reservationController = new ReservationController();
 export default function ReservationPage() {
     
     // Find all reservations
-    reservationController.findAll((reservations) => {
-        console.log(reservations);
+    reservationController.findAll((reservationResponses) => {
+        console.log(reservationResponses);
     }, (error) => {
         console.log(error);
     });
 
     // Find a reservation
-    reservationController.find(1, (reservation) => {
-        console.log(reservation);
+    reservationController.find(1, (reservationResponse) => {
+        console.log(reservationResponse);
     }, (error) => {
         console.log(error);
     });
 
     // Create a reservation
-    const reservation = new Reservation(0, false);
-    reservationController.create(reservation, (reservation) => {
-        console.log(reservation);
+    const reservationRequest = new ReservationRequest(0, false);
+    reservationController.create(reservationRequest, (reservationResponse) => {
+        console.log(reservationResponse);
     }, (error) => {
         console.log(error);
     });
 
     // Update a reservation
-    reservation.checkedIn = true;
-    reservationController.update(reservation, (reservation) => {
-        console.log(reservation);
+    reservationRequest.checkedIn = true;
+    reservationController.update(reservationRequest, (reservationResponse) => {
+        console.log(reservationResponse);
     }, (error) => {
         console.log(error);
     });
 
     // Delete a reservation
-    reservationController.delete(reservation, () => {
+    reservationController.delete(reservationRequest, () => {
         console.log("Reservation deleted");
     }, (error) => { 
         console.log(error);
