@@ -1,4 +1,4 @@
-import { request, setAPIKey } from '../util/API.js';
+import { request } from '../util/API.js';
 
 /**
  * Base controller class.
@@ -73,16 +73,5 @@ export default class BaseController {
      */
     delete (url, body, callback, error) {
         request(url, { method: 'DELETE', body, callback, error });
-    }
-
-    /**
-     * Sets the API key.
-     *
-     * @param {string} apiKey
-     * 
-     * @returns {undefined}
-     */
-    setAPIKey = (apiKey) => {
-        setAPIKey(apiKey);
     }
 }
