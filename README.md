@@ -9,3 +9,76 @@ Web application.
 5. Wait for status checks to pass.
 6. Assign reviewers and wait for a response.
 7. Merge.
+
+## Link Component
+```js
+import Link from "./components/Link.js";
+
+const link = Link({
+    type: 'primary',
+    text: 'Click me',
+    href: '#/movies',
+    animation: {
+        onclick: {
+            type: 'rubberBand',
+            duration: 800
+        }
+    }
+});
+```
+
+## Button Component
+```js
+import Button from "./components/Button.js";
+
+const button = Button({
+    type: 'primary',
+    text: 'Click me',
+    animation: {
+        onclick: {
+            type: 'jello',
+            duration: 800
+        }
+    }
+});
+```
+
+## Card Component
+```js
+import Card from "./components/Card.js";
+
+const card = new Card({
+    type: "primary",
+    header: "Header",
+    image: "https://picsum.photos/200/300",
+    body: "Body",
+    footer: "Footer",
+        animation: {
+        onmouseenter: {
+            type: "jello",
+            duration: 1000
+        },
+    }
+});
+
+## Toast Component
+
+```js
+displayToast({
+    type: 'success',
+    text: 'This is a success toast',
+    duration: 5000,
+    show: {
+        animation: {
+            type: 'backInDown',
+            duration: 500
+        }
+    },
+    hide: {
+        animation: {
+            type: 'backOutUp',
+            duration: 500
+        }
+    },
+});
+```

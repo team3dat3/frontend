@@ -3,14 +3,14 @@
  * @type {HTMLElement}
  * @private
  */
-const ROOT = document.getElementById('root');
+let ROOT = null;
 
 /**
  * Set the hide transition animation.
  * @type {string}
  * @private
  */
-let hideAnimation = "slideOutRight";
+let hideAnimation = "zoomOut";
 
 /**
  * Set the hide transition duration.
@@ -24,7 +24,7 @@ let hideDuration = 500;
  * @type {string}
  * @private
  */
-let showAnimation = "slideInLeft";
+let showAnimation = "zoomIn";
 
 /**
  * Set the show transition duration.
@@ -39,6 +39,35 @@ let showDuration = 500;
  * @private
  */
 let initialized = false;
+
+/**
+ * Set the root element.
+ * 
+ * @param {HTMLElement} root
+ * 
+ * @returns {undefined}
+ */
+export function setRoot(root) {
+    ROOT = root;
+}
+
+/**
+ * Load and render the page.
+ *  
+ * @param {string} pathToFile
+ * 
+ * @returns {undefined}
+ */
+export function loadAndRender(pathToFile, callback) {
+    loadHtml(pathToFile).then(html => {
+        render([html]);
+        if (callback) {
+            callback(html);
+        }
+    }).catch(error => {
+        console.log(error);
+    });
+}
 
 /**
  * Render the page.
@@ -60,6 +89,32 @@ export function render(htmlElements) {
         showTransition(htmlElements);
     }, hideDuration);
 }
+
+/**
+ * Fetch the HTML file and return the outer div.
+ * 
+ * @param {string} pathToFile
+ *  
+ * @returns {HTMLElement}
+ */
+export async function loadHtml(pathToFile) {
+    const resHtml = await fetch(pathToFile).then(r => {
+        if (!r.ok) {
+            throw new Error(`Failed to load the page: '${pathToFile}' `)
+        }
+        return r.text();
+    });
+
+    const parser = new DOMParser();
+    const content = parser.parseFromString(resHtml, "text/html");
+    const div = content.querySelector(".template");
+    
+    if (!div) {
+        throw new Error(`No outer div with class 'template' found in file '${pathToFile}'`);
+    }
+
+    return div;
+};
 
 /**
  * Set the hide transition.
