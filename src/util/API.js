@@ -92,8 +92,7 @@ function createFetchOptions(method, body) {
         // If method is undefined, use GET as default
         method: method ? method : 'GET',
         // Add headers to the fetch options
-        headers: headers(),
-        mode: 'no-cors',
+        headers: headers()
     };
 
     // If body is defined, stringify it and add it 

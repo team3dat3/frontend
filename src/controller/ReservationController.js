@@ -17,7 +17,7 @@ export default class ReservationController extends BaseController {
      * @returns {undefined}
      */
     findAll(callback, error) {
-        super.get("/anonymous/reservations", (json) => {callback(ReservationResponse.createCollectionFrom(json))}, error);
+        super.get("/admin/reservations", (json) => {callback(ReservationResponse.createCollectionFrom(json))}, error);
     }
 
     /**
@@ -30,7 +30,7 @@ export default class ReservationController extends BaseController {
      * @returns {undefined}
      */
     find(id, callback, error) {
-        super.get(`/anonymous/reservations/${id}`, (json) => {callback(ReservationResponse.createFrom(json))}, error);
+        super.get(`/admin/reservations/${id}`, (json) => {callback(ReservationResponse.createFrom(json))}, error);
     }
 
     /**
