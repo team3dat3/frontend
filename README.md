@@ -60,7 +60,7 @@ const card = new Card({
         },
     }
 });
-
+```
 ## Toast Component
 
 ```js
