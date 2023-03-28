@@ -6,3 +6,9 @@
 body {
     overflow-x: hidden;
 }
+
+#main-content {
+    min-height: 200px;
+    color: #333;
+    transition: height ease-in-out 0.5s;
+}

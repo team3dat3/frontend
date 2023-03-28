@@ -73,6 +73,19 @@ export default class ReservationController extends BaseController {
     }
 
     /**
+     * Checkin a reservation
+     * 
+     * @param {number} id
+     * @param {function} callback
+     * @param {function} error
+     * 
+     * @returns {undefined}
+     */
+    checkin(id, callback, error) {
+        super.get(`/admin/reservations/${id}/checkin`, (json) => {callback(ReservationResponse.createFrom(json))}, error);
+    }
+
+    /**
      * Find all reservations for the authenticated user
      * 
      * @param {function} callback

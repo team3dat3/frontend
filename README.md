@@ -42,3 +42,22 @@ const button = Button({
     }
 });
 ```
+
+## Card Component
+```js
+import Card from "./components/Card.js";
+
+const card = new Card({
+    type: "primary",
+    header: "Header",
+    image: "https://picsum.photos/200/300",
+    body: "Body",
+    footer: "Footer",
+    animation: {
+        onmouseenter: {
+            type: "jello",
+            duration: 1000
+        },
+    }
+});
+```

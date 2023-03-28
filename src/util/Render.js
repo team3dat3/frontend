@@ -10,7 +10,7 @@ let ROOT = null;
  * @type {string}
  * @private
  */
-let hideAnimation = "fadeOut";
+let hideAnimation = "zoomOut";
 
 /**
  * Set the hide transition duration.
@@ -24,7 +24,7 @@ let hideDuration = 500;
  * @type {string}
  * @private
  */
-let showAnimation = "fadeIn";
+let showAnimation = "zoomIn";
 
 /**
  * Set the show transition duration.
@@ -58,9 +58,12 @@ export function setRoot(root) {
  * 
  * @returns {undefined}
  */
-export function loadAndRender(pathToFile) {
+export function loadAndRender(pathToFile, callback) {
     loadHtml(pathToFile).then(html => {
         render([html]);
+        if (callback) {
+            callback(html);
+        }
     }).catch(error => {
         console.log(error);
     });

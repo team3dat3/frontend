@@ -12,33 +12,34 @@ const reservationController = new ReservationController();
  */
 export default function ReservationAdminEdit(id) {
     // Load and render the reservation admin show template
-    loadAndRender('src/view/reservation/admin/edit/template.html');
-    
-    // Find reservation
-    reservationController.find(id, (reservationResponse) => {
-        // Find checkin input element by name
-        const checkinInputElement = document.getElementsByName('checkedIn')[0];
-        // Set the value of the checkin input element to the value of the reservation response
-        checkinInputElement.value = reservationResponse.checkedIn;
-    }, (error) => {
-        console.log(error);
-    });
+    loadAndRender('src/view/reservation/admin/edit/template.html', (html) => {
 
-    // Add event listener to reservation form
-    document.getElementById('reservation-form').addEventListener('submit', (event) => {
-        event.preventDefault();
+        // find checkin input element by name within the template
+        const checkinInputElement = html.querySelector('[name="checkedIn"]');
 
-        // Create a reservation request
-        const reservationRequest = new ReservationRequest(
-            id,
-            document.getElementsByName('checkedIn')[0].value
-        );        
-
-        // Update reservation
-        reservationController.update(reservationRequest, (reservationResponse) => {
-            console.log(reservationResponse);
+        // Find reservation
+        reservationController.find(id, (reservationResponse) => {
+            // Set the value of the checkin input element to the value of the reservation response
+            checkinInputElement.value = reservationResponse.checkedIn;
         }, (error) => {
             console.log(error);
+        });
+
+        // Add event listener to reservation form
+        html.querySelector('#reservation-form').addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            // Create a reservation request
+            const reservationRequest = new ReservationRequest(
+                id, checkinInputElement.value
+            );        
+
+            // Update reservation
+            reservationController.update(reservationRequest, (reservationResponse) => {
+                console.log(reservationResponse);
+            }, (error) => {
+                console.log(error);
+            });
         });
     });
 }

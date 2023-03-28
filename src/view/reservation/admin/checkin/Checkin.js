@@ -5,22 +5,25 @@ import { loadAndRender } from '../../../../util/Render.js';
 const reservationController = new ReservationController();
 
 /**
- * Reservation admin show.
+ * Reservation admin checkin.
  *  
  * @returns {undefined}
  */
-export default function ReservationAdminShow(id) {
+export default function ReservationAdminCheckIn(id) {
     // Load and render the reservation admin show template
-    loadAndRender('src/view/reservation/admin/show/template.html', (html) => {
+    loadAndRender('src/view/reservation/admin/checkin/template.html', (html) => {
+
         // Get reservation HTML element wrapper
         const reservationWrapper = html.querySelector('#wrapper');
 
-        // Find reservation
-        reservationController.find(id, (reservationResponse) => {
+        // Checkin reservation
+        reservationController.checkin(id, (reservationResponse) => {
             // Create a new div element
             const element = document.createElement('div');
             // Set the inner HTML of the div element to the JSON string of the reservation
-            element.innerHTML = JSON.stringify(reservationResponse);
+            element.innerHTML = `The reservation is ${reservationResponse.checkedIn ? 
+                'checked in' : 'not checked in'}`;
+
             // Append the div element to the reservation HTML element wrapper
             reservationWrapper.appendChild(element);
         }, (error) => {
