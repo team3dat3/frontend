@@ -2,6 +2,8 @@ import "./config/Config.js"; // Load the config
 import { loadHtml, setRoot } from "./util/Render.js";
 import "./util/navigo_EditedByLars.js";
 
+// Public pages
+import Home from "./view/home/Home.js";
 
 // Reservation pages
 import ReservationAdminIndex from "./view/reservation/admin/index/Index.js";
@@ -25,35 +27,32 @@ await loadHtml("./src/view/layout/layout.html").then((html) => {
     setRoot(html.querySelector('#main-content'));
 });
 
-window.addEventListener("load", async () => {
+const router = new Navigo("/", { hash: true });
+window.router = router
 
-    const router = new Navigo("/", { hash: true });
-    window.router = router
-    
-    let path = window.location.hash
-    if (path == "") { //Do this only for hash
-        path = "#/"
-        window.history.pushState({}, path, window.location.href + path);
-    }
+let path = window.location.hash
+if (path == "") { //Do this only for hash
+    path = "#/"
+    window.history.pushState({}, path, window.location.href + path);
+}
 
-    router
-        .hooks({
-            before(done, match) {
-                //setActiveLink("menu", match.url)
-                done()
-            }
-        })
-        .on({
-            "/": () => render([link, button, button2]),
-            "/admin/reservations": ReservationAdminIndex,
-            "/admin/reservations/:id": ReservationAdminShow,
-            "/admin/reservations/:id/edit": ReservationAdminEdit,
-            "/admin/reservations/:id/checkin": ReservationAdminCheckIn,
-            "/member/reservations": ReservationMemberIndex,
-            "/member/reservations/:id": ReservationMemberShow,
-        })
-        .notFound(() => {
-            alert("404");
-        })
-        .resolve()
-});
+router
+    .hooks({
+        before(done, match) {
+            //setActiveLink("menu", match.url)
+            done()
+        }
+    })
+    .on({
+        "/": Home,
+        "/admin/reservations": ReservationAdminIndex,
+        "/admin/reservations/:id": ReservationAdminShow,
+        "/admin/reservations/:id/edit": ReservationAdminEdit,
+        "/admin/reservations/:id/checkin": ReservationAdminCheckIn,
+        "/member/reservations": ReservationMemberIndex,
+        "/member/reservations/:id": ReservationMemberShow,
+    })
+    .notFound(() => {
+        alert("404");
+    })
+    .resolve()
