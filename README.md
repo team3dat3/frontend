@@ -10,7 +10,7 @@ Web application.
 6. Assign reviewers and wait for a response.
 7. Merge.
 
-## Toast
+## Toast Component
 
 ```js
 displayToast({
@@ -28,6 +28,12 @@ displayToast({
             type: 'backOutUp',
             duration: 500
         }
+    },
+    animation: {
+        onmouseenter: {
+            type: "jello",
+            duration: 1000
+        },
     }
 });
 ```
