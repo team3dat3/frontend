@@ -1,6 +1,6 @@
 import BaseController from './BaseController.js';
-import MovieRequest from '../model/MovieRequest.js';
-import MovieResponse from '../model/MovieResponse.js';
+import MovieRequest from '../dto/movie/MovieRequest.js';
+import MovieResponse from '../dto/movie/MovieResponse.js';
 
 /**
  * Movie controller class.
