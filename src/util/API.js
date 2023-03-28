@@ -93,6 +93,7 @@ function createFetchOptions(method, body) {
         method: method ? method : 'GET',
         // Add headers to the fetch options
         headers: headers(),
+        mode: 'no-cors',
     };
 
     // If body is defined, stringify it and add it 
