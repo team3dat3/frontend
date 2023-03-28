@@ -5,13 +5,13 @@ import { loadAndRender } from '../../../../util/Render.js';
 const movieController = new MovieController();
 
 /**
- * Movie genre anonymous show.
+ * Movie genre admin show.
  *  
  * @returns {undefined}
  */
-export default function MovieGenresAnonymousShow() {
+export default function MovieGenresAdminShow() {
     // Load and render the movie show template
-    loadAndRender('src/view/movie/anonymous/showByGenre/template.html', (html) => {
+    loadAndRender('src/view/movie/admin/showByGenre/template.html', (html) => {
                 
           // find the genre search input
           const genre = html.querySelector('[name="search-genre"]');

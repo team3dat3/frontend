@@ -35,6 +35,6 @@ export default class UserResponse{
      * @returns {Array}
      */
     static createCollectionsFrom(json){
-        return BaseModel.createCollectionsFrom(UserResponse, json);
+        return BaseModel.createCollectionFrom(UserResponse, json);
     }
 }

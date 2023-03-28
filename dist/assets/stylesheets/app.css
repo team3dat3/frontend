@@ -5,10 +5,33 @@
 
 body {
     overflow-x: hidden;
+    margin: 0;
 }
 
 #main-content {
     min-height: 200px;
     color: #333;
     transition: height ease-in-out 0.5s;
+    padding: 1rem;
+}
+
+#main-content h1 {
+    margin: 0;
+}
+
+#wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: baseline;
+    gap: 1rem;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
 }

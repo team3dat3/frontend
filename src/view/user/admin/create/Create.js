@@ -5,13 +5,13 @@ import { loadAndRender } from "../../../../util/Render.js"
 const userController = new UserController();
 
 /**
- * User anonymous create
+ * User admin create
  * 
  * @param {undefined}
  */
 
-export default function UserAnonymousCreate() {
-    loadAndRender('src/view/user/anonymous/create/template.html', (html) => {
+export default function UserAdminCreate() {
+    loadAndRender('src/view/user/admin/create/template.html', (html) => {
         // Find register form
         const registerForm = html.querySelector('#register-form');
 
@@ -29,12 +29,12 @@ export default function UserAnonymousCreate() {
                 formData.get('password'),
                 formData.get('email'),
                 formData.get('phoneNumber'),
-                ["MEMBER"] // Overriden by server
+                [formData.get('role')]
             );
 
-            userController.register(userRequest, (userResponse) => {
+            userController.create(userRequest, (userResponse) => {
                 // Redirect to home page
-                window.router.navigate('/');
+                window.router.navigate('/admin/users');
             }, (error) => {
                 console.log(error);
             }); 

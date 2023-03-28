@@ -1,6 +1,6 @@
 import BaseController from './BaseController.js';
-import ShowDatetimeRequest from '../dto/ShowDateTimeRequest.js';
-import ShowDateTimeResponse from '../dto/ShowDateTimeResponse.js';
+import ShowDatetimeRequest from '../dto/showDateTime/ShowDateTimeRequest.js';
+import ShowDateTimeResponse from '../dto/showDateTime/ShowDateTimeResponse.js';
 
 /**
  * Show controller class.

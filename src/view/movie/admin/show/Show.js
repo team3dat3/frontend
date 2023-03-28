@@ -5,13 +5,13 @@ import { loadAndRender } from '../../../../util/Render.js';
 const movieController = new MovieController();
 
 /**
- * Movie anonymous show.
+ * Movie admin show.
  *  
  * @returns {undefined}
  */
-export default function MovieAnonymousShow() {
+export default function MovieAdminShow() {
     // Load and render the movie show template
-    loadAndRender('src/view/movie/anonymous/show/template.html', (html) => {
+    loadAndRender('src/view/movie/admin/show/template.html', (html) => {
                 
           // find the movie search input
           const title = html.querySelector('[name="search-title"]');

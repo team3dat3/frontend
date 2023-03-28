@@ -5,13 +5,13 @@ import { loadAndRender } from '../../../../util/Render.js';
 const showDateTimeController = new ShowDateTimeController();
 
 /**
- * Showdatetime anonymous show.
+ * Showdatetime admin show.
  *  
  * @returns {undefined}
  */
-export default function ShowDateTimeAnonymousShow() {
+export default function ShowDateTimeAdminShow() {
     // Load and render the showdatetime show template
-    loadAndRender('src/view/showdatetime/anonymous/show/template.html', (html) => {
+    loadAndRender('src/view/showdatetime/admin/show/template.html', (html) => {
                 
           // find the showdatetime search input
           const showDateTimeId = html.querySelector('[name="search-id"]');
@@ -22,8 +22,8 @@ export default function ShowDateTimeAnonymousShow() {
            //eventlistener for submit button
            html.querySelector('#showdate-search').addEventListener('submit', (event) => {
             event.preventDefault();
-        // Find showdate
-        showDateTimeController.find(showDateTimeId, (showDateTimeResponse) => {
+            // Find showdate
+            showDateTimeController.find(showDateTimeId, (showDateTimeResponse) => {
                // Create a new div element
                const element = document.createElement('div');
                // Set the inner HTML of the div element to the JSON string of the movie

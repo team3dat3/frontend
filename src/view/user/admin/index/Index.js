@@ -1,5 +1,6 @@
 import UserController from "../../../../controller/UserController.js";
 import {loadAndRender} from "../../../../util/Render.js";
+import Card from '../../../../components/Card.js';
 
 const userController = new UserController();
 
@@ -18,13 +19,26 @@ export default function UserAdminIndex() {
         //Find all users
         userController.findAll((userResponses) => {
             //Loop for each user response
+            let i = 0;
             userResponses.forEach(user => {
-                // Create new div element
-                const element = document.createElement('div');
-                // Set inner HTML of div element to the JSON string of given reservation
-                element.innerHTML = JSON.stringify(user);
-                // Append div element to the reservation HTML element wrapper
-                userWrapper.appendChild(element);
+
+                // Create a new card
+                const card = new Card({
+                    type: "primary",
+                    header: `${user.email}`,
+                    image: `https://picsum.photos/200/40${i}`,
+                    body: null,
+                    footer: null,
+                        animation: {
+                        onmouseenter: {
+                            type: "jello",
+                            duration: 1000
+                        },
+                    }
+                });
+                
+                userWrapper.appendChild(card);
+                i++;
             });
         }, (error) => {
             console.log(error);

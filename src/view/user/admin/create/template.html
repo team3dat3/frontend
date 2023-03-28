@@ -1,7 +1,7 @@
 <div class="template">
     <div class="form">
-        <h1>Register</h1>
-        <h2>Enter the following information to continue</h2>
+        <h1>Register user</h1>
+        <h2>Enter the following information</h2>
         <form id="register-form">
             <div class="input-group">
                 <label for="username">Username</label>
@@ -19,8 +19,15 @@
                 <label for="phoneNumber">Phone number</label>
                 <input type="number" name="phoneNumber">
             </div>
-            <button class="button success" type="submit">Register</button>
+            <div class="input-group">
+                <label for="role">Role</label>
+                <select name="role">
+                    <option value="ADMIN">Admin</option>
+                    <option value="MEMBER">Member</option>
+                </select>
+            </div>
+            <button class="button success" type="submit">Create</button>
         </form>
-        <a href="/#/login" class="button secondary" data-navigo>Already have an account?</a>
+        <a href="/#/admin/users" class="button secondary" data-navigo>Cancel</a>
     </div>
 </div>

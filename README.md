@@ -64,6 +64,8 @@ const card = new Card({
 ## Toast Component
 
 ```js
+import displayToast from "./components/Toast.js";
+
 displayToast({
     type: 'success',
     text: 'This is a success toast',

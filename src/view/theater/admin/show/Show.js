@@ -5,13 +5,13 @@ import { loadAndRender } from '../../../../util/Render.js';
 const theaterController = new TheaterController();
 
 /**
- * Theater anonymous show.
+ * Theater admin show.
  *  
  * @returns {undefined}
  */
-export default function TheaterAnonymousShow(id) {
+export default function TheaterAdminShow(id) {
     // Load and render the theater admin show template
-    loadAndRender('src/view/theater/anonymous/show/template.html', (html) => {
+    loadAndRender('src/view/theater/admin/show/template.html', (html) => {
         // Get theater HTML element wrapper
         const theaterWrapper = html.querySelector('#wrapper');
 

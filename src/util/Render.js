@@ -17,7 +17,7 @@ let hideAnimation = "zoomOut";
  * @type {number}
  * @private
  */
-let hideDuration = 500;
+let hideDuration = 100;
 
 /**
  * Set the show transition animation.

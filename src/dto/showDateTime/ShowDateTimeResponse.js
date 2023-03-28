@@ -24,7 +24,7 @@ export default class ShowDateTimeResponse {
      * @returns {ShowResponse}
      */
     static createFrom(json) {
-        return new ShowDateTimeResponse(json.id, json.showdate, json.showid);
+        return new ShowDateTimeResponse(json.id, json.showDate, json.showid);
     }
 
     /**

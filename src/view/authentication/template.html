@@ -1,14 +1,18 @@
 <div class="template">
-    <h1>Enter your credentials to continue</h1>
-    <form id="login-form">
-        <div>
-            <label for="username">Username</label>
-            <input type="text" name="username">
-        </div>
-        <div>
-            <label for="password">Password</label>
-            <input type="password" name="password">
-        </div>
-        <button class="button success" type="submit">Login</button>
-    </form>
+    <div class="form">
+        <h1>Login</h1>
+        <h2>Enter your credentials to continue</h2>
+        <form id="login-form">
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" name="username">
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" name="password">
+            </div>
+            <button class="button success" type="submit">Login</button>
+        </form>
+        <a href="/#/register" class="button secondary" data-navigo>Doesn't have an account yet?</a>
+    </div>
 </div>

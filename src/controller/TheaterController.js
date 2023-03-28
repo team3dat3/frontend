@@ -18,7 +18,7 @@ export default class TheaterController extends BaseController {
      * @returns {undefined}
      */
     findAll(callback, error) {
-        super.get("/anonymous/theaters", (json) => {callback(TheaterResponse.createCollectionFrom(json))}, error);
+        super.get("/admin/theaters", (json) => {callback(TheaterResponse.createCollectionFrom(json))}, error);
     }
 
     /**
@@ -31,7 +31,7 @@ export default class TheaterController extends BaseController {
      * @returns {undefined}
      */
     find(id, callback, error) {
-        super.get(`/anonymous/theaters/${id}`, (json) => {callback(TheaterResponse.createFrom(json))}, error);
+        super.get(`/admin/theaters/${id}`, (json) => {callback(TheaterResponse.createFrom(json))}, error);
     }
 
     /**

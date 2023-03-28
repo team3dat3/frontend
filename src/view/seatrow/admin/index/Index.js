@@ -1,5 +1,6 @@
 import SeatRowController from "../../../../controller/SeatRowController.js";
 import { loadAndRender } from '../../../../util/Render.js';
+import Card from '../../../../components/Card.js';
 
 // Create a seatrow controller
 const seatRowController = new SeatRowController();
@@ -19,12 +20,23 @@ export default function SeatRowAdminIndex() {
         seatRowController.findAll((seatRowResponses) => {
             // Loop through all seatrow responses
             seatRowResponses.forEach(seatrow => {
-                // Create a new div element
-                const element = document.createElement('div');
-                // Set the inner HTML of the div element to the JSON string of the seatrow
-                element.innerHTML = JSON.stringify(seatrow);
-                // Append the div element to the seatrow HTML element wrapper
-                seatRowWrapper.appendChild(element);
+
+                // Create a new card
+                const card = new Card({
+                    type: "primary",
+                    header: `ID: ${seatrow.id}`,
+                    image: `https://picsum.photos/200/14${seatrow.id}`,
+                    body: null,
+                    footer: null,
+                        animation: {
+                        onmouseenter: {
+                            type: "jello",
+                            duration: 1000
+                        },
+                    }
+                });
+
+                seatRowWrapper.appendChild(card);
             });
         }, (error) => {
             console.log(error);

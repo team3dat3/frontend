@@ -1,5 +1,5 @@
 import BaseController from './BaseController.js';
-import OmdbResponse from '../dto/movie/OmdbResponse.js';
+import OmdbResponse from '../dto/omdb/OmdbResponse.js';
 
 /**
  * Omdb controller class.

@@ -28,7 +28,7 @@ export function setAPIKey(apiKey) {
  * 
  * @returns {boolean}
  */
-function hasAPIKey() {
+export function hasAPIKey() {
     return localStorage.getItem('apiKey') !== null;
 }
 
@@ -37,7 +37,7 @@ function hasAPIKey() {
  * 
  * @returns {string}
  */
-function getAPIKey() {
+export function getAPIKey() {
     return localStorage.getItem('apiKey');
 }
 
@@ -62,7 +62,7 @@ export async function request(endpoint, options) {
 
     // Fetch the API
     const response = await fetch(`${baseUrl}${endpoint}`, fetchOptions);
-
+    
     // If the response is ok, parse the JSON and call the callback    
     if (response.ok) {
         const json = await response.json();
@@ -74,6 +74,14 @@ export async function request(endpoint, options) {
     }
 }
 
+/**
+ * Prints the debug info.
+ * 
+ * @param {string} endpoint
+ * @param {Object} options
+ * 
+ * @returns {undefined}
+ */
 function printDebugInfo(endpoint, options) {
     console.log(`Request Debug info => Endpoint: ${endpoint} Options: ${JSON.stringify(options)}`);
 }

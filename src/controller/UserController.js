@@ -13,7 +13,7 @@ export default class UserController extends BaseController {
      * @returns {undefined} 
      */
     findAll(callback, error){
-        super.get("admin/users", (json) => {callback(UserResponse.createCollectionsFrom(json))}, error);
+        super.get("/admin/users", (json) => {callback(UserResponse.createCollectionsFrom(json))}, error);
     }
 
     /**
@@ -38,7 +38,7 @@ export default class UserController extends BaseController {
      * @returns {undefined}
      */
     create(userRequest, callback, error){
-        super.post("/anonymous/users", userRequest, (json) => {callback(UserResponse.createFrom(json))}, error);
+        super.post("/admin/users", userRequest, (json) => {callback(UserResponse.createFrom(json))}, error);
     }
 
     /**
@@ -67,5 +67,17 @@ export default class UserController extends BaseController {
         super.delete(`/admin/users`, userRequest, callback, error);
     }
 
-
+    /**
+     * Register user
+     * Special endpoint for public users
+     * 
+     * @param {UserRequest} UserRequest
+     * @param {function} callback
+     * @param {function} error
+     * 
+     * @returns {undefined}
+     */
+    register(userRequest, callback, error){
+        super.post("/register", userRequest, (json) => {callback(UserResponse.createFrom(json))}, error);
+    }
 }
