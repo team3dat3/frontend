@@ -1,7 +1,5 @@
 import "./config/Config.js"; // Load the config
 import { loadHtml, setRoot } from "./util/Render.js";
-import MoviePage from "./view/MoviePage.js";
-import ReservationPage from "./view/ReservationPage.js";
 import "./util/navigo_EditedByLars.js";
 
 
@@ -22,12 +20,10 @@ import ReservationMemberIndex from "./view/reservation/member/index/Index.js";
 await loadHtml("./src/view/layout/layout.html").then((html) => {
     // Add the layout to the root element
     document.getElementById("root").appendChild(html);
-    document.getElementById("root").appendChild(card);
 
     // Set the render's root element
     setRoot(html.querySelector('#main-content'));
 });
-
 
 window.addEventListener("load", async () => {
 
@@ -49,13 +45,16 @@ window.addEventListener("load", async () => {
         })
         .on({
             "/": () => render([link, button, button2]),
-            "/movies": MoviePage,
-            "/reservations": ReservationPage
+            "/admin/reservations": ReservationAdminIndex,
+            "/admin/reservations/:id": ReservationAdminShow,
+            "/admin/reservations/:id/edit": ReservationAdminEdit,
+            "/admin/reservations/:id/checkin": ReservationAdminCheckIn,
+            "/member/reservations": ReservationMemberIndex,
+            "/member/reservations/:id": ReservationMemberShow,
         })
         .notFound(() => {
             alert("404");
         })
         .resolve()
 });
-
 //call class for in the bottom for now

@@ -4,8 +4,8 @@ import BaseModel from "../BaseModel.js";
  * Theater response class.
  * 
  * @param {number} id
- * @param {Number[]} seatrowids
- * @param {Number[]} showids
+ * @param {number[]} seatrowids
+ * @param {number[]} showids
  * 
  * @returns {TheaterResponse}
  */

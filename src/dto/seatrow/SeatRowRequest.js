@@ -4,7 +4,7 @@ import BaseModel from "../BaseModel.js";
  * SeatRow request class.
  * 
  * @param {number} id
- * @param {Number[]} seatids
+ * @param {number[]} seatids
  * @param {number} theaterid
  * 
  * @returns {SeatRowRequest}
