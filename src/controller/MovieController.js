@@ -22,16 +22,16 @@ export default class MovieController extends BaseController {
     }
 
     /**
-     * Find a movie by id
+     * Find a movie by title
      *
-     * @param {number} id
+     * @param {string} title
      * @param {function} callback
      * @param {function} error
      * 
      * @returns {undefined}
      */
     find(id, callback, error) {
-        super.get(`/anonymous/movies/${id}`, (json) => {callback(MovieResponse.createFrom(json))}, error);
+        super.get(`/anonymous/movies/${title}`, (json) => {callback(MovieResponse.createFrom(json))}, error);
     }
 
     /**

@@ -53,11 +53,32 @@ const card = new Card({
     image: "https://picsum.photos/200/300",
     body: "Body",
     footer: "Footer",
-    animation: {
+        animation: {
         onmouseenter: {
             type: "jello",
             duration: 1000
         },
     }
+});
+
+## Toast Component
+
+```js
+displayToast({
+    type: 'success',
+    text: 'This is a success toast',
+    duration: 5000,
+    show: {
+        animation: {
+            type: 'backInDown',
+            duration: 500
+        }
+    },
+    hide: {
+        animation: {
+            type: 'backOutUp',
+            duration: 500
+        }
+    },
 });
 ```
