@@ -5,8 +5,8 @@ import BaseModel from "../BaseModel.js";
  * 
  * @param {number} id
  * @param {string} movietitle
- * @param {Number[]} reservationsids
- * @param {Number[]} showdatesids
+ * @param {number[]} reservationsids
+ * @param {number[]} showdatesids
  * @param {number} price
  * @param {number} theaterid
  * 
