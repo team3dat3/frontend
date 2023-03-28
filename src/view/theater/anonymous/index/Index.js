@@ -5,13 +5,13 @@ import { loadAndRender } from '../../../../util/Render.js';
 const theaterController = new TheaterController();
 
 /**
- * Theater admin index.
+ * Theater anonymous index.
  *  
  * @returns {undefined}
  */
-export default function TheaterAdminIndex() {
+export default function TheaterAnonymousIndex() {
     // Load and render the theater admin index template
-    loadAndRender('src/view/theater/admin/index/template.html', (html) => {
+    loadAndRender('src/view/theater/anonymous/index/template.html', (html) => {
         // Get theater HTML element wrapper
         const theaterWrapper = html.querySelector('#wrapper');
 

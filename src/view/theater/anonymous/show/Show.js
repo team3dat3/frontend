@@ -5,18 +5,18 @@ import { loadAndRender } from '../../../../util/Render.js';
 const theaterController = new TheaterController();
 
 /**
- * Theater member show.
+ * Theater anonymous show.
  *  
  * @returns {undefined}
  */
-export default function TheaterMemberShow(id) {
-    // Load and render the theater member show template
-    loadAndRender('src/view/theater/member/show/template.html', (html) => {
+export default function TheaterAnonymousShow(id) {
+    // Load and render the theater admin show template
+    loadAndRender('src/view/theater/anonymous/show/template.html', (html) => {
         // Get theater HTML element wrapper
         const theaterWrapper = html.querySelector('#wrapper');
 
         // Find theater
-        theaterController.findUserTheater(id, (theaterResponse) => {
+        theaterController.find(id, (theaterResponse) => {
             // Create a new div element
             const element = document.createElement('div');
             // Set the inner HTML of the div element to the JSON string of the theater

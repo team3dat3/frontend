@@ -1,7 +1,12 @@
-import CouponController from "../../../../controller/CouponController";
-import CouponRequest from "../../../../dto/coupon/CouponRequest";
+import CouponController from "../../../../controller/CouponController.js";
+import CouponRequest from "../../../../dto/coupon/CouponRequest.js";
 import { loadAndRender } from '../../../../util/Render.js';
 
-export default function CouponAdminEdit(id){
+/**
+ * Coupon admin edit.
+ *  
+ * @returns {undefined}
+ */
+export default function CouponAdminEdit(id) {
 
 }

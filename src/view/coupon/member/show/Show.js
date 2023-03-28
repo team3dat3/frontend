@@ -1,13 +1,18 @@
-import CouponController from "../../../../controller/CouponController";
+import CouponController from "../../../../controller/CouponController.js";
 import {loadAndRender} from "../../../../util/Render.js";
 
-const CouponController = new CouponController();
+const couponController = new CouponController();
 
+/**
+ * Coupon member show
+ *  
+ * @returns {undefined}
+ */
 export default function CouponMemberShow(id){
     loadAndRender('src/view/coupon/member/show/template.html', (html) => {
         const couponWrapper = html.querySelector('#wrapper');
 
-        CouponController.find(id, (couponResponse) => {
+        couponController.findUserCoupon(id, (couponResponse) => {
             const element = document.createElement('div');
             element.innerHTML = JSON.stringify(couponResponse);
             couponWrapper.appendChild(element);

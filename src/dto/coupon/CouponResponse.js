@@ -1,3 +1,4 @@
+import BaseModel from "../BaseModel.js"
 
 /**
  * @param {number} id

@@ -6,7 +6,7 @@ const userController = new UserController();
 /**
  * User admin show
  * 
- * @param {undefined} username 
+ * @param {undefined}
  */
 
 export default function UserAdminShow(username){

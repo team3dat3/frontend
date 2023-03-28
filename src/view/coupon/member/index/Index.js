@@ -1,13 +1,18 @@
-import CouponController from "../../../../controller/CouponController";
+import CouponController from "../../../../controller/CouponController.js";
 import {loadAndRender} from "../../../../util/Render.js";
 
 const couponController = new CouponController();
 
-export default function CouponAdminIndex(){
+/**
+ * Coupon member index
+ *  
+ * @returns {undefined}
+ */
+export default function CouponMemberIndex() {
     loadAndRender('src/view/seat/member/index/template.html', (html) => {
         const couponWrapper = html.querySelector('#wrapper');
 
-        couponController.findAll((couponResponses) => {
+        couponController.findUserCoupons((couponResponses) => {
             couponResponses.forEach(coupon => {
                 const element = document.createElement('div');
                 element.innerHTML = JSON.stringify(coupon);

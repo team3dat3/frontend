@@ -1,3 +1,5 @@
+import BaseModel from "../BaseModel.js"
+
 /**
  * User request
  * @param {string} email

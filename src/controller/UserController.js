@@ -1,6 +1,6 @@
 import BaseController from './BaseController.js';
-import UserRequest from '../dto/UserRequest.js';
-import UserResponse from '../dto/UserResponse.js';
+import UserRequest from '../dto/user/UserRequest.js';
+import UserResponse from '../dto/user/UserResponse.js';
 
 /**
  * User controller class
@@ -38,7 +38,7 @@ export default class UserController extends BaseController {
      * @returns {undefined}
      */
     create(userRequest, callback, error){
-        super.post("/admin/users", userRequest, (json) => {callback(UserResponse.createFrom(json))}, error);
+        super.post("/anonymous/users", userRequest, (json) => {callback(UserResponse.createFrom(json))}, error);
     }
 
     /**
