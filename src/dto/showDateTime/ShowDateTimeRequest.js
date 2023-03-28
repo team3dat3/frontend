@@ -14,7 +14,7 @@ import BaseModel from "../BaseModel.js";
 export default class ShowDateTimeRequest {
     constructor(id, showdate, showid) {
         this.id = id;
-        this.showDate = showdate;
+        this.showdate = showdate;
         this.showid = showid;
     }
 
