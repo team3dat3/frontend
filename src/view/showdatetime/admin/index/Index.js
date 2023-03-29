@@ -24,6 +24,7 @@ export default function ShowDateTimeAdminIndex() {
                 // Create a new card
                 const card = new Card({
                     type: "primary",
+                    href: `#/admin/showdatetimes/${showDateTime.id}/edit`,
                     header: `ID: ${showDateTime.id}`,
                     image: `https://picsum.photos/200/10${showDateTime.id}`,
                     body: null,

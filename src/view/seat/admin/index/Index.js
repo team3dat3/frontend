@@ -24,6 +24,7 @@ export default function SeatAdminIndex() {
                 // Create a new card
                 const card = new Card({
                     type: "primary",
+                    href: `#/admin/seats/${seat.id}/delete`,
                     header: `ID: ${seat.id}`,
                     image: `https://picsum.photos/200/18${seat.id-1}`,
                     body: null,

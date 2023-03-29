@@ -27,6 +27,7 @@ import TheaterAdminCreate from "../view/theater/admin/create/Create.js";
 import TheaterAdminIndex from "../view/theater/admin/index/Index.js";
 
 // Seat row pages
+import SeatRowAdminEdit from "../view/seatrow/admin/edit/Edit.js";
 import SeatRowAdminCreate from "../view/seatrow/admin/create/Create.js";
 import SeatRowAdminIndex from "../view/seatrow/admin/index/Index.js";
 
@@ -41,7 +42,15 @@ import CouponAdminEdit from "../view/coupon/admin/edit/Edit.js";
 import CouponMemberIndex from "../view/coupon/member/index/Index.js";
 import CouponMemberShow from "../view/coupon/member/show/Show.js";
 
+// Achievement pages
+import AchievementAdminIndex from "../view/achievement/admin/index/Index.js";
+import AchievementAdminCreate from "../view/achievement/admin/create/Create.js";
+import AchievementAdminEdit from "../view/achievement/admin/edit/Edit.js";
+import AchievementMemberShow from "../view/achievement/member/show/Show.js";
+import AchievementMemberIndex from "../view/achievement/member/index/Index.js";
+
 // Show pages
+import SeatAdminDelete from "../view/seat/admin/delete/Delete.js";
 import ShowAdminCreate from "../view/show/admin/create/Create.js";
 import ShowAdminEdit from "../view/show/admin/edit/Edit.js";
 import ShowAnonymousIndex from "../view/show/anonymous/index/Index.js";
@@ -113,10 +122,12 @@ router
         "/admin/theaters/:id/edit": ({data}) => TheaterAdminEdit(data.id),
 
         // Seat rows
+        "/admin/seatrows/:id/edit": ({data}) => SeatRowAdminEdit(data.id),
         "/admin/seatrows/create": SeatRowAdminCreate,
         "/admin/seatrows": SeatRowAdminIndex,
 
         // Seats
+        "/admin/seats/:id/delete": ({data}) => SeatAdminDelete(data.id),
         "/admin/seats/create": SeatAdminCreate,
         "/admin/seats": SeatAdminIndex,
 
@@ -126,6 +137,13 @@ router
         "/admin/coupons/:id/edit": ({data}) => CouponAdminEdit(data.id),
         "/member/coupons": CouponMemberIndex,
         "/member/coupons/:id/show": ({data}) => CouponMemberShow(data.id),
+
+        // Achievements
+        "/admin/achievements": AchievementAdminIndex,
+        "/admin/achievements/create": AchievementAdminCreate,
+        "/admin/achievements/:id/edit": ({data}) => AchievementAdminEdit(data.id),
+        "/member/achievements": AchievementMemberIndex,
+        "/member/achievements/:id/show": ({data}) => AchievementMemberShow(data.id),
 
         // Shows
         "/admin/shows/create": ShowAdminCreate,

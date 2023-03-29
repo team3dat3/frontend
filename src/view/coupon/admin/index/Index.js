@@ -21,9 +21,9 @@ export default function CouponAdminIndex() {
                 // Create a new card
                 const card = new Card({
                     type: "primary",
-                    href: `#/admin/movies/${coupon.id}/edit`,
+                    href: `#/admin/coupons/${coupon.id}/edit`,
                     header: `ID: ${coupon.id}`,
-                    image: `https://picsum.photos/200/30${i}`,
+                    image: `https://picsum.photos/200/30${coupon.id}`,
                     body: null,
                     footer: null,
                         animation: {

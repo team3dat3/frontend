@@ -10,43 +10,34 @@ const showDateTimeController = new ShowDateTimeController();
  *  
  * @returns {undefined}
  */
-export default function ShowDateTimeAdminEdit() {
+export default function ShowDateTimeAdminEdit(id) {
     // Load and render the showdatetime admin edit template
-    loadAndRender('src/view/show/admin/edit/template.html', (html) => {
-        
-        // find the showdatetime search input
-        const id = html.querySelector('[name="search-id"]');
+    loadAndRender('src/view/showdatetime/admin/edit/template.html', (html) => {
 
+        showDateTimeController.find(id, (showDateTimeResponse) => {
+            html.querySelector('[name="showDate"]').value = showDateTimeResponse.showDate;
+            html.querySelector('[name="showId"]').value = showDateTimeResponse.showId;
+        }, (error) => {
+            console.log(error);
+        });
 
-        // find showdatetime input elements within the template
-        const showDate = html.querySelector('[name="showDate"]');
-        const showId = html.querySelector('[name="showId"]');
-        
-        //eventlistener for submit button find
-        html.querySelector('#showdate-search').addEventListener('submit', (event) => {
-            event.preventDefault();
-        // Find showdate
-        showDateTimeController.find(showDateTimeId, (showDateTimeResponse) => {
-   // Set the value of the attributes elements to the value of the showdatetime response
-   showDate.value = showDateTimeResponse.showDate;
-   showId.value = showDateTimeResponse.showid;
-             }, (error) => {
-                 console.log(error);
-             });
-            })
-        // Add event listener to showdatetime form
-        html.querySelector('#show-form').addEventListener('submit', (event) => {
+        const form = html.querySelector('#showdatetime-form');
+
+        form.addEventListener('submit', (event) => {
             event.preventDefault();
 
+            // Get form data
+            const formData = new FormData(form);
 
             // Create a showdatetime request
             const showDateTimeRequest = new ShowDateTimeRequest(
-                showDate.value, showId.value
-            );        
+                id,
+                formData.get('showDate'),
+                formData.get('showId')
+            );
 
-            // Update showdatetime
             showDateTimeController.update(showDateTimeRequest, (showDateTimeResponse) => {
-                console.log(showDateTimeResponse);
+                window.router.navigate('/admin/showdatetimes');
             }, (error) => {
                 console.log(error);
             });

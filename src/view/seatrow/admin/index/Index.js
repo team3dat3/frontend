@@ -24,6 +24,7 @@ export default function SeatRowAdminIndex() {
                 // Create a new card
                 const card = new Card({
                     type: "primary",
+                    href: `#/admin/seatrows/${seatrow.id}/edit`,
                     header: `ID: ${seatrow.id}`,
                     image: `https://picsum.photos/200/14${seatrow.id}`,
                     body: null,
