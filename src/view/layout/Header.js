@@ -5,6 +5,7 @@ import { hasRole, hasAnyRole } from "../../util/Authenticated.js";
  * @private
  */
 const adminLinks = [
+    { href: "/#/admin/movies", text: "Movies" },
     { href: "/#/admin/theaters", text: "Theaters" },
     { href: "/#/admin/seatrows", text: "Seat rows" },
     { href: "/#/admin/seats", text: "Seats" },
