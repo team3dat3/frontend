@@ -1,8 +1,10 @@
+import UserController from "../../../../controller/UserController.js";
 import AchievementController from "../../../../controller/AchievementController.js"
 import AchievementRequest from "../../../../dto/achievement/AchievementRequest.js";
 import { loadAndRender } from "../../../../util/Render.js"
 import { showToast } from '../../../../components/Toast.js';
 
+const userController = new UserController();
 const achievementController = new AchievementController();
 
 /**
@@ -10,9 +12,19 @@ const achievementController = new AchievementController();
  * 
  * @param {undefined}
  */
-
 export default function AchievementAdminCreate() {
     loadAndRender('src/view/achievement/admin/create/template.html', (html) => {
+
+        userController.findAll((userResponses) => {
+            userResponses.forEach(user => {
+                const option = document.createElement('option');
+                option.value = user.username;
+                option.innerText = user.username;
+                html.querySelector('[name="username"]').appendChild(option);
+            });
+        }, (error) => {
+            console.log(error);
+        });
 
         const form = html.querySelector('#achievement-form');
 
@@ -21,7 +33,11 @@ export default function AchievementAdminCreate() {
 
             const formData = new FormData(form);
             const achievementRequest = new AchievementRequest(
-                formData.get('missing')
+                0,
+                formData.get('username'),
+                formData.get('name'),
+                formData.get('description'),
+                formData.get('unlocked') ? true : false,
             );
 
             achievementController.create(achievementRequest, (achievementResponse) => {

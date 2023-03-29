@@ -1,8 +1,10 @@
+import UserController from "../../../../controller/UserController.js";
 import AchievementController from "../../../../controller/AchievementController.js"
 import AchievementRequest from "../../../../dto/achievement/AchievementRequest.js";
 import { loadAndRender } from "../../../../util/Render.js";
 import { showToast } from '../../../../components/Toast.js';
 
+const userController = new UserController();
 const achievementController = new AchievementController();
 
 /**
@@ -10,12 +12,26 @@ const achievementController = new AchievementController();
  * 
  * @returns {undefined}
  */
-
 export default function AchievementAdminEdit(id) {
     loadAndRender('src/view/achievement/admin/edit/template.html', (html) => {
 
         achievementController.find(id, (achievementResponse) => {
-            html.querySelector('[name="missing"]').value = achievementResponse.missing;
+            html.querySelector('[name="name"]').value = achievementResponse.name;
+            html.querySelector('[name="description"]').value = achievementResponse.description;
+            html.querySelector('[name="unlocked"]').checked = achievementResponse.unlocked;
+            userController.findAll((userResponses) => {
+                userResponses.forEach(user => {
+                    const option = document.createElement('option');
+                    option.value = user.username;
+                    option.innerText = user.username;
+                    if (user.id == achievementResponse.username) {
+                        option.selected = true;
+                    }
+                    html.querySelector('[name="username"]').appendChild(option);
+                });
+            }, (error) => {
+                console.log(error);
+            });
         }, (error) => {
             console.log(error);
         });

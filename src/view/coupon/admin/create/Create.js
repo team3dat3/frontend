@@ -1,8 +1,10 @@
+import UserController from "../../../../controller/UserController.js";
 import CouponController from "../../../../controller/CouponController.js";
 import CouponRequest from "../../../../dto/coupon/CouponRequest.js";
 import { loadAndRender } from "../../../../util/Render.js";
 import { showToast } from '../../../../components/Toast.js';
 
+const userController = new UserController();
 const couponController = new CouponController();
 
 /**
@@ -12,13 +14,34 @@ const couponController = new CouponController();
  */
 export default function CouponAdminCreate() {
     loadAndRender('src/view/coupon/admin/create/template.html', (html) => {
-        const couponWrapper = html.querySelector('#wrapper');
 
-        html.querySelector('#user-form').addEventListener('submit', (event) => {
+        userController.findAll((userResponses) => {
+            userResponses.forEach(user => {
+                const option = document.createElement('option');
+                option.value = user.username;
+                option.innerText = user.username;
+                html.querySelector('[name="username"]').appendChild(option);
+            });
+        }, (error) => {
+            console.log(error);
+        });
+
+        const form = html.querySelector('#coupon-form');
+
+        form.addEventListener('submit', (event) => {
             event.preventDefault();
+            
 
-            const couponRequest = new CouponRequest(id, "name", "discount", "user", "cost", "used");
-
+            // Get form data
+            const formData = new FormData(form);
+            const couponRequest = new CouponRequest(
+                0, 
+                formData.get('name'),
+                formData.get('discount'),
+                formData.get('username'),
+                formData.get('cost'),
+                formData.get('used') ? true : false);
+                
             couponController.create(couponRequest, (couponResponse) => {
                 window.router.navigate('/admin/coupons');
                 showToast('success', `Coupon saved with id: ${couponResponse.id}.`, 5000);
