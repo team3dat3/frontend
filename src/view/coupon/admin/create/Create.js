@@ -40,8 +40,8 @@ export default function CouponAdminCreate() {
                 formData.get('discount'),
                 formData.get('username'),
                 formData.get('cost'),
-                formData.get('used') ? true : false);
-                
+                formData.get('used') == 'on' ? true : false);
+
             couponController.create(couponRequest, (couponResponse) => {
                 window.router.navigate('/admin/coupons');
                 showToast('success', `Coupon saved with id: ${couponResponse.id}.`, 5000);

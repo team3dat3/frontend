@@ -12,11 +12,11 @@ import BaseModel from "../BaseModel.js"
  */
 
 export default class CouponResponse{
-    constructor(id, name, discount, userId, cost, used){
+    constructor(id, name, discount, username, cost, used){
         this.id = id
         this.name = name
         this.discount = discount
-        this.userId = userId
+        this.username = username
         this.cost = cost
         this.used = used
     }
@@ -27,7 +27,7 @@ export default class CouponResponse{
      * @returns {CouponResponse}
      */
     static createFrom(json){
-        return new CouponResponse(json.id, json.name, json.discount, json.userId, json.cost, json.used);
+        return new CouponResponse(json.id, json.name, json.discount, json.username, json.cost, json.used);
     }
 
     /**

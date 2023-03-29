@@ -9,9 +9,11 @@ import BaseModel from "../BaseModel.js";
  * @returns {ReservationResponse}
  */
 export default class ReservationResponse {
-    constructor(id, checkedIn) {
+    constructor(id, checkedIn, username, showId) {
         this.id = id;
         this.checkedIn = checkedIn;
+        this.username = username;
+        this.showId = showId;
     }
 
     /**
@@ -22,7 +24,7 @@ export default class ReservationResponse {
      * @returns {ReservationResponse}
      */
     static createFrom(json) {
-        return new ReservationResponse(json.id, json.checkedIn);
+        return new ReservationResponse(json.id, json.checkedIn, json.username, json.showId);
     }
 
     /**

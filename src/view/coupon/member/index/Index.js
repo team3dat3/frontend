@@ -1,5 +1,6 @@
 import CouponController from "../../../../controller/CouponController.js";
 import {loadAndRender} from "../../../../util/Render.js";
+import Card from '../../../../components/Card.js';
 
 const couponController = new CouponController();
 
@@ -14,9 +15,24 @@ export default function CouponMemberIndex() {
 
         couponController.findUserCoupons((couponResponses) => {
             couponResponses.forEach(coupon => {
-                const element = document.createElement('div');
-                element.innerHTML = JSON.stringify(coupon);
-                couponWrapper.appendChild(element);
+
+                // Create a new card
+                const card = new Card({
+                    type: "primary",
+                    href: `#/member/coupons/${coupon.id}/show`,
+                    header: `${coupon.name}`,
+                    image: `https://picsum.photos/200/2${coupon.id % 10}`,
+                    body: `<p><strong>Cost:</strong> ${coupon.cost}</p><p><strong>Discount:</strong> ${coupon.discount}</p>`,
+                    footer: coupon.used ? `<small class="badge success">Used</small>` : '<small class="badge secondary">Not used</small>',
+                        animation: {
+                        onmouseenter: {
+                            type: "jello",
+                            duration: 1000
+                        },
+                    }
+                });
+
+                couponWrapper.appendChild(card);
             });
         }, (error) => {
             console.log(error)

@@ -25,7 +25,6 @@ export default class CouponController extends BaseController{
         super.get(`/admin/coupons/${id}`, (json) => {callback(CouponResponse.createFrom(json))}, error);
     }
 
-
     /**
      * @param {CouponRequest} couponRequest 
      * @param {function} callback 
@@ -57,6 +56,19 @@ export default class CouponController extends BaseController{
      */
     delete(couponRequest, callback, error){
         super.delete(`/admin/coupons`, couponRequest, callback, error);
+    }
+
+    /**
+     * scan a coupon
+     * 
+     * @param {number} id
+     * @param {function} callback
+     * @param {function} error
+     * 
+     * @returns {undefined}
+     */
+    scan(id, callback, error) {
+        super.get(`/admin/coupons/${id}/scan`, (json) => {callback(CouponResponse.createFrom(json))}, error);
     }
 
     /**

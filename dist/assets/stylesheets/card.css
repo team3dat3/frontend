@@ -37,9 +37,6 @@
 }
 
 .card-footer {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
     margin-top: 1rem;
 }
 

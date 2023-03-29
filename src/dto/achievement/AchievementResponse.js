@@ -13,11 +13,11 @@ import BaseModel from "../BaseModel.js"
  */
 export default class AchievementResponse {
     constructor(id, username, name, description, unlocked) {
-        this.id = id
-        this.username = username
-        this.name = name
-        this.description = description
-        this.unlocked = unlocked
+        this.id = id;
+        this.username = username;
+        this.name = name;
+        this.description = description;
+        this.unlocked = unlocked;
     }
 
     /**

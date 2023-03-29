@@ -20,17 +20,10 @@ export default function AchievementMemberIndex() {
                 // Create a new card
                 const card = new Card({
                     type: "primary",
-                    href: `#/admin/achievement/${achievement.id}/edit`,
-                    header: `ID: ${achievement.id}`,
-                    image: `https://picsum.photos/200/40${achievement.id}`,
-                    body: null,
-                    footer: null,
-                        animation: {
-                        onmouseenter: {
-                            type: "jello",
-                            duration: 1000
-                        },
-                    }
+                    header: `${achievement.name}`,
+                    image: `https://picsum.photos/200/2${achievement.id % 10}`,
+                    body: `${achievement.description}`,
+                    footer: achievement.unlocked ? `<small class="badge success">Unlocked</small>` : `<small class="badge secondary">Locked</small>`,
                 });
                 
                 wrapper.appendChild(card);

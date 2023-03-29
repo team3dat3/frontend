@@ -3,22 +3,27 @@
         <h1>Register user</h1>
         <h2>Enter the following information</h2>
         <form id="register-form">
+
             <div class="input-group">
                 <label for="username">Username</label>
                 <input type="text" name="username">
             </div>
+
             <div class="input-group">
                 <label for="password">Password</label>
                 <input type="password" name="password">
             </div>
+
             <div class="input-group">
                 <label for="email">E-mail</label>
                 <input type="email" name="email">
             </div>
+
             <div class="input-group">
                 <label for="phoneNumber">Phone number</label>
                 <input type="number" name="phoneNumber">
             </div>
+
             <div class="input-group">
                 <label for="role">Role</label>
                 <select name="role">
@@ -26,6 +31,27 @@
                     <option value="MEMBER">Member</option>
                 </select>
             </div>
+
+            <div class="input-group">
+                <label for="accountNonExpired">Account non expired</label>
+                <input type="checkbox" name="accountNonExpired">
+            </div>
+
+            <div class="input-group">
+                <label for="accountNonLocked">Account non locked</label>
+                <input type="checkbox" name="accountNonLocked">
+            </div>
+
+            <div class="input-group">
+                <label for="credentialsNonExpired">Credentials non expired</label>
+                <input type="checkbox" name="credentialsNonExpired">
+            </div>
+
+            <div class="input-group">
+                <label for="enabled">Enabled</label>
+                <input type="checkbox" name="enabled">
+            </div>
+
             <button class="button success" type="submit">Create</button>
         </form>
         <a href="/#/admin/users" class="button secondary" data-navigo>Cancel</a>

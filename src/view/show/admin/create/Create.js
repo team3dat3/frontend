@@ -1,9 +1,14 @@
+import MovieController from "../../../../controller/MovieController.js";
+import ShowDateTimeController from "../../../../controller/ShowDateTimeController.js";
+import TheaterController from "../../../../controller/TheaterController.js";
 import ShowController from "../../../../controller/ShowController.js";
 import ShowRequest from "../../../../dto/show/ShowRequest.js";
 import { loadAndRender } from '../../../../util/Render.js';
 import { showToast } from '../../../../components/Toast.js';
 
-// Create a show controller
+const movieController = new MovieController();
+const showDateTimeController = new ShowDateTimeController();
+const theaterController = new TheaterController();
 const showController = new ShowController();
 
 /**
@@ -14,6 +19,8 @@ const showController = new ShowController();
 export default function ShowAdminCreate() {
     // Load and render the show admin create template
     loadAndRender('src/view/show/admin/create/template.html', (html) => {
+
+        
         
         // find show title input element by name within the template
         const movieTitleElement = html.querySelector('[name="movieTitle"]');

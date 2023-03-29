@@ -42,10 +42,13 @@ export default function AchievementAdminEdit(id) {
         form.addEventListener('submit', (event) => {
             event.preventDefault();
 
-            const formData = new FormData(userForm);
+            const formData = new FormData(form);
             const achievementRequest = new AchievementRequest(
                 id,
-                formData.get('missing')
+                formData.get('username'),
+                formData.get('name'),
+                formData.get('description'),
+                formData.get('unlocked') ? true : false,
             );
 
             achievementController.update(achievementRequest, (achievementResponse) => {

@@ -23,9 +23,9 @@ export default function CouponAdminIndex() {
                     type: "primary",
                     href: `#/admin/coupons/${coupon.id}/edit`,
                     header: `ID: ${coupon.id}`,
-                    image: `https://picsum.photos/200/30${coupon.id}`,
-                    body: null,
-                    footer: null,
+                    image: `https://picsum.photos/200/2${coupon.id % 10}`,
+                    body: `<p><strong>Cost:</strong> ${coupon.cost}</p><p><strong>Discount:</strong> ${coupon.discount}</p><p><strong>Belongs to:</strong> ${coupon.username}</p>`,
+                    footer: coupon.used ? `<small class="badge success">Used</small>` : '<small class="badge secondary">Not used</small>',
                         animation: {
                         onmouseenter: {
                             type: "jello",

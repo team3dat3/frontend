@@ -30,7 +30,11 @@ export default function UserAdminCreate() {
                 formData.get('password'),
                 formData.get('email'),
                 formData.get('phoneNumber'),
-                [formData.get('role')]
+                [formData.get('role')],
+                formData.get('accountNonExpired'),
+                formData.get('accountNonLocked'),
+                formData.get('credentialsNonExpired'),
+                formData.get('enabled')
             );
 
             userController.create(userRequest, (userResponse) => {

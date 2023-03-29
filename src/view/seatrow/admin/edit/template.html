@@ -6,12 +6,16 @@
         <form id="seatrow-form">
             <div class="input-group">
                 <label for="seatIds">Seat IDs</label>
-                <select name="seatIds" multiple></select>
+                <select name="seatIds" multiple>
+                    <option value="">None</option>
+                </select>
             </div>
 
             <div class="input-group">
                 <label for="theaterId">Theater</label>
-                <select name="theaterId"></select>
+                <select name="theaterId">
+                    <option value="0">None</option>
+                </select>
             </div>
 
             <button class="button success" type="submit">Update</button>

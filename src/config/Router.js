@@ -35,11 +35,13 @@ import SeatRowAdminIndex from "../view/seatrow/admin/index/Index.js";
 // Seat pages
 import SeatAdminCreate from "../view/seat/admin/create/Create.js";
 import SeatAdminIndex from "../view/seat/admin/index/Index.js";
+import SeatAdminEdit from "../view/seat/admin/edit/Edit.js";
 
 // Coupon pages
 import CouponAdminIndex from "../view/coupon/admin/index/Index.js";
 import CouponAdminCreate from "../view/coupon/admin/create/Create.js";
 import CouponAdminEdit from "../view/coupon/admin/edit/Edit.js";
+import CouponAdminScan from "../view/coupon/admin/scan/Scan.js";
 import CouponMemberIndex from "../view/coupon/member/index/Index.js";
 import CouponMemberShow from "../view/coupon/member/show/Show.js";
 
@@ -47,11 +49,9 @@ import CouponMemberShow from "../view/coupon/member/show/Show.js";
 import AchievementAdminIndex from "../view/achievement/admin/index/Index.js";
 import AchievementAdminCreate from "../view/achievement/admin/create/Create.js";
 import AchievementAdminEdit from "../view/achievement/admin/edit/Edit.js";
-import AchievementMemberShow from "../view/achievement/member/show/Show.js";
 import AchievementMemberIndex from "../view/achievement/member/index/Index.js";
 
 // Show pages
-import SeatAdminDelete from "../view/seat/admin/delete/Delete.js";
 import ShowAdminCreate from "../view/show/admin/create/Create.js";
 import ShowAdminEdit from "../view/show/admin/edit/Edit.js";
 import ShowAnonymousIndex from "../view/show/anonymous/index/Index.js";
@@ -129,7 +129,7 @@ router
         "/admin/seatrows": SeatRowAdminIndex,
 
         // Seats
-        "/admin/seats/:id/delete": ({data}) => SeatAdminDelete(data.id),
+        "/admin/seats/:id/edit": ({data}) => SeatAdminEdit(data.id),
         "/admin/seats/create": SeatAdminCreate,
         "/admin/seats": SeatAdminIndex,
 
@@ -137,6 +137,7 @@ router
         "/admin/coupons": CouponAdminIndex,
         "/admin/coupons/create": CouponAdminCreate,
         "/admin/coupons/:id/edit": ({data}) => CouponAdminEdit(data.id),
+        "/admin/coupons/:id/scan": ({data}) => CouponAdminScan(data.id),
         "/member/coupons": CouponMemberIndex,
         "/member/coupons/:id/show": ({data}) => CouponMemberShow(data.id),
 
@@ -145,7 +146,6 @@ router
         "/admin/achievements/create": AchievementAdminCreate,
         "/admin/achievements/:id/edit": ({data}) => AchievementAdminEdit(data.id),
         "/member/achievements": AchievementMemberIndex,
-        "/member/achievements/:id/show": ({data}) => AchievementMemberShow(data.id),
 
         // Shows
         "/admin/shows/create": ShowAdminCreate,

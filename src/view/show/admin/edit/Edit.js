@@ -1,9 +1,14 @@
+import MovieController from "../../../../controller/MovieController.js";
+import ShowDateTimeController from "../../../../controller/ShowDateTimeController.js";
+import TheaterController from "../../../../controller/TheaterController.js";
 import ShowController from "../../../../controller/ShowController.js";
 import ShowRequest from "../../../../dto/show/ShowRequest.js";
 import { loadAndRender } from '../../../../util/Render.js';
 import { showToast } from '../../../../components/Toast.js';
 
-// Create a show controller
+const movieController = new MovieController();
+const showDateTimeController = new ShowDateTimeController();
+const theaterController = new TheaterController();
 const showController = new ShowController();
 
 /**

@@ -4,24 +4,30 @@
         <h2>Enter the following information</h2>
 
         <form id="show-form">
+
             <div class="input-group">
-                <label for="movieTitle">Movie title</label>
-                <input type="text" name="movieTitle">
+                <label for="movieTitle">Movie</label>
+                <select name="movieTitle"></select>
             </div>
+
             <div class="input-group">
-                <label for="showDateTimeIds">Show date time IDs (up to 50, separated by new lines)</label>
-                <textarea name="showDateTimeIds" rows="5"></textarea>
+                <label for="showDateTimeIds">Show datetimes</label>
+                <select name="showDateTimeIds" multiple></select>
             </div>
+
             <div class="input-group">
                 <label for="price">Price</label>
                 <input type="number" name="price">
             </div>
+
             <div class="input-group">
-                <label for="theaterId">Theater ID</label>
-                <input type="number" name="theaterId">
+                <label for="theaterId">Theater</label>
+                <select name="theaterId"></select>
             </div>
+
             <button class="button success" type="submit">Update</button>
         </form>
+        
         <a href="/#/shows" class="button secondary" data-navigo>Cancel</a>
     </div>
 </div>
