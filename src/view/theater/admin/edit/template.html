@@ -1,8 +1,10 @@
 <div class="template">
     <div class="form">
-        <h1>Create theater</h1>
+        <h1>Edit theater</h1>
         <h2>Enter the following information</h2>
         <form id="seatrow-form">
+            <input type="hidden" name="id">
+
             <div class="input-group">
                 <label for="seatRowIdsFrom">Seatrow IDs from:</label>
                 <input type="number" name="seatRowIdsFrom" value="">
@@ -11,7 +13,7 @@
                 <label for="seatRowIdsTo">to:</label>
                 <input type="number" name="seatRowIdsTo" value="">
             </div>
-            <button class="button success" type="submit">Create</button>
+            <button class="button success" type="submit">Update</button>
         </form>
         <a href="/#/admin/theaters" class="button secondary" data-navigo>Cancel</a>
     </div>

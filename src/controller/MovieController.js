@@ -70,7 +70,7 @@ export default class MovieController extends BaseController {
      * @returns {undefined} 
      */
     update(movieRequest, callback, error) {
-        super.patch(`/admin/movies`, movieRequest, (json) => { callback(MovieResponse.createFrom(json)) }, error);
+        super.put(`/admin/movies`, movieRequest, (json) => { callback(MovieResponse.createFrom(json)) }, error);
     }
 
     /**

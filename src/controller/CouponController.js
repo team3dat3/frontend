@@ -45,7 +45,7 @@ export default class CouponController extends BaseController{
      * @returns {undefined} 
      */
     update(couponRequest, callback, error){
-        super.patch(`/admin/coupons`, couponRequest, (json) => {callback(CouponResponse.createFrom(json))}, error);
+        super.put(`/admin/coupons`, couponRequest, (json) => {callback(CouponResponse.createFrom(json))}, error);
     }
 
     /** 

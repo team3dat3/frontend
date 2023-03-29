@@ -1,6 +1,6 @@
 import CouponController from "../../../../controller/CouponController.js";
 import CouponRequest from "../../../../dto/coupon/CouponRequest.js";
-import {loadAndRender} from "../../../../util/Render.js";
+import { loadAndRender } from "../../../../util/Render.js";
 
 const couponController = new CouponController();
 
@@ -10,7 +10,7 @@ const couponController = new CouponController();
  * @returns {undefined}
  */
 export default function CouponAdminCreate() {
-    loadAndRender('src/view/coupon/create/template.html', (html) => {
+    loadAndRender('src/view/coupon/admin/create/template.html', (html) => {
         const couponWrapper = html.querySelector('#wrapper');
 
         html.querySelector('#user-form').addEventListener('submit', (event) => {

@@ -30,6 +30,12 @@ export default function Card(options) {
         createCardTextElement('footer', 'card-footer', options.footer, wrapper);
     }
 
+    if (options.href) {
+        wrapper.onclick = () => {
+            window.router.navigate(options.href);
+        };
+    }
+
     return wrapper;
 }
 

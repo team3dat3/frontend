@@ -23,6 +23,7 @@
     margin-bottom: 5px;
 }
 
+.form .input-group textarea,
 .form .input-group select,
 .form .input-group input {
     width: 100%;

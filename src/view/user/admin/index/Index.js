@@ -25,6 +25,7 @@ export default function UserAdminIndex() {
                 // Create a new card
                 const card = new Card({
                     type: "primary",
+                    href: `#/admin/users/${user.username}/edit`,
                     header: `${user.email}`,
                     image: `https://picsum.photos/200/40${i}`,
                     body: null,

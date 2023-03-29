@@ -51,7 +51,7 @@ export default class UserController extends BaseController {
      * @returns {undefined}
      */
     update(userRequest, callback, error){
-        super.patch(`/admin/users`, userRequest, (json) => {callback(UserResponse.createFrom(json))}, error);
+        super.put(`/admin/users`, userRequest, (json) => {callback(UserResponse.createFrom(json))}, error);
     }
 
     /**

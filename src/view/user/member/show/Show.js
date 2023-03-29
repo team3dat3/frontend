@@ -8,7 +8,7 @@ const userController = new UserController();
  *  
  * @returns {undefined}
  */
-export default function UserMemberShow() {
+export default function UserMemberShow(username) {
     // Load and render the reservation admin show template
     loadAndRender('src/view/user/member/show/template.html', (html) => {
 

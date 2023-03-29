@@ -25,6 +25,7 @@ export default function MovieAdminIndex() {
                 // Create a new card
                 const card = new Card({
                     type: "primary",
+                    href: `#/admin/movies/${movie.title}/edit`,
                     header: movie.title,
                     image: `https://picsum.photos/200/30${i}`,
                     body: `${movie.description}`,

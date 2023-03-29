@@ -36,6 +36,6 @@ export default class CouponResponse{
      * @returns {Array}
      */
     static createCollectionFrom(json){
-        return new BaseModel.createCollectionFrom(CouponResponse, json);
+        return BaseModel.createCollectionFrom(CouponResponse, json);
     }
 }

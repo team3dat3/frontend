@@ -33,7 +33,6 @@ export default function UserAdminCreate() {
             );
 
             userController.create(userRequest, (userResponse) => {
-                // Redirect to home page
                 window.router.navigate('/admin/users');
             }, (error) => {
                 console.log(error);

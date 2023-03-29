@@ -56,7 +56,7 @@ export default class ReservationController extends BaseController {
      * @returns {undefined}
      */
     update(reservationRequest, callback, error) {
-        super.patch(`/admin/reservations`, reservationRequest, (json) => {callback(ReservationResponse.createFrom(json))}, error);
+        super.put(`/admin/reservations`, reservationRequest, (json) => {callback(ReservationResponse.createFrom(json))}, error);
     }
 
     /**

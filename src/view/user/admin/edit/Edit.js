@@ -10,21 +10,41 @@ const userController = new UserController();
  * @returns {undefined}
  */
 
-export default function UserAdminEdit(){
-    loadAndRender('src/view/user/admin/create/template.html', (html) => {
-        const seatWrapper = html.querySelector('#wrapper');
+export default function UserAdminEdit(username) {
+    loadAndRender('src/view/user/admin/edit/template.html', (html) => {
 
-        html.querySelector('#user-form').addEventListener('submit', (event) => {
+        // Find user
+        userController.find(username, (userResponse) => {
+            // Set the value of the attributes elements to the value of the movie response
+            html.querySelector('[name="username"]').value = userResponse.username;
+            html.querySelector('[name="email"]').value = userResponse.email;
+            html.querySelector('[name="phoneNumber"]').value = userResponse.phoneNumber;
+            html.querySelector('[name="role"]').value = userResponse.roles;
+
+        }, (error) => {
+            console.log(error);
+        });
+
+        // Find form element by id within the template
+        const userForm = html.querySelector('#user-form');
+
+        userForm.addEventListener('submit', (event) => {
             event.preventDefault();
 
-            const userRequest = new userRequest(email, phoneNumber, reservations, achievements, couponse);
+            // Get form data
+            const formData = new FormData(userForm);
 
-            userController.create(userRequest, (userResponses) => {
-                userResponses.forEach(user => {
-                    const element = document.createElement('div');
-                    element.innerHTML = JSON.stringify(user);
-                    userWrapper.appendChild(element);
-                });
+            // Create a new user request
+            const userRequest = new UserRequest(
+                username,
+                "",
+                formData.get('email'),
+                formData.get('phoneNumber'),
+                [formData.get('role')]
+            );
+
+            userController.update(userRequest, (userResponse) => {
+                window.router.navigate('/admin/users');
             }, (error) => {
                 console.log(error);
             });

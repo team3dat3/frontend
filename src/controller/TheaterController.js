@@ -57,7 +57,7 @@ export default class TheaterController extends BaseController {
      * @returns {undefined} 
      */
     update(theaterRequest, callback, error) {
-        super.patch(`/admin/theaters`, theaterRequest, (json) => {callback(TheaterResponse.createFrom(json))}, error);
+        super.put(`/admin/theaters`, theaterRequest, (json) => {callback(TheaterResponse.createFrom(json))}, error);
     }
 
     /**

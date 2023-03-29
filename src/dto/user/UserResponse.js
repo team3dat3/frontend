@@ -9,13 +9,12 @@ import BaseModel from "../BaseModel.js"
  * @param {number[]} coupons
  * @returns {number[]}
  */
-export default class UserResponse{
-    constructor(email, phoneNumber, achievements, reservations, coupons){
+export default class UserResponse {
+    constructor(username, email, phoneNumber, roles) {
+        this.username = username
         this.email = email
         this.phoneNumber = phoneNumber
-        this.achievements = achievements
-        this.reservations = reservations
-        this.coupons = coupons
+        this.roles = roles
     }
 
     /**
@@ -24,8 +23,8 @@ export default class UserResponse{
      * @param {object} json
      * @returns {UserResponse}
      */
-    static createFrom(json){
-        return new UserResponse(json.email, json.phoneNumber, json.achievements, json.reservations, json.coupons)
+    static createFrom(json) {
+        return new UserResponse(json.username, json.email, json.phoneNumber, json.roles)
     }
 
     /**
@@ -34,7 +33,7 @@ export default class UserResponse{
      * @param {Array} json
      * @returns {Array}
      */
-    static createCollectionsFrom(json){
+    static createCollectionsFrom(json) {
         return BaseModel.createCollectionFrom(UserResponse, json);
     }
 }

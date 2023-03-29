@@ -1,27 +1,52 @@
 <div class="template">
-    <h1>Admin edit movie</h1>
-    <form id="movie-search"></form>
-    <input type="text" name="search-title" value="">
-    <button class="button success" type="submit">Search movie</button>
-</form>
+    <div class="form">
+        <h1>Edit movie</h1>
+        <h2>Enter the following information</h2>
     
-    <form id="movie-form">
-        <label for="movieTitle">Movie title</label>
-        <input type="text" name="movietitle" value="">
-        <label for="director">Director</label>
-        <input type="text" name="director" value="">
-        <label for="actors">Actors</label>
-        <input type="text" name="actors" value="">
-        <label for="prodYear">Production year</label>
-        <input type="number" name="prodYear" value="">
-        <label for="ageLimit">Age limit</label>
-        <input type="number" name="prodYear" value="">
-        <label for="description">Description</label>
-        <input type="text" name="description" value="">
-        <label for="genres">Genre</label>
-        <input type="text" name="genres" value="">
-        <label for="runtime">Runtime</label>
-        <input type="text" name="runtime" value="">
-        <button class="button success" type="submit">Save</button>
-    </form>
+        <form id="movie-form">
+            
+            <div class="input-group">
+                <label for="movieTitle">Movie title</label>
+                <input type="text" name="movieTitle" disabled>
+            </div>
+
+            <div class="input-group">
+                <label for="director">Director</label>
+                <input type="text" name="director" value="">
+            </div>
+
+            <div class="input-group">
+                <label for="actors">Actors</label>
+                <input type="text" name="actors" value="">
+            </div>
+
+            <div class="input-group">
+                <label for="prodYear">Production year</label>
+                <input type="number" name="prodYear" value="">
+            </div>
+
+            <div class="input-group">
+                <label for="ageLimit">Age limit</label>
+                <input type="number" name="ageLimit" value="">
+            </div>
+
+            <div class="input-group">
+                <label for="description">Description</label>
+                <input type="text" name="description" value="">
+            </div>
+
+            <div class="input-group">
+                <label for="genres">Genre</label>
+                <input type="text" name="genres" value="">
+            </div>
+
+            <div class="input-group">
+                <label for="runtime">Runtime</label>
+                <input type="text" name="runtime" value="">
+            </div>
+            
+            <button class="button success" type="submit">Save</button>
+        </form>
+        <a href="/#/admin/movies" class="button secondary" data-navigo>Cancel</a>
+    </div>
 </div>

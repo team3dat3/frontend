@@ -57,7 +57,7 @@ export default class ShowController extends BaseController {
      * @returns {undefined}
      */
     update(showRequest, callback, error) {
-        super.patch(`/admin/shows`, showRequest, (json) => {callback(ShowResponse.createFrom(json))}, error);
+        super.put(`/admin/shows`, showRequest, (json) => {callback(ShowResponse.createFrom(json))}, error);
     }
 
     /**

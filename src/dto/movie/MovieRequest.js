@@ -15,12 +15,12 @@ import BaseModel from "../BaseModel.js";
  * @returns {MovieRequest}
  */
 export default class MovieRequest {
-    constructor(title, director, actors, prodyear, agelimit, description, genre, runtime) {
+    constructor(title, director, actors, prodYear, ageLimit, description, genre, runtime) {
         this.title = title;
         this.director = director;
         this.actors = actors;
-        this.prodyear = prodyear;
-        this.agelimit = agelimit;
+        this.prodYear = prodYear;
+        this.ageLimit = ageLimit;
         this.description = description;
         this.genre = genre;
         this.runtime = runtime;
@@ -34,7 +34,7 @@ export default class MovieRequest {
      * @returns {MovieRequest}
      */
     static createFrom(json) {
-        return new MovieRequest(json.title, json.director, json.actors, json.prodyear, json.agelimit, json.description, json.genre, json.runtime);
+        return new MovieRequest(json.title, json.director, json.actors, json.prodYear, json.ageLimit, json.description, json.genre, json.runtime);
     }
 
     /**

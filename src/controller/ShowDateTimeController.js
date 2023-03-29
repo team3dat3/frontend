@@ -57,7 +57,7 @@ export default class ShowDateTimeController extends BaseController {
      * @returns {undefined}
      */
     update(showDateTimeRequest, callback, error) {
-        super.patch(`/admin/showdates`, showDateTimeRequest, (json) => {callback(ShowDateTimeResponse.createFrom(json))}, error);
+        super.put(`/admin/showdates`, showDateTimeRequest, (json) => {callback(ShowDateTimeResponse.createFrom(json))}, error);
     }
 
     /**

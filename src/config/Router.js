@@ -24,6 +24,7 @@ import ReservationMemberShow from "../view/reservation/member/show/Show.js";
 import ReservationMemberIndex from "../view/reservation/member/index/Index.js";
 
 // Theater pages
+import TheaterAdminEdit from "../view/theater/admin/edit/Edit.js";
 import TheaterAdminCreate from "../view/theater/admin/create/Create.js";
 import TheaterAdminIndex from "../view/theater/admin/index/Index.js";
 import TheaterAdminShow from "../view/theater/admin/show/Show.js";
@@ -39,6 +40,7 @@ import SeatAdminShow from "../view/seat/admin/show/Show.js";
 import SeatAdminIndex from "../view/seat/admin/index/Index.js";
 
 // Coupon pages
+import CouponAdminIndex from "../view/coupon/admin/index/Index.js";
 import CouponAdminCreate from "../view/coupon/admin/create/Create.js";
 import CouponAdminEdit from "../view/coupon/admin/edit/Edit.js";
 import CouponMemberIndex from "../view/coupon/member/index/Index.js";
@@ -96,11 +98,11 @@ router
 
         // Reservations
         "/admin/reservations": ReservationAdminIndex,
-        "/admin/reservations/:id/show": ReservationAdminShow,
-        "/admin/reservations/:id/edit": ReservationAdminEdit,
-        "/admin/reservations/:id/checkin": ReservationAdminCheckIn,
+        "/admin/reservations/:id/show": ({data}) => ReservationAdminShow(data.id),
+        "/admin/reservations/:id/edit": ({data}) => ReservationAdminEdit(data.id),
+        "/admin/reservations/:id/checkin": ({data}) => ReservationAdminCheckIn(data.id),
         "/member/reservations": ReservationMemberIndex,
-        "/member/reservations/:id/show": ReservationMemberShow,
+        "/member/reservations/:id/show": ({data}) => ReservationMemberShow(data.id),
 
         // Authentication
         "/login": Login,
@@ -108,51 +110,53 @@ router
         // Users
         "/admin/users": UserAdminIndex,
         "/admin/users/create": UserAdminCreate,
-        "/admin/users/:username/show": UserAdminShow,
-        "/admin/users/:username/edit": UserAdminEdit,
-        "/member/users/:username/show": UserMemberShow,
-        "/member/users/:username/edit": UserMemberEdit,
+        "/admin/users/:username/show": ({data}) => UserAdminShow(data.username),
+        "/admin/users/:username/edit": ({data}) => UserAdminEdit(data.username),
+        "/member/users/:username/show": ({data}) => UserMemberShow(data.username),
+        "/member/users/:username/edit": ({data}) => UserMemberEdit(data.username),
         "/register": UserAnonymousCreate,
 
         // Theaters
         "/admin/theaters/create": TheaterAdminCreate,
         "/admin/theaters": TheaterAdminIndex,
-        "/admin/theaters/:id/show": TheaterAdminShow,
+        "/admin/theaters/:id/show": ({data}) => TheaterAdminShow(data.id),
+        "/admin/theaters/:id/edit": ({data}) => TheaterAdminEdit(data.id),
 
         // Seat rows
         "/admin/seatrows/create": SeatRowAdminCreate,
         "/admin/seatrows": SeatRowAdminIndex,
-        "/admin/seatrows/:id/show": SeatRowAdminShow,
+        "/admin/seatrows/:id/show": ({data}) => SeatRowAdminShow(data.id),
 
         // Seats
         "/admin/seats/create": SeatAdminCreate,
         "/admin/seats": SeatAdminIndex,
-        "/admin/seats/:id/show": SeatAdminShow,
+        "/admin/seats/:id/show": ({data}) => SeatAdminShow(data.id),
 
         // Coupons
+        "/admin/coupons": CouponAdminIndex,
         "/admin/coupons/create": CouponAdminCreate,
-        "/admin/coupons/:id/edit": CouponAdminEdit,
+        "/admin/coupons/:id/edit": ({data}) => CouponAdminEdit(data.id),
         "/member/coupons": CouponMemberIndex,
-        "/member/coupons/:id/show": CouponMemberShow,
+        "/member/coupons/:id/show": ({data}) => CouponMemberShow(data.id),
 
         // Shows
         "/admin/shows/create": ShowAdminCreate,
-        "/admin/shows/:id/edit": ShowAdminEdit,
+        "/admin/shows/:id/edit": ({data}) => ShowAdminEdit(data.id),
         "/shows": ShowAnonymousIndex,
-        "/shows/:id": ShowAnonymousShow,
+        "/shows/:id/show": ({data}) => ShowAnonymousShow(data.id),
 
         // Show date times
         "/admin/showdatetimes/create": ShowDateTimeAdminCreate,
-        "/admin/showdatetimes/:id/edit": ShowDateTimeAdminEdit,
+        "/admin/showdatetimes/:id/edit": ({data}) => ShowDateTimeAdminEdit(data.id),
         "/admin/showdatetimes": ShowDateTimeAdminIndex,
-        "/admin/showdatetimes/:id/show": ShowDateTimeAdminShow,
+        "/admin/showdatetimes/:id/show": ({data}) => ShowDateTimeAdminShow(data.id),
 
         // Movies
         "/admin/movies/create": MovieAdminCreate,
-        "/admin/movies/:id/edit": MovieAdminEdit,
+        "/admin/movies/:title/edit": ({data}) => MovieAdminEdit(data.title),
         "/admin/movies": MovieAdminIndex,
-        "/admin/movies/:id/show": MovieAdminShow,
-        "/admin/movies/genres/:genre": MovieGenresAdminShow,
+        "/admin/movies/:title/show": ({data}) => MovieAdminShow(data.title),
+        "/admin/movies/genres/:genre": ({data}) => MovieGenresAdminShow(data.genre),
 
     })
 
