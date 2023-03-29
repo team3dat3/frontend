@@ -34,7 +34,7 @@ export default function TheaterAdminEdit(id) {
 
             // Create a new theater request
             const theaterRequest = new TheaterRequest(
-                formData.get('id'),
+                id,
                 formData.get('seatRowIdsFrom'),
                 formData.get('seatRowIdsTo')
             );

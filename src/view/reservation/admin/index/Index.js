@@ -24,6 +24,7 @@ export default function ReservationAdminIndex() {
                 // Create a new card
                 const card = new Card({
                     type: "primary",
+                    href: `#/admin/reservations/${reservation.id}/edit`,
                     header: `ID: ${reservation.id}`,
                     image: `https://picsum.photos/200/12${reservation.id}`,
                     body: null,
