@@ -22,18 +22,18 @@ export default function TheaterAdminCreate() {
                     const option = document.createElement('option');
                     option.value = seatRow.id;
                     option.innerText = seatRow.id;
-                    html.querySelector('[name="seatRowIds"]').appendChild(option);     
+                    html.querySelector('[name="seatRowIds"]').appendChild(option);
                 }
             });
+
+            // Check if the seatRowIds select has any options
+            const seatRowIdsElement = html.querySelector('[name="seatRowIds"]');
+            if (seatRowIdsElement.options.length == 0) {
+                showToast('secondary', "No seat rows available. Create a seat row first.", 5000);
+            }
         }, (error) => {
             console.log(error);
         });
-
-        // Check if the seatRowIds select has any options
-        const seatRowIdsElement = html.querySelector('[name="seatRowIds"]');
-        if (seatRowIdsElement.options.length == 0) {
-            showToast('secondary', "No seat rows available. Create a seat row first.", 5000);
-        }
 
         // Find form element by id within the template
         const form = html.querySelector('#theater-form');

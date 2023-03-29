@@ -1,5 +1,6 @@
 import { isExpired } from './Authenticated.js';
 import { showToast } from '../components/Toast.js';
+import { refreshHeader } from '../view/layout/Header.js';
 
 /**
  * The base URL for the API.
@@ -152,6 +153,7 @@ function headers() {
 
 function onExpiration() {
     removeAPIKey();
+    refreshHeader(document);
     showToast('secondary', 'Your session has expired. Please login again.', 5000);
     window.router.navigate('/login');
 }

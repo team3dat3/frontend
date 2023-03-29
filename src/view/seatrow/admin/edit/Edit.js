@@ -1,9 +1,11 @@
 import SeatController from "../../../../controller/SeatController.js";
+import TheaterController from "../../../../controller/TheaterController.js";
 import SeatRowController from "../../../../controller/SeatRowController.js";
 import SeatRowRequest from "../../../../dto/seatrow/SeatRowRequest.js";
 import { loadAndRender } from '../../../../util/Render.js';
 import { showToast } from '../../../../components/Toast.js';
 
+const theaterController = new TheaterController();
 const seatController = new SeatController();
 const seatRowController = new SeatRowController();
 
@@ -17,8 +19,37 @@ export default function SeatRowAdminEdit(id) {
     loadAndRender('src/view/seatrow/admin/edit/template.html', (html) => {
 
         seatRowController.find(id, (seatRowResponse) => {
-            html.querySelector('[name="seatIds"]').value = seatRowResponse.seatIds;
-            html.querySelector('[name="theaterId"]').value = seatRowResponse.theaterId;
+            // Add seat options
+            seatController.findAll((seatResponses) => {
+                seatResponses.forEach(seat => {
+                    if (seat.seatRowId == id || seat.seatRowId == 0) {
+                        const option = document.createElement('option');
+                        option.value = seat.id;
+                        option.innerText = seat.id;
+                        if (seat.seatRowId == id) {
+                            option.selected = true;
+                        }
+                        html.querySelector('[name="seatIds"]').appendChild(option);
+                    }
+                });
+            }, (error) => {
+                console.log(error);
+            });
+
+            // Add theater options
+            theaterController.findAll((theaterResponses) => {
+                theaterResponses.forEach(theater => {
+                    const option = document.createElement('option');
+                    option.value = theater.id;
+                    option.innerText = theater.name;
+                    if (theater.id == seatRowResponse.theaterId) {
+                        option.selected = true;
+                    }
+                    html.querySelector('[name="theaterId"]').appendChild(option);
+                });
+            }, (error) => {
+                console.log(error);
+            });
         }, (error) => {
             console.log(error);
         });
@@ -30,12 +61,22 @@ export default function SeatRowAdminEdit(id) {
             event.preventDefault();
 
             // Get form data
-            const formData = new FormData(userForm);
+            const formData = new FormData(form);
+
+            // Get all seatRowIds options
+            const seatIds = [];
+            const seatIdsElement = html.querySelector('[name="seatIds"]');
+            const seatIdsOptions = seatIdsElement.options;
+            for (let i = 0; i < seatIdsOptions.length; i++) {
+                if (seatIdsOptions[i].selected) {
+                    seatIds.push(seatIdsOptions[i].value);
+                }
+            }
 
             // Create a new seatrow request
             const seatRowRequest = new SeatRowRequest(
                 id,
-                formData.get('seatIds'),
+                seatIds,
                 formData.get('theaterId')
             );
 

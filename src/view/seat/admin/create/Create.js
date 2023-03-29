@@ -21,9 +21,7 @@ export default function SeatAdminCreate() {
             event.preventDefault();
 
             // Create a seat request
-            const seatRequest = new SeatRequest(
-                id, reservationids, seatrowid
-            );        
+            const seatRequest = new SeatRequest(0, 0, 0);        
 
             
         // Create seat
