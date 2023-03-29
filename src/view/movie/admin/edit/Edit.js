@@ -1,6 +1,7 @@
 import MovieController from "../../../../controller/MovieController.js";
 import MovieRequest from "../../../../dto/movie/MovieRequest.js";
 import { loadAndRender } from '../../../../util/Render.js';
+import { showToast } from '../../../../components/Toast.js';
 
 // Create a movie controller
 const movieController = new MovieController();
@@ -55,8 +56,9 @@ export default function MovieAdminEdit(title) {
             // Update movie
             movieController.update(movieRequest, (movieResponse) => {
                 window.router.navigate('/admin/movies');
+                showToast('success', 'Movie updated successfully.', 5000);
             }, (error) => {
-                console.log(error);
+                showToast('secondary', "Something went wrong. Contact support for help.", 5000);
             });
         });
     });

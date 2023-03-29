@@ -31,6 +31,7 @@ export default function Card(options) {
     }
 
     if (options.href) {
+        wrapper.classList.add('card-clickable');
         wrapper.onclick = () => {
             window.router.navigate(options.href);
         };

@@ -20,7 +20,7 @@ export default function AchievementAdminIndex() {
                 // Create a new card
                 const card = new Card({
                     type: "primary",
-                    href: `#/admin/achievement/${achievement.id}/edit`,
+                    href: `#/admin/achievements/${achievement.id}/edit`,
                     header: `ID: ${achievement.id}`,
                     image: `https://picsum.photos/200/40${achievement.id}`,
                     body: null,

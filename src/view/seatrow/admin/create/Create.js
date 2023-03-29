@@ -1,8 +1,10 @@
+import SeatController from "../../../../controller/SeatController.js";
 import SeatRowController from "../../../../controller/SeatRowController.js";
 import SeatRowRequest from "../../../../dto/seatrow/SeatRowRequest.js";
 import { loadAndRender } from '../../../../util/Render.js';
+import { showToast } from '../../../../components/Toast.js';
 
-// Create a seatrow controller
+const seatController = new SeatController();
 const seatRowController = new SeatRowController();
 
 /**
@@ -38,18 +40,11 @@ export default function SeatRowAdminCreate() {
 
             
         // Create seatrow
-        seatRowController.create(seatRowRequest, (seatRowResponses) => {
-            // Loop through all seatrow responses
-            seatRowResponses.forEach(seatrow => {
-                // Create a new div element
-                const element = document.createElement('div');
-                // Set the inner HTML of the div element to the JSON string of the seatrow
-                element.innerHTML = JSON.stringify(seatrow);
-                // Append the div element to the seatrow HTML element wrapper
-                seatRowWrapper.appendChild(element);
-            });
+        seatRowController.create(seatRowRequest, (seatRowResponse) => {
+            window.router.navigate('/admin/seatrows');
+            showToast('success', `Seat row saved with id: ${seatRowResponse.id}.`, 5000);
         }, (error) => {
-            console.log(error);
+            showToast('secondary', "Something went wrong. Contact support for help.", 5000);
         });
     });
 }); }

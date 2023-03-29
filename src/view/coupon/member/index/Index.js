@@ -9,7 +9,7 @@ const couponController = new CouponController();
  * @returns {undefined}
  */
 export default function CouponMemberIndex() {
-    loadAndRender('src/view/seat/member/index/template.html', (html) => {
+    loadAndRender('src/view/coupon/member/index/template.html', (html) => {
         const couponWrapper = html.querySelector('#wrapper');
 
         couponController.findUserCoupons((couponResponses) => {

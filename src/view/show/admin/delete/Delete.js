@@ -1,6 +1,7 @@
 import ShowController from "../../../../controller/ShowController.js";
 import ShowRequest from "../../../../dto/show/ShowRequest.js";
 import { loadAndRender } from '../../../../util/Render.js';
+import { showToast } from '../../../../components/Toast.js';
 
 // Create a show controller
 const showController = new ShowController();
@@ -39,8 +40,9 @@ export default function ShowAdminDelete() {
             // Delete show
             showController.delete(showRequest, (showResponse) => {
                 console.log(showResponse);
+                showToast('success', 'Show deleted successfully.', 5000);
             }, (error) => {
-                console.log(error);
+                showToast('secondary', "Something went wrong. Contact support for help.", 5000);
             });
         });
     });

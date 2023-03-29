@@ -1,6 +1,7 @@
 import ShowDateTimeController from "../../../../controller/ShowDateTimeController.js";
 import ShowDateTimeRequest from "../../../../dto/showdatetime/ShowDateTimeRequest.js";
 import { loadAndRender } from '../../../../util/Render.js';
+import { showToast } from '../../../../components/Toast.js';
 
 // Create a showdatetime controller
 const showDateTimeController = new ShowDateTimeController();
@@ -31,9 +32,9 @@ export default function ShowDateTimeAdminCreate() {
 
             // Create showdatetime
             showDateTimeController.create(showDateTimeRequest, (showDateTimeResponse) => {
-                console.log(showDateTimeResponse);
+                showToast('success', `ShowDateTime saved with id: ${showDateTimeResponse.id}.`, 5000);
             }, (error) => {
-                console.log(error);
+                showToast('secondary', "Something went wrong. Contact support for help.", 5000);
             });
         });
     });

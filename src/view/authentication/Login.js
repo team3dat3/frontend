@@ -1,6 +1,8 @@
 import { loadAndRender } from '../../util/Render.js';
+import { refreshHeader } from '../../view/layout/Header.js';
 import AuthenticationController from '../../controller/AuthenticationController.js';
 import AuthenticationRequest from '../../dto/authentication/AuthenticationRequest.js';
+import { showToast } from '../../components/Toast.js';
 
 // Create a new authentication controller
 const authenticationController = new AuthenticationController();
@@ -34,12 +36,14 @@ export default function Login() {
             authenticationController.authenticate(authenticationRequest, (authenticationResponse) => {
                 // Set the API key
                 authenticationController.setAPIKey(authenticationResponse.token);
-
+                refreshHeader(document);
+                showToast('success', 'Login successful.', 5000);
                 // Redirect to home page
-                window.router.navigate('/');
+                window.router.navigate('/profile');
             }, (error) => {
-                console.log(error);
+                showToast('secondary', "The credentials were wrong.", 5000);
             }); 
         });
     });
 }
+

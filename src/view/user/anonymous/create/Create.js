@@ -1,6 +1,7 @@
 import UserController from "../../../../controller/UserController.js"
 import UserRequest from "../../../../dto/user/UserRequest.js";
 import { loadAndRender } from "../../../../util/Render.js"
+import { showToast } from '../../../../components/Toast.js';
 
 const userController = new UserController();
 
@@ -33,10 +34,10 @@ export default function UserAnonymousCreate() {
             );
 
             userController.register(userRequest, (userResponse) => {
-                // Redirect to home page
-                window.router.navigate('/');
+                showToast('success', 'Signup successful.', 5000);
+                window.router.navigate('/login');
             }, (error) => {
-                console.log(error);
+                showToast('secondary', "The credentials were wrong.", 5000);
             }); 
         });
     });

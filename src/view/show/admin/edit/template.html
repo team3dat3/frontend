@@ -1,18 +1,27 @@
 <div class="template">
-    <h1>Admin edit show</h1>
-    <form id="show-search"></form>
-    <input type="number" name="search-id" value="">
-    <button class="button success" type="submit">Search show</button>
-</form>
-    
-    <form id="show-form">
-        <label for="movieTitle">Movie title</label>
-        <input type="text" name="movietitle" value="">
-        <label for="showDateTimeIds">Show date time IDs (up to 50, separated by new lines)</label>
-        <textarea name="showDateTimeIds" rows="5"></textarea>
-        <label for="price">Price</label>
-        <input type="number" name="price" value="">
-        <label for="theaterId">Theater ID</label>
-        <input type="number" name="theaterId" value="">
-    </form>
+    <div class="form">
+        <h1>Edit show</h1>
+        <h2>Enter the following information</h2>
+
+        <form id="show-form">
+            <div class="input-group">
+                <label for="movieTitle">Movie title</label>
+                <input type="text" name="movieTitle">
+            </div>
+            <div class="input-group">
+                <label for="showDateTimeIds">Show date time IDs (up to 50, separated by new lines)</label>
+                <textarea name="showDateTimeIds" rows="5"></textarea>
+            </div>
+            <div class="input-group">
+                <label for="price">Price</label>
+                <input type="number" name="price">
+            </div>
+            <div class="input-group">
+                <label for="theaterId">Theater ID</label>
+                <input type="number" name="theaterId">
+            </div>
+            <button class="button success" type="submit">Update</button>
+        </form>
+        <a href="/#/shows" class="button secondary" data-navigo>Cancel</a>
+    </div>
 </div>

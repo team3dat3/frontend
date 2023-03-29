@@ -1,5 +1,6 @@
 import ReservationController from "../../../../controller/ReservationController.js";
 import { loadAndRender } from '../../../../util/Render.js';
+import Card from '../../../../components/Card.js';
 
 // Create a reservation controller
 const reservationController = new ReservationController();
@@ -19,12 +20,24 @@ export default function ReservationMemberIndex() {
         reservationController.findUserReservations((reservationResponses) => {
             // Loop through all reservation responses
             reservationResponses.forEach(reservation => {
-                // Create a new div element
-                const element = document.createElement('div');
-                // Set the inner HTML of the div element to the JSON string of the reservation
-                element.innerHTML = JSON.stringify(reservation);
-                // Append the div element to the reservation HTML element wrapper
-                reservationWrapper.appendChild(element);
+
+                // Create a new card
+                const card = new Card({
+                    type: "primary",
+                    href: `#/member/reservations/${reservation.id}/show`,
+                    header: `ID: ${reservation.id}`,
+                    image: `https://picsum.photos/200/12${reservation.id}`,
+                    body: null,
+                    footer: `${reservation.checkedIn ? 'Checked in' : 'Not checked in'}`,
+                        animation: {
+                        onmouseenter: {
+                            type: "jello",
+                            duration: 1000
+                        },
+                    }
+                });
+
+                reservationWrapper.appendChild(card);
             });
         }, (error) => {
             console.log(error);

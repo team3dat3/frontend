@@ -15,7 +15,6 @@ export default class AchievementResponse {
      * @param {Object} json 
      * @returns {AchievementResponse}
      */
-
     static createFrom(json) {
         return new AchievementResponse(json.id);
     }
@@ -25,8 +24,7 @@ export default class AchievementResponse {
      * @param {Array} json 
      * @returns {Array}
      */
-
-    static createCollectionsFrom(json) {
+    static createCollectionFrom(json) {
         return BaseModel.createCollectionFrom(AchievementResponse, json);
     }
 }

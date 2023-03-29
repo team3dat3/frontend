@@ -1,3 +1,5 @@
+import { isExpired } from './Authenticated.js';
+import { showToast } from '../components/Toast.js';
 
 /**
  * The base URL for the API.
@@ -42,6 +44,15 @@ export function getAPIKey() {
 }
 
 /**
+ * Removes the API key from local storage.
+ * 
+ * @returns {undefined}
+ */
+export function removeAPIKey() {
+    localStorage.removeItem('apiKey');
+}
+
+/**
  * Sends a request to the API.
  *
  * @param {string} endpoint
@@ -50,6 +61,12 @@ export function getAPIKey() {
  * @returns {undefined}
  */
 export async function request(endpoint, options) {
+
+    if (hasAPIKey() && isExpired()) {
+        onExpiration();
+        return;
+    }
+
     // Get the fetch options used to send the request
     let fetchOptions = createFetchOptions(
         options.method,
@@ -131,4 +148,10 @@ function headers() {
     }
 
     return headers;
+}
+
+function onExpiration() {
+    removeAPIKey();
+    showToast('secondary', 'Your session has expired. Please login again.', 5000);
+    window.router.navigate('/login');
 }

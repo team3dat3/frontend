@@ -25,7 +25,7 @@ export default function TheaterAdminIndex() {
                 const card = new Card({
                     type: "primary",
                     href: `#/admin/theaters/${theater.id}/edit`,
-                    header: `${theater.id}`,
+                    header: `${theater.name}`,
                     image: `https://picsum.photos/200/10${theater.id}`,
                     body: null,
                     footer: null,

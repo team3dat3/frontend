@@ -1,6 +1,7 @@
 import ShowController from "../../../../controller/ShowController.js";
 import ShowRequest from "../../../../dto/show/ShowRequest.js";
 import { loadAndRender } from '../../../../util/Render.js';
+import { showToast } from '../../../../components/Toast.js';
 
 // Create a show controller
 const showController = new ShowController();
@@ -42,9 +43,9 @@ export default function ShowAdminCreate() {
 
             // Create show
             showController.create(showRequest, (showResponse) => {
-                console.log(showResponse);
+                showToast('success', `Show saved with id: ${showResponse.id}.`, 5000);
             }, (error) => {
-                console.log(error);
+                showToast('secondary', "Something went wrong. Contact support for help.", 5000);
             });
         });
     });

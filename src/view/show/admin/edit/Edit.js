@@ -1,6 +1,7 @@
 import ShowController from "../../../../controller/ShowController.js";
 import ShowRequest from "../../../../dto/show/ShowRequest.js";
 import { loadAndRender } from '../../../../util/Render.js';
+import { showToast } from '../../../../components/Toast.js';
 
 // Create a show controller
 const showController = new ShowController();
@@ -10,56 +11,41 @@ const showController = new ShowController();
  *  
  * @returns {undefined}
  */
-export default function ShowAdminEdit() {
+export default function ShowAdminEdit(id) {
     // Load and render the show admin show template
     loadAndRender('src/view/show/admin/edit/template.html', (html) => {
-        
-        // find the show search input
-        const id = html.querySelector('[name="search-id"]');
 
-
-        // find show id input element by id within the template
-        const movieTitleElement = html.querySelector('[name="movieTitle"]');
-        // ReservationsIds should not be added until later.
-        //const reservationsIdElement = html.querySelector('[name="reservationsId"]');
-        // How to handle showDateTimeIds.
-        const showDatesIdElement = html.querySelector('[name="showDatesId"]');
-        const priceElement = html.querySelector('[name="price"]');
-        const theaterIdElement = html.querySelector('[name="theaterId"]');
-        
-
-        html.querySelector('#show-search').addEventListener('submit', (event) => {
-            event.preventDefault();
-        // Find show
         showController.find(id, (showResponse) => {
-            // Set the value of the attributes elements to the value of the show response
-            movieTitleElement.value = showResponse.movieTitle;
-            showDatesIdElement.value = showResponse.showDatesids.join('\n');;
-            priceElement.value = showResponse.price;
-            theaterIdElement.value = showResponse.theaterid;
+            html.querySelector('[name="movieTitle"]').value = showResponse.title;
+            html.querySelector('[name="showDateTimeIds"]').value = showResponse.showDateTimeIds;
+            html.querySelector('[name="price"]').value = showResponse.price;
+            html.querySelector('[name="theaterId"]').value = showResponse.theaterId;
         }, (error) => {
             console.log(error);
         });
-    })
 
-        // Add event listener to show form
-        html.querySelector('#show-form').addEventListener('submit', (event) => {
+        // Find form element by id within the template
+        const form = html.querySelector('#show-form');
+
+        form.addEventListener('submit', (event) => {
             event.preventDefault();
 
-            // Parse the show dates ids textarea value back into an array of numbers
-        const showDatesIds = showDatesIdElement.value.split('\n').map(id => parseInt(id.trim())).filter(id => !isNaN(id));
+            const formData = new FormData(form);
 
-
-            // Create a show request
             const showRequest = new ShowRequest(
-                movieTitleElement.value, showDatesIds, priceElement.value, theaterIdElement.value
-            );        
+                id,
+                formData.get('movieTitle'),
+                formData.get('showDateTimeIds'),
+                formData.get('price'),
+                formData.get('theaterId')
+            );
 
             // Update show
             showController.update(showRequest, (showResponse) => {
-                console.log(showResponse);
+                window.router.navigate('/shows');
+                showToast('success', 'Show updated successfully.', 5000);
             }, (error) => {
-                console.log(error);
+                showToast('secondary', "Something went wrong. Contact support for help.", 5000);
             });
         });
     });

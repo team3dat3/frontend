@@ -1,4 +1,5 @@
 import { loadHtml, setRoot } from '../../util/Render.js';
+import { refreshHeader } from './Header.js';
 
 /**
  * Load and initialize the layout
@@ -11,4 +12,8 @@ loadHtml("./src/view/layout/template.html").then((html) => {
 
     // Set the render's root element
     setRoot(html.querySelector('#main-content'));
+
+    // Refresh the header
+    refreshHeader(html);
 });
+

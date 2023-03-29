@@ -1,6 +1,7 @@
 import SeatController from "../../../../controller/SeatController.js";
 import SeatRequest from "../../../../dto/seat/SeatRequest.js";
 import { loadAndRender } from '../../../../util/Render.js';
+import { showToast } from '../../../../components/Toast.js';
 
 // Create a seat controller
 const seatController = new SeatController();
@@ -27,17 +28,10 @@ export default function SeatAdminCreate() {
             
         // Create seat
         seatController.create(seatRequest, (seatResponses) => {
-            // Loop through all seat responses
-            seatResponses.forEach(seat => {
-                // Create a new div element
-                const element = document.createElement('div');
-                // Set the inner HTML of the div element to the JSON string of the seat
-                element.innerHTML = JSON.stringify(seat);
-                // Append the div element to the seat HTML element wrapper
-                seatWrapper.appendChild(element);
-            });
+            window.router.navigate('/admin/seats');
+            showToast('success', `Seat saved with id: ${seatResponses.id}.`, 5000);
         }, (error) => {
-            console.log(error);
+            showToast('secondary', "Something went wrong. Contact support for help.", 5000);
         });
     });
 }); }

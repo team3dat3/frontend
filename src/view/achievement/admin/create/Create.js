@@ -1,6 +1,7 @@
 import AchievementController from "../../../../controller/AchievementController.js"
-import AchievementRequest from "../../../../dto/user/AchievementRequest.js";
+import AchievementRequest from "../../../../dto/achievement/AchievementRequest.js";
 import { loadAndRender } from "../../../../util/Render.js"
+import { showToast } from '../../../../components/Toast.js';
 
 const achievementController = new AchievementController();
 
@@ -25,8 +26,9 @@ export default function AchievementAdminCreate() {
 
             achievementController.create(achievementRequest, (achievementResponse) => {
                 window.router.navigate('/admin/achievements');
+                showToast('success', `Achievement saved with id: ${achievementResponse.id}.`, 5000);
             }, (error) => {
-                console.log(error);
+                showToast('secondary', "Something went wrong. Contact support for help.", 5000);
             }); 
         });
     });

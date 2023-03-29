@@ -9,7 +9,7 @@ const showController = new ShowController();
  *  
  * @returns {undefined}
  */
-export default function ShowAnonymousShow() {
+export default function ShowAnonymousShow(id) {
     // Load and render the show show template
     loadAndRender('src/view/show/anonymous/show/template.html', (html) => {
                 

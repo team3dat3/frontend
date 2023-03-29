@@ -25,6 +25,7 @@ export default function ShowAnonymousIndex() {
                 // Create a new card
                 const card = new Card({
                     type: "primary",
+                    href: hasRole("ADMIN") ? `#/admin/shows/${show.id}/edit` : `#/shows/${show.id}/show`,
                     header: `ID: ${show.id}`,
                     image: `https://picsum.photos/200/10${show.id}`,
                     body: null,

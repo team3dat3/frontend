@@ -1,6 +1,7 @@
 import UserController from "../../../../controller/UserController.js";
 import UserRequest from "../../../../dto/user/UserRequest.js";
 import { loadAndRender } from "../../../../util/Render.js";
+import { showToast } from '../../../../components/Toast.js';
 
 const userController = new UserController();
 
@@ -45,8 +46,9 @@ export default function UserAdminEdit(username) {
 
             userController.update(userRequest, (userResponse) => {
                 window.router.navigate('/admin/users');
+                showToast('success', 'User updated successfully.', 5000);
             }, (error) => {
-                console.log(error);
+                showToast('secondary', "Something went wrong. Contact support for help.", 5000);
             });
         });
     });

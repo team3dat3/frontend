@@ -1,6 +1,7 @@
 import ReservationController from "../../../../controller/ReservationController.js";
 import ReservationRequest from "../../../../dto/reservation/ReservationRequest.js";
 import { loadAndRender } from '../../../../util/Render.js';
+import { showToast } from '../../../../components/Toast.js';
 
 // Create a reservation controller
 const reservationController = new ReservationController();
@@ -37,8 +38,9 @@ export default function ReservationAdminEdit(id) {
             // Update reservation
             reservationController.update(reservationRequest, (reservationResponse) => {
                 window.router.navigate('/admin/reservations');
+                showToast('success', 'Reservation updated successfully.', 5000);
             }, (error) => {
-                console.log(error);
+                showToast('secondary', "Something went wrong. Contact support for help.", 5000);
             });
         });
     });

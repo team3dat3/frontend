@@ -27,7 +27,9 @@ export default function ReservationAdminCheckIn(id) {
             // Append the div element to the reservation HTML element wrapper
             reservationWrapper.appendChild(element);
         }, (error) => {
-            console.log(error);
+            const element = document.createElement('div');
+            element.innerHTML = "Could not check in reservation, please contact the support team.";
+            reservationWrapper.appendChild(element);
         });
     });
 }

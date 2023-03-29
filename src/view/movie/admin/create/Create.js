@@ -2,6 +2,7 @@ import MovieController from "../../../../controller/MovieController.js";
 import OmdbController from "../../../../controller/OmdbController.js";
 import MovieRequest from "../../../../dto/movie/MovieRequest.js";
 import { loadAndRender } from '../../../../util/Render.js';
+import { showToast } from '../../../../components/Toast.js';
 
 // Create a movie controller
 const movieController = new MovieController();
@@ -64,9 +65,10 @@ export default function MovieAdminCreate() {
 
             // Create movie
             movieController.create(movieRequest, (movieResponse) => {
-                console.log(movieResponse);
+                window.router.navigate('/admin/movies');
+                showToast('success', `Movie saved with title: ${movieResponse.title}.`, 5000);
             }, (error) => {
-                console.log(error);
+                showToast('secondary', "Something went wrong. Contact support for help.", 5000);
             });
         });
     });

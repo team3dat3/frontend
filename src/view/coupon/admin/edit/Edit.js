@@ -1,6 +1,7 @@
 import CouponController from "../../../../controller/CouponController.js";
 import CouponRequest from "../../../../dto/coupon/CouponRequest.js";
 import { loadAndRender } from '../../../../util/Render.js';
+import { showToast } from '../../../../components/Toast.js';
 
 const couponController = new CouponController();
 
@@ -36,8 +37,9 @@ export default function CouponAdminEdit(id) {
 
             couponController.update(couponRequest, (couponResponse) => {
                 window.router.navigate('/admin/coupons');
+                showToast('success', 'Coupon updated successfully.', 5000);
             }, (error) => {
-                console.log(error);
+                showToast('secondary', "Something went wrong. Contact support for help.", 5000);
             });
         });
     });

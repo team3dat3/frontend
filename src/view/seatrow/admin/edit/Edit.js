@@ -1,8 +1,10 @@
+import SeatController from "../../../../controller/SeatController.js";
 import SeatRowController from "../../../../controller/SeatRowController.js";
 import SeatRowRequest from "../../../../dto/seatrow/SeatRowRequest.js";
 import { loadAndRender } from '../../../../util/Render.js';
+import { showToast } from '../../../../components/Toast.js';
 
-// Create a seatrow controller
+const seatController = new SeatController();
 const seatRowController = new SeatRowController();
 
 /**
@@ -40,8 +42,9 @@ export default function SeatRowAdminEdit(id) {
             // Create seatrow
             seatRowController.update(seatRowRequest, (seatRowResponses) => {
                 window.router.navigate('/admin/seatrows');
+                showToast('success', 'Seat row updated successfully.', 5000);
             }, (error) => {
-                console.log(error);
+                showToast('secondary', "Something went wrong. Contact support for help.", 5000);
             });
         });
     });

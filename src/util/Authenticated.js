@@ -28,7 +28,18 @@ export function getUsername() {
     }
 
     const decryptedJWT = decryptJWT(getAPIKey());
-    return decryptedJWT.username;
+    return decryptedJWT.sub;
+}
+
+export function isExpired() {
+    if (!isAuthenticated()) {
+        return true;
+    }
+
+    const decryptedJWT = decryptJWT(getAPIKey());
+    const expirationDate = new Date(decryptedJWT.exp * 1000);
+    const now = new Date();
+    return now > expirationDate;
 }
 
 function decryptJWT(token) {

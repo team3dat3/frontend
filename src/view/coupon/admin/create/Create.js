@@ -1,6 +1,7 @@
 import CouponController from "../../../../controller/CouponController.js";
 import CouponRequest from "../../../../dto/coupon/CouponRequest.js";
 import { loadAndRender } from "../../../../util/Render.js";
+import { showToast } from '../../../../components/Toast.js';
 
 const couponController = new CouponController();
 
@@ -18,14 +19,11 @@ export default function CouponAdminCreate() {
 
             const couponRequest = new CouponRequest(id, "name", "discount", "user", "cost", "used");
 
-            couponController.create(couponRequest, (couponResponses) => {
-                couponResponses.forEach(coupon => {
-                    const element = document.createElement('div');
-                    element.innerHTML = JSON.stringify(coupon);
-                    couponWrapper.appendChild(element);
-                });
+            couponController.create(couponRequest, (couponResponse) => {
+                window.router.navigate('/admin/coupons');
+                showToast('success', `Coupon saved with id: ${couponResponse.id}.`, 5000);
             }, (error) => {
-                console.log(error);
+                showToast('secondary', "Something went wrong. Contact support for help.", 5000);
             });
         });
     });

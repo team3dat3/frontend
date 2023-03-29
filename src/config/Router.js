@@ -12,6 +12,7 @@ import UserAdminEdit from "../view/user/admin/edit/Edit.js";
 import UserAdminCreate from "../view/user/admin/create/Create.js";
 import UserMemberShow from "../view/user/member/show/Show.js";
 import UserMemberEdit from "../view/user/member/edit/Edit.js";
+import UserMemberLogout from "../view/user/member/logout/Logout.js";
 import UserAnonymousCreate from "../view/user/anonymous/create/Create.js";
 
 // Reservation pages
@@ -112,9 +113,10 @@ router
         "/admin/users": UserAdminIndex,
         "/admin/users/create": UserAdminCreate,
         "/admin/users/:username/edit": ({data}) => UserAdminEdit(data.username),
-        "/member/users/:username/show": ({data}) => UserMemberShow(data.username),
-        "/member/users/:username/edit": ({data}) => UserMemberEdit(data.username),
+        "/profile": UserMemberShow,
+        "/profile/edit": UserMemberEdit,
         "/register": UserAnonymousCreate,
+        "/logout": UserMemberLogout,
 
         // Theaters
         "/admin/theaters/create": TheaterAdminCreate,
