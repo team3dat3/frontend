@@ -21,7 +21,7 @@ const omdbController = new OmdbController();
 export default function MovieAdminCreate() {
     // Load and render the movie admin show template
     loadAndRender('src/view/movie/admin/create/template.html', (html) => {
-        
+
         // find movie title input element by name within the template
         const movieTitleElement = html.querySelector('[name="movieTitle"]');
         const directorElement = html.querySelector('[name="director"]');
@@ -31,36 +31,77 @@ export default function MovieAdminCreate() {
         const descriptionElement = html.querySelector('[name="description"]');
         const genresElement = html.querySelector('[name="genres"]');
         const runtimeElement = html.querySelector('[name="runtime"]');
-        
+
         //Finds movie and adds buttons
         movieTitleElement.onkeyup = () => {
             startTimer(movieTitleElement.value, html);
-          };
+        };
 
 
-            html.querySelector('#search-movie').addEventListener("click", function(event)  {
-                if (event.target.classList.contains("movie-btn")) {
-                    var imdbId = event.target.getAttribute("data-variable1");
-                    getMovie(imdbId, html)
-                }
-            });
-  
+        html.querySelector('#search-movie').addEventListener("click", function (event) {
+            if (event.target.classList.contains("movie-btn")) {
+                var imdbId = event.target.getAttribute("data-variable1");
+                getMovie(imdbId, html)
+            }
+        });
+
 
         // Add event listener to movie form
         html.querySelector('#movie-form').addEventListener('submit', (event) => {
             event.preventDefault();
-console.log("movie created")
+
+            if (movieTitleElement.value === '') {
+                showToast('secondary', 'Movie title is required.', 5000);
+                return;
+            }
+
+            if (directorElement.value === '') {
+                showToast('secondary', 'Director is required.', 5000);
+                return;
+            }
+
+            if (actorsElement.value === '') {
+                showToast('secondary', 'Actors are required.', 5000);
+                return;
+            }
+
+            if (prodYearElement.value === '') {
+                showToast('secondary', 'Production year is required.', 5000);
+                return;
+            }
+
+            if (ratedElement.value === '') {
+                showToast('secondary', 'Rated is required.', 5000);
+                return;
+            }
+
+            if (descriptionElement.value === '') {
+                showToast('secondary', 'Description is required.', 5000);
+                return;
+            }
+
+            if (genresElement.value === '') {
+                showToast('secondary', 'Genres are required.', 5000);
+                return;
+            }
+
+            if (runtimeElement.value === '') {
+                showToast('secondary', 'Runtime is required.', 5000);
+                return;
+            }
+
             // Create a movie request
             const movieRequest = new MovieRequest(
-                movieTitleElement.value, 
-                directorElement.value, 
-                actorsElement.value, 
-                prodYearElement.value, 
-                ratedElement.value, 
-                descriptionElement.value, 
+                movieTitleElement.value,
+                directorElement.value,
+                actorsElement.value,
+                prodYearElement.value,
+                ratedElement.value,
+                descriptionElement.value,
                 genresElement.value.split(',').map(genre => genre.trim()),
-                runtimeElement.value
-            );        
+                runtimeElement.value,
+                html.querySelector('[name="poster"]').value
+            );
 
             // Create movie
             movieController.create(movieRequest, (movieResponse) => {
@@ -73,23 +114,20 @@ console.log("movie created")
     });
 }
 
-let intervalId;
-
-function startTimer(title, html){
-    console.log("start interval")
-
-clearInterval(intervalId);
-intervalId = setTimeout(() => {
-    searchForMovie(title, html);
-  }, 5000);
+let timeOut = null;
+function startTimer(title, html) {
+    html.querySelector('#search-movie').innerHTML = '<i class="fa-solid fa-rotate fa-flip"></i>';
+    clearTimeout(timeOut);
+    timeOut = setTimeout(() => {
+        searchForMovie(title, html);
+    }, 5000);
 }
 
-function searchForMovie(title, html){
-     // Find movies
-     console.log(title)
+function searchForMovie(title, html) {
+    
     omdbController.searchMovie(title, (omdbResponses) => {
-        const searchList = omdbResponses.map(movie => 
-            `<button class="button succes movie-btn" data-variable1="${movie.imdbId}">
+        const searchList = omdbResponses.map(movie =>
+            `<button class="button success movie-btn" data-variable1="${movie.imdbId}">
             ${movie.title} - ${movie.year}
             </button>`)
         const div = html.querySelector('#search-movie')
@@ -102,7 +140,7 @@ function searchForMovie(title, html){
 
 
 
-function getMovie(imdbId, html){
+function getMovie(imdbId, html) {
     //Find movie
     omdbController.getMovie(imdbId, (omdbResponse) => {
         html.querySelector('[name="movieTitle"]').value = omdbResponse.title;
@@ -113,6 +151,6 @@ function getMovie(imdbId, html){
         html.querySelector('[name="description"]').value = omdbResponse.description;
         html.querySelector('[name="genres"]').value = omdbResponse.genre;
         html.querySelector('[name="runtime"]').value = omdbResponse.runtime;
-
+        html.querySelector('[name="poster"]').value = omdbResponse.poster;
     });
 }

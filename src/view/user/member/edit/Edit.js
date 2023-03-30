@@ -41,7 +41,7 @@ export default function UserMemberEdit() {
                 ["MEMBER"] // overriden by backend
             );
 
-            userController.update(userRequest, (userResponse) => {
+            userController.updateAuthenticatedUser(userRequest, (userResponse) => {
                 window.router.navigate('/profile');
                 showToast('success', 'Profile updated successfully.', 5000);
             }, (error) => {

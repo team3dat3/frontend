@@ -16,7 +16,7 @@ import BaseModel from "../BaseModel.js";
  * @returns {OmdbResponse}
  */
 export default class OmdbResponse {
-    constructor(title, director, actors, year, rated, description, genre, runtime, imdbId) {
+    constructor(title, director, actors, year, rated, description, genre, runtime, imdbId, poster) {
         this.title = title;
         this.director = director;
         this.actors = actors;
@@ -26,6 +26,7 @@ export default class OmdbResponse {
         this.genre = genre;
         this.runtime = runtime;
         this.imdbId = imdbId;
+        this.poster = poster;
     }
 
     /**
@@ -36,7 +37,17 @@ export default class OmdbResponse {
      * @returns {OmdbResponse}
      */
     static createFrom(json) {
-        return new OmdbResponse(json.title, json.director, json.actors, json.year, json.rated, json.description, json.genre, json.runtime, json.imdbId);
+        return new OmdbResponse(
+            json.title, 
+            json.director, 
+            json.actors, 
+            json.year, 
+            json.rated, 
+            json.description, 
+            json.genre, 
+            json.runtime, 
+            json.imdbId,
+            json.poster);
     }
 
     /**

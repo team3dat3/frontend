@@ -31,6 +31,25 @@ export default function CouponAdminCreate() {
         form.addEventListener('submit', (event) => {
             event.preventDefault();
             
+            if (form.name.value == '') {
+                showToast('secondary', "Coupon name is required.", 5000);
+                return;
+            }
+
+            if (form.discount.value == '') {
+                showToast('secondary', "Coupon discount is required.", 5000);
+                return;
+            }
+
+            if (form.username.value == '') {
+                showToast('secondary', "Coupon username is required.", 5000);
+                return;
+            }
+
+            if (form.cost.value == '') {
+                showToast('secondary', "Coupon cost is required.", 5000);
+                return;
+            }
 
             // Get form data
             const formData = new FormData(form);

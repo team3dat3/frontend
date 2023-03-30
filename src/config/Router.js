@@ -68,7 +68,6 @@ import ShowDateTimeAdminIndex from "../view/showdatetime/admin/index/Index.js";
 import MovieAdminCreate from "../view/movie/admin/create/Create.js";
 import MovieAdminEdit from "../view/movie/admin/edit/Edit.js";
 import MovieAdminIndex from "../view/movie/admin/index/Index.js";
-import MovieGenresAdminShow from "../view/movie/admin/showByGenre/ShowByGenre.js";
 
 /**
  * Router.
@@ -165,8 +164,7 @@ router
         // Movies
         "/admin/movies/create": MovieAdminCreate,
         "/admin/movies/:title/edit": ({data}) => MovieAdminEdit(data.title),
-        "/admin/movies": MovieAdminIndex,
-        "/admin/movies/genres/:genre": ({data}) => MovieGenresAdminShow(data.genre),
+        "/admin/movies": MovieAdminIndex
 
     })
 

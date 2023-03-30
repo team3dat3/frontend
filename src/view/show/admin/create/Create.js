@@ -65,6 +65,30 @@ export default function ShowAdminCreate() {
                 }
             }
 
+            // check if movie title is empty
+            if (formData.get('movieTitle') === '') {
+                showToast('secondary', 'Movie title is required.', 5000);
+                return;
+            }
+
+            // check if show date times are empty
+            if (showDateTimes.length === 0) {
+                showToast('secondary', 'At least one show date time is required.', 5000);
+                return;
+            }
+
+            // check if price is empty
+            if (formData.get('price') === '') {
+                showToast('secondary', 'Price is required.', 5000);
+                return;
+            }
+
+            // check if theater id is empty
+            if (formData.get('theaterId') === '') {
+                showToast('secondary', 'Theater is required.', 5000);
+                return;
+            }
+
             // Create a show request
             const showRequest = new ShowRequest(
                 0,

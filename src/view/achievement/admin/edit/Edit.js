@@ -43,6 +43,22 @@ export default function AchievementAdminEdit(id) {
             event.preventDefault();
 
             const formData = new FormData(form);
+
+            if (formData.get('name') == '') {
+                showToast('secondary', "Achievement name is required.", 5000);
+                return;
+            }
+
+            if (formData.get('description') == '') {
+                showToast('secondary', "Achievement description is required.", 5000);
+                return;
+            }
+
+            if (formData.get('username') == '') {
+                showToast('secondary', "Achievement username is required.", 5000);
+                return;
+            }
+
             const achievementRequest = new AchievementRequest(
                 id,
                 formData.get('username'),

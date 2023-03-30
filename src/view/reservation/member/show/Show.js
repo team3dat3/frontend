@@ -16,7 +16,7 @@ export default function ReservationMemberShow(id) {
         const qrcodeWrapper = html.querySelector('#qrcode');
 
         // Create and render a new QRCode
-        new QRCode(qrcodeWrapper, `https://bergandersen.com/admin/reservations/${id}/checkin`);
+        new QRCode(qrcodeWrapper, `https://bergandersen.com/#/admin/reservations/${id}/checkin`);
 
         // Find reservation
         reservationController.findUserReservation(id, (reservationResponse) => {

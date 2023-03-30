@@ -27,7 +27,7 @@ export default function ShowAnonymousIndex() {
                     type: "primary",
                     href: `#/shows/${show.id}/show`,
                     header: `${show.movieTitle}`,
-                    image: `https://picsum.photos/200/10${show.id}`,
+                    image: show.poster ? show.poster : `https://picsum.photos/200/10${show.id}`,
                     body: `<p><strong>Price:</strong> ${show.price}DKK</p><p><strong>Theater:</strong> ${show.theaterName}</p>`,
                     footer: show.showDateTimes.map(showDateTime => `<span class="badge primary">${showDateTime}</span>`).join(''),
                         animation: {

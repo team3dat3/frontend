@@ -54,6 +54,11 @@ export default function TheaterAdminCreate() {
                 }
             }
 
+            if (formData.get('name') == '') {
+                showToast('secondary', "Theater name is required.", 5000);
+                return;
+            }
+
             // Create a new theater request
             const theaterRequest = new TheaterRequest(
                 0,

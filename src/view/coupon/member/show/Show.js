@@ -14,7 +14,7 @@ export default function CouponMemberShow(id){
         const qrcodeWrapper = html.querySelector('#qrcode');
 
         // Create and render a new QRCode
-        new QRCode(qrcodeWrapper, `https://bergandersen.com/admin/coupons/${id}/scan`);
+        new QRCode(qrcodeWrapper, `https://bergandersen.com/#/admin/coupons/${id}/scan`);
 
         const couponWrapper = html.querySelector('#wrapper');
 

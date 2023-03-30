@@ -20,6 +20,10 @@ export default function ShowAnonymousShow(id) {
         showController.find(id, (showResponse) => {
 
             html.querySelector('#movie-title').innerHTML = showResponse.movieTitle;
+
+            if (showResponse.poster) {
+                html.querySelector('#movie-image').src = showResponse.poster;
+            }
             
         }, (error) => {
             console.log(error);

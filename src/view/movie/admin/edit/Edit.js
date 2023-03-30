@@ -26,7 +26,8 @@ export default function MovieAdminEdit(title) {
             html.querySelector('[name="rated"]').value = movieResponse.rated;
             html.querySelector('[name="description"]').value = movieResponse.description;
             html.querySelector('[name="genres"]').value = movieResponse.genre.join(', ');
-            html.querySelector('[name="runtime"]').value = movieResponse.runtime;   
+            html.querySelector('[name="runtime"]').value = movieResponse.runtime;  
+            html.querySelector('[name="poster"]').value = movieResponse.poster; 
         }, (error) => {
             console.log(error);
         });
@@ -50,7 +51,8 @@ export default function MovieAdminEdit(title) {
                 formData.get('rated'),
                 formData.get('description'),
                 formData.get('genres').split(',').map(item => item.trim()),
-                formData.get('runtime')
+                formData.get('runtime'),
+                html.querySelector('[name="poster"]').value
             );
 
             // Update movie

@@ -12,7 +12,7 @@ import BaseModel from "../BaseModel.js";
  * @returns {ShowResponse}
  */
 export default class ShowResponse {
-    constructor(id, movieTitle, price, theaterId, theaterName, showDateTimes, showDateTimesIds) {
+    constructor(id, movieTitle, price, theaterId, theaterName, showDateTimes, showDateTimesIds, poster) {
         this.id = id;
         this.movieTitle = movieTitle;
         this.price = price;
@@ -20,6 +20,7 @@ export default class ShowResponse {
         this.theaterName = theaterName;
         this.showDateTimes = showDateTimes;
         this.showDateTimesIds = showDateTimesIds;
+        this.poster = poster;
     }
 
     /**
@@ -37,7 +38,8 @@ export default class ShowResponse {
             json.theaterId,
             json.theaterName,
             json.showDateTimes,
-            json.showDateTimesIds
+            json.showDateTimesIds,
+            json.poster
             );
     }
 
