@@ -28,7 +28,7 @@ export default function UserAdminIndex() {
                     href: `#/admin/users/${user.username}/edit`,
                     header: `${user.username}`,
                     image: `https://picsum.photos/200/2${i}`,
-                    body: `<p>E-mail: ${user.email}</p><p>Roles: ${user.roles}</p><p>Phone number: ${user.phoneNumber}</p><p>Created at: ${user.createdAt}</p>`,
+                    body: `<p><strong>E-mail:</strong> ${user.email}</p><p><strong>Roles:</strong> ${user.roles}</p><p><strong>Phone number:</strong> ${user.phoneNumber}</p><p><strong>Created at:</strong> ${user.createdAt}</p>`,
                     footer: createStateBadges(user),
                         animation: {
                         onmouseenter: {

@@ -21,6 +21,7 @@ export default function CouponMemberShow(id){
         couponController.findUserCoupon(id, (couponResponse) => {
 
             html.querySelector('#coupon-name').innerHTML = couponResponse.name;
+            html.querySelector('#coupon-username').innerHTML = couponResponse.username;
             html.querySelector('#coupon-cost').innerHTML = couponResponse.cost;
             html.querySelector('#coupon-discount').innerHTML = couponResponse.discount;
 

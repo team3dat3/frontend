@@ -47,7 +47,7 @@ export default function ShowAdminEdit(id) {
 
             // Update show
             showController.update(showRequest, (showResponse) => {
-                window.router.navigate('/shows');
+                window.router.navigate('/');
                 showToast('success', 'Show updated successfully.', 5000);
             }, (error) => {
                 showToast('secondary', "Something went wrong. Contact support for help.", 5000);

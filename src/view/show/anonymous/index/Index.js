@@ -26,10 +26,10 @@ export default function ShowAnonymousIndex() {
                 const card = new Card({
                     type: "primary",
                     href: hasRole("ADMIN") ? `#/admin/shows/${show.id}/edit` : `#/shows/${show.id}/show`,
-                    header: `ID: ${show.id}`,
+                    header: `${show.movieTitle}`,
                     image: `https://picsum.photos/200/10${show.id}`,
-                    body: null,
-                    footer: null,
+                    body: `<p><strong>Price:</strong> ${show.price}DKK</p>`,
+                    footer: `<small><strong>Dates:</strong> ${show.showDateTimes}</small>`,
                         animation: {
                         onmouseenter: {
                             type: "jello",

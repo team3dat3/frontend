@@ -20,7 +20,7 @@ export default function ShowAdminCreate() {
     // Load and render the show admin create template
     loadAndRender('src/view/show/admin/create/template.html', (html) => {
 
-        
+
         
         // find show title input element by name within the template
         const movieTitleElement = html.querySelector('[name="movieTitle"]');
@@ -51,6 +51,7 @@ export default function ShowAdminCreate() {
             // Create show
             showController.create(showRequest, (showResponse) => {
                 showToast('success', `Show saved with id: ${showResponse.id}.`, 5000);
+                window.router.navigate('/');
             }, (error) => {
                 showToast('secondary', "Something went wrong. Contact support for help.", 5000);
             });

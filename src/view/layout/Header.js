@@ -49,12 +49,8 @@ export function refreshHeader(html) {
     // Clear the wrapper
     wrapper.innerHTML = "";
 
-    // Add the home link
-    const homeLink = createNavigationElement("/", "Home");
-    wrapper.appendChild(homeLink);
-
     // Add show link
-    const showLink = createNavigationElement("/#/shows", "Shows");
+    const showLink = createNavigationElement("/", "Shows");
     wrapper.appendChild(showLink);
 
     // Add admin links
@@ -75,6 +71,14 @@ export function refreshHeader(html) {
             wrapper.appendChild(navigationElement);
         });
     }
+
+    // Add about link
+    const aboutLink = createNavigationElement("/#/about", "About");
+    wrapper.appendChild(aboutLink);
+
+    // Add contact link
+    const contactLink = createNavigationElement("/#/contact", "Contact");
+    wrapper.appendChild(contactLink);
 }
 
 /**

@@ -1,7 +1,8 @@
 import "../util/navigo_EditedByLars.js";
 
 // Public pages
-import Home from "../view/home/Home.js";
+import About from "../view/home/about/About.js";
+import Contact from "../view/home/contact/Contact.js";
 
 // Authentication pages
 import Login from "../view/authentication/Login.js";
@@ -97,7 +98,9 @@ router
 
     // Setup routes
     .on({
-        "/": Home,
+        "/": ShowAnonymousIndex,
+        "/about": About,
+        "/contact": Contact,
 
         // Reservations
         "/admin/reservations": ReservationAdminIndex,
@@ -150,7 +153,6 @@ router
         // Shows
         "/admin/shows/create": ShowAdminCreate,
         "/admin/shows/:id/edit": ({data}) => ShowAdminEdit(data.id),
-        "/shows": ShowAnonymousIndex,
         "/shows/:id/show": ({data}) => ShowAnonymousShow(data.id),
 
         // Show date times

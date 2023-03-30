@@ -22,7 +22,7 @@ export default function CouponMemberIndex() {
                     href: `#/member/coupons/${coupon.id}/show`,
                     header: `${coupon.name}`,
                     image: `https://picsum.photos/200/2${coupon.id % 10}`,
-                    body: `<p><strong>Cost:</strong> ${coupon.cost}</p><p><strong>Discount:</strong> ${coupon.discount}</p>`,
+                    body: `<p><strong>Max item cost:</strong> ${coupon.cost}DKK</p><p><strong>Discount:</strong> ${coupon.discount}%</p>`,
                     footer: coupon.used ? `<small class="badge success">Used</small>` : '<small class="badge secondary">Not used</small>',
                         animation: {
                         onmouseenter: {
