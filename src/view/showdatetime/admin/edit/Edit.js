@@ -1,10 +1,19 @@
+import ShowController from "../../../../controller/ShowController.js";
 import ShowDateTimeController from "../../../../controller/ShowDateTimeController.js";
 import ShowDateTimeRequest from "../../../../dto/showdatetime/ShowDateTimeRequest.js";
 import { loadAndRender } from '../../../../util/Render.js';
 import { showToast } from '../../../../components/Toast.js';
 
-// Create a showdatetime controller
+const showController = new ShowController();
 const showDateTimeController = new ShowDateTimeController();
+
+/**
+ * The id of the date time's show.
+ * 
+ * @type {number}
+ * @private
+ */
+let showId = null;
 
 /**
  * Showdatetime admin edit.
@@ -17,7 +26,13 @@ export default function ShowDateTimeAdminEdit(id) {
 
         showDateTimeController.find(id, (showDateTimeResponse) => {
             html.querySelector('[name="showDate"]').value = showDateTimeResponse.showDate;
-            html.querySelector('[name="showId"]').value = showDateTimeResponse.showId;
+            showId = showDateTimeResponse.showId;
+
+            showController.find(showDateTimeResponse.showId, (showResponse) => {
+                html.querySelector('[name="showMovieTitle"]').value = showResponse.movieTitle;
+            }, (error) => {
+                console.log(error);
+            });
         }, (error) => {
             console.log(error);
         });
@@ -34,7 +49,7 @@ export default function ShowDateTimeAdminEdit(id) {
             const showDateTimeRequest = new ShowDateTimeRequest(
                 id,
                 formData.get('showDate'),
-                formData.get('showId')
+                showId
             );
 
             showDateTimeController.update(showDateTimeRequest, (showDateTimeResponse) => {

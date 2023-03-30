@@ -26,9 +26,9 @@ export default function TheaterAdminIndex() {
                     type: "primary",
                     href: `#/admin/theaters/${theater.id}/edit`,
                     header: `${theater.name}`,
-                    image: `https://picsum.photos/200/10${theater.id}`,
+                    image: `https://picsum.photos/200/1${theater.id % 10}`,
                     body: null,
-                    footer: null,
+                    footer: `Number of seat rows: ${theater.seatRowIds.length}`,
                         animation: {
                         onmouseenter: {
                             type: "jello",

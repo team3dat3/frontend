@@ -77,7 +77,7 @@ export default function SeatRowAdminEdit(id) {
             const seatRowRequest = new SeatRowRequest(
                 id,
                 seatIds,
-                formData.get('theaterId')
+                parseInt(formData.get('theaterId'))
             );
 
             // Create seatrow

@@ -25,11 +25,11 @@ export default function ShowAnonymousIndex() {
                 // Create a new card
                 const card = new Card({
                     type: "primary",
-                    href: hasRole("ADMIN") ? `#/admin/shows/${show.id}/edit` : `#/shows/${show.id}/show`,
-                    header: `ID: ${show.id}`,
+                    href: `#/shows/${show.id}/show`,
+                    header: `${show.movieTitle}`,
                     image: `https://picsum.photos/200/10${show.id}`,
-                    body: null,
-                    footer: null,
+                    body: `<p><strong>Price:</strong> ${show.price}DKK</p><p><strong>Theater:</strong> ${show.theaterName}</p>`,
+                    footer: show.showDateTimes.map(showDateTime => `<span class="badge primary">${showDateTime}</span>`).join(''),
                         animation: {
                         onmouseenter: {
                             type: "jello",
@@ -43,27 +43,9 @@ export default function ShowAnonymousIndex() {
         }, (error) => {
             console.log(error);
         });
-
-        if (hasRole("ADMIN")) {
-            const div = document.createElement("div");
-            const button = new Button({
-                type: "success",
-                text: "Create",
-                href: "/show/create",
-                animation: {
-                    onmouseenter: {
-                        type: "jello",
-                        duration: 1000
-                    },
-                }
-            });
-
-            button.onclick = () => {
-                window.router.navigate("admin/shows/create");
-            };
-
-            div.appendChild(button);
-            html.querySelector(".page-header").appendChild(div);
-        }
     });
+}
+
+function createDateTimeBagde(dateTime) {
+    return `<span class="badge primary">${dateTime}</span>`;
 }

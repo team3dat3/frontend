@@ -5,7 +5,6 @@ import BaseModel from "../BaseModel.js";
  * 
  * @param {number} id
  * @param {string} movietitle
- * @param {number[]} reservationsids
  * @param {number[]} showdatesids
  * @param {number} price
  * @param {number} theaterid
@@ -13,13 +12,14 @@ import BaseModel from "../BaseModel.js";
  * @returns {ShowResponse}
  */
 export default class ShowResponse {
-    constructor(id, movietitle, reservationsids, showdatesids, price, theaterid) {
+    constructor(id, movieTitle, price, theaterId, theaterName, showDateTimes, showDateTimesIds) {
         this.id = id;
-        this.movietitle = movietitle;
-        this.reservationsids = reservationsids;
-        this.showdatesids = showdatesids;
+        this.movieTitle = movieTitle;
         this.price = price;
-        this.theaterid = theaterid;
+        this.theaterId = theaterId;
+        this.theaterName = theaterName;
+        this.showDateTimes = showDateTimes;
+        this.showDateTimesIds = showDateTimesIds;
     }
 
     /**
@@ -30,7 +30,15 @@ export default class ShowResponse {
      * @returns {ShowResponse}
      */
     static createFrom(json) {
-        return new ShowResponse(json.id, json.movietitle, json.reservations, json.showdatesids, json.price, json.theaterid);
+        return new ShowResponse(
+            json.id, 
+            json.movieTitle, 
+            json.price, 
+            json.theaterId,
+            json.theaterName,
+            json.showDateTimes,
+            json.showDateTimesIds
+            );
     }
 
     /**

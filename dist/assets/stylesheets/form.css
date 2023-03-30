@@ -41,6 +41,20 @@
     border-color: #f00;
 }
 
+.form .input-group .flex {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.form .input-group .flex button {
+    display: inline-block;
+    margin: 0;
+    width: 200px;
+}
+
 .form a,
 .form button {
     display: block;

@@ -26,10 +26,10 @@ export default function UserAdminIndex() {
                 const card = new Card({
                     type: "primary",
                     href: `#/admin/users/${user.username}/edit`,
-                    header: `${user.email}`,
-                    image: `https://picsum.photos/200/40${i}`,
-                    body: null,
-                    footer: null,
+                    header: `${user.username}`,
+                    image: `https://picsum.photos/200/2${i}`,
+                    body: `<p><strong>E-mail:</strong> ${user.email}</p><p><strong>Roles:</strong> ${user.roles}</p><p><strong>Phone number:</strong> ${user.phoneNumber}</p><p><strong>Created at:</strong> ${user.createdAt}</p>`,
+                    footer: createStateBadges(user),
                         animation: {
                         onmouseenter: {
                             type: "jello",
@@ -45,4 +45,31 @@ export default function UserAdminIndex() {
             console.log(error);
         });
     });
+}
+
+function createStateBadges(user) {
+    
+    let badges = "";
+    if (user.enabled) {
+        badges += `<small class="badge success">Enabled</small>`;
+    } else {
+        badges += `<small class="badge secondary">Disabled</small>`;
+    }
+    if (user.accountNonExpired) {
+        badges += `<small class="badge success">Account not expired</small>`;
+    } else {
+        badges += `<small class="badge secondary">Account expired</small>`;
+    }
+    badges += `<br><br>`;
+    if (user.accountNonLocked) {
+        badges += `<small class="badge success">Account not locked</small>`;
+    } else {
+        badges += `<small class="badge secondary">Account locked</small>`;
+    }
+    if (user.credentialsNonExpired) {
+        badges += `<small class="badge success">Credentials not expired</small>`;
+    } else {
+        badges += `<small class="badge secondary">Credentials expired</small>`;
+    }
+    return badges;
 }

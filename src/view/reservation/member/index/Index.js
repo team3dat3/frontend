@@ -25,10 +25,10 @@ export default function ReservationMemberIndex() {
                 const card = new Card({
                     type: "primary",
                     href: `#/member/reservations/${reservation.id}/show`,
-                    header: `ID: ${reservation.id}`,
-                    image: `https://picsum.photos/200/12${reservation.id}`,
-                    body: null,
-                    footer: `${reservation.checkedIn ? 'Checked in' : 'Not checked in'}`,
+                    header: `${reservation.showMovieTitle}`,
+                    image: `https://picsum.photos/200/2${reservation.id % 10}`,
+                    body: `<p><strong>Theater:</strong> ${reservation.theaterName}</p><p><strong>Show datetime:</strong> ${reservation.showDateTime}</p><p><strong>Seats:</strong> ${reservation.seatIds.toString().split(",").map(seat => `<span class="badge primary">${seat}</span>`).join('')}</p>`,
+                    footer: reservation.checkedIn ? '<small class="badge success">Checked in</small>' : '<small class="badge secondary">Not checked in</small>',
                         animation: {
                         onmouseenter: {
                             type: "jello",
@@ -44,3 +44,4 @@ export default function ReservationMemberIndex() {
         });
     });
 }
+

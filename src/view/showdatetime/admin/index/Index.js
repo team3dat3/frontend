@@ -26,9 +26,9 @@ export default function ShowDateTimeAdminIndex() {
                     type: "primary",
                     href: `#/admin/showdatetimes/${showDateTime.id}/edit`,
                     header: `ID: ${showDateTime.id}`,
-                    image: `https://picsum.photos/200/10${showDateTime.id}`,
-                    body: null,
-                    footer: `Date: ${showDateTime.showDate}`,
+                    image: `https://picsum.photos/200/2${showDateTime.id % 10}`,
+                    body: `<p><strong>Show ID:</strong> ${showDateTime.showId}</p>`,
+                    footer: `<small>${showDateTime.showDate}</small>`,
                         animation: {
                         onmouseenter: {
                             type: "jello",

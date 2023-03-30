@@ -3,7 +3,27 @@
         <h1>Edit achievement</h1>
         <h2>Enter the following information</h2>
         <form id="achievement-form">
-                <button class="button success" type="submit">Update</button>
+            <div class="input-group">
+                <label for="name">Name</label>
+                <input type="text" name="name">
+            </div>
+
+            <div class="input-group">
+                <label for="description">Description</label>
+                <input type="text" name="description">
+            </div>
+
+            <div class="input-group">
+                <label for="username">User</label>
+                <select name="username"></select>
+            </div>
+
+            <div class="input-group">
+                <label for="unlocked">Unlocked</label>
+                <input type="checkbox" name="unlocked">
+            </div>
+            
+            <button class="button success" type="submit">Update</button>
         </form>
         <a href="/#/admin/achievements" class="button secondary" data-navigo>Cancel</a>
     </div>

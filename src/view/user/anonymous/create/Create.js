@@ -30,7 +30,11 @@ export default function UserAnonymousCreate() {
                 formData.get('password'),
                 formData.get('email'),
                 formData.get('phoneNumber'),
-                ["MEMBER"] // Overriden by server
+                ["MEMBER"], // Overriden by server
+                true, // Overriden by server
+                true, // Overriden by server
+                true, // Overriden by server
+                true // Overriden by server
             );
 
             userController.register(userRequest, (userResponse) => {

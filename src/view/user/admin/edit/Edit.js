@@ -21,6 +21,10 @@ export default function UserAdminEdit(username) {
             html.querySelector('[name="email"]').value = userResponse.email;
             html.querySelector('[name="phoneNumber"]').value = userResponse.phoneNumber;
             html.querySelector('[name="role"]').value = userResponse.roles;
+            html.querySelector('[name="accountNonExpired"]').checked = userResponse.accountNonExpired;
+            html.querySelector('[name="accountNonLocked"]').checked = userResponse.accountNonLocked;
+            html.querySelector('[name="credentialsNonExpired"]').checked = userResponse.credentialsNonExpired;
+            html.querySelector('[name="enabled"]').checked = userResponse.enabled;
 
         }, (error) => {
             console.log(error);
@@ -41,7 +45,11 @@ export default function UserAdminEdit(username) {
                 "",
                 formData.get('email'),
                 formData.get('phoneNumber'),
-                [formData.get('role')]
+                [formData.get('role')],
+                formData.get('accountNonExpired') == "on" ? true : false,
+                formData.get('accountNonLocked') == "on" ? true : false,
+                formData.get('credentialsNonExpired') == "on" ? true : false,
+                formData.get('enabled') == "on" ? true : false
             );
 
             userController.update(userRequest, (userResponse) => {

@@ -42,18 +42,28 @@ export default function TheaterAdminCreate() {
             event.preventDefault();
 
             // Get form data
-            const formData = new FormData(userForm);
+            const formData = new FormData(form);
+
+            // Get all seatRowIds options
+            const seatRowIds = [];
+            const seatRowIdsElement = html.querySelector('[name="seatRowIds"]');
+            const seatRowIdsOptions = seatRowIdsElement.options;
+            for (let i = 0; i < seatRowIdsOptions.length; i++) {
+                if (seatRowIdsOptions[i].selected) {
+                    seatRowIds.push(seatRowIdsOptions[i].value);
+                }
+            }
 
             // Create a new theater request
             const theaterRequest = new TheaterRequest(
                 0,
                 formData.get('name'),
-                formData.get('seatRowIds')
+                seatRowIds
             );
 
             // Create theater
             theaterController.create(theaterRequest, (theaterResponse) => {
-                window.router.navigate('/theater/admin');
+                window.router.navigate('/admin/theaters');
                 showToast('success', `Theater saved with id: ${theaterResponse.id}.`, 5000);
             }, (error) => {
                 showToast('secondary', "Something went wrong. Contact support for help.", 5000);

@@ -10,11 +10,16 @@ import BaseModel from "../BaseModel.js"
  * @returns {number[]}
  */
 export default class UserResponse {
-    constructor(username, email, phoneNumber, roles) {
-        this.username = username
-        this.email = email
-        this.phoneNumber = phoneNumber
-        this.roles = roles
+    constructor(username, email, phoneNumber, roles, createdAt, accountNonExpired, accountNonLocked, credentialsNonExpired, enabled) {
+        this.username = username;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.roles = roles;
+        this.createdAt = new Date(createdAt).toLocaleString();
+        this.accountNonExpired = accountNonExpired;
+        this.accountNonLocked = accountNonLocked;
+        this.credentialsNonExpired = credentialsNonExpired;
+        this.enabled = enabled;
     }
 
     /**
@@ -24,7 +29,16 @@ export default class UserResponse {
      * @returns {UserResponse}
      */
     static createFrom(json) {
-        return new UserResponse(json.username, json.email, json.phoneNumber, json.roles)
+        return new UserResponse(
+            json.username, 
+            json.email, 
+            json.phoneNumber, 
+            json.roles, 
+            json.createdAt, 
+            json.accountNonExpired, 
+            json.accountNonLocked, 
+            json.credentialsNonExpired, 
+            json.enabled);
     }
 
     /**

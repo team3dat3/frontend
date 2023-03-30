@@ -67,11 +67,11 @@ export default function SeatRowAdminCreate() {
             const seatIdsOptions = seatIdsElement.options;
             for (let i = 0; i < seatIdsOptions.length; i++) {
                 if (seatIdsOptions[i].selected) {
-                    seatIds.push(seatIdsOptions[i].value);
+                    seatIds.push(parseInt(seatIdsOptions[i].value));
                 }
             }
 
-            const seatRowRequest = new SeatRowRequest(0, seatIds, formData.get('theaterId'));
+            const seatRowRequest = new SeatRowRequest(0, seatIds, parseInt(formData.get('theaterId')));
 
             // Create seatrow
             seatRowController.create(seatRowRequest, (seatRowResponse) => {

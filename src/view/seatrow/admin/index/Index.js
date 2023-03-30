@@ -25,10 +25,10 @@ export default function SeatRowAdminIndex() {
                 const card = new Card({
                     type: "primary",
                     href: `#/admin/seatrows/${seatrow.id}/edit`,
+                    image: `https://picsum.photos/200/2${seatrow.id}`,
                     header: `ID: ${seatrow.id}`,
-                    image: `https://picsum.photos/200/14${seatrow.id}`,
-                    body: null,
-                    footer: null,
+                    body: `Number of seats: ${seatrow.seatids.length}`,
+                    footer: seatrow.theaterId ? `<small class="badge success">Belongs to theater: ${seatrow.theaterName}</small>` : '<small class="badge secondary">No theater</small>',
                         animation: {
                         onmouseenter: {
                             type: "jello",

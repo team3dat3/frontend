@@ -22,9 +22,9 @@ export default function AchievementAdminIndex() {
                     type: "primary",
                     href: `#/admin/achievements/${achievement.id}/edit`,
                     header: `ID: ${achievement.id}`,
-                    image: `https://picsum.photos/200/40${achievement.id}`,
-                    body: null,
-                    footer: null,
+                    image: `https://picsum.photos/200/2${achievement.id % 10}`,
+                    body: `<p><strong>Name:</strong> ${achievement.name}</p><p><strong>Description:</strong> ${achievement.description}</p><p><strong>Belongs to:</strong> ${achievement.username}</p>`,
+                    footer: achievement.unlocked ? `<small class="badge success">Unlocked</small>` : '<small class="badge secondary">Locked</small>',
                         animation: {
                         onmouseenter: {
                             type: "jello",

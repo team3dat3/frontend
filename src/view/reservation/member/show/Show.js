@@ -16,19 +16,15 @@ export default function ReservationMemberShow(id) {
         const qrcodeWrapper = html.querySelector('#qrcode');
 
         // Create and render a new QRCode
-        new QRCode(qrcodeWrapper, `https://bergandersen.com/reservations/${id}/checkin`);
-        
-        // Get reservation HTML element wrapper
-        const reservationWrapper = html.querySelector('#wrapper');
+        new QRCode(qrcodeWrapper, `https://bergandersen.com/admin/reservations/${id}/checkin`);
 
         // Find reservation
         reservationController.findUserReservation(id, (reservationResponse) => {
-            // Create a new div element
-            const element = document.createElement('div');
-            // Set the inner HTML of the div element to the JSON string of the reservation
-            element.innerHTML = JSON.stringify(reservationResponse);
-            // Append the div element to the reservation HTML element wrapper
-            reservationWrapper.appendChild(element);
+            html.querySelector('#reservation-username').innerHTML = reservationResponse.username;
+            html.querySelector('#reservation-show').innerHTML = reservationResponse.showMovieTitle;
+            html.querySelector('#reservation-showDateTime').innerHTML = reservationResponse.showDateTime;
+            html.querySelector('#reservation-theater').innerHTML = reservationResponse.theaterName;
+            html.querySelector('#reservation-seats').innerHTML = reservationResponse.seatIds.toString().split(",").map(seat => `<span class="badge info">${seat}</span>`).join('');
         }, (error) => {
             console.log(error);
         });

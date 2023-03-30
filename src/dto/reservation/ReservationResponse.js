@@ -9,9 +9,15 @@ import BaseModel from "../BaseModel.js";
  * @returns {ReservationResponse}
  */
 export default class ReservationResponse {
-    constructor(id, checkedIn) {
+    constructor(id, checkedIn, username, showId, showMovieTitle, seatIds, showDateTime, theaterName) {
         this.id = id;
         this.checkedIn = checkedIn;
+        this.username = username;
+        this.showId = showId;
+        this.showMovieTitle = showMovieTitle;
+        this.seatIds = seatIds;
+        this.showDateTime = showDateTime;
+        this.theaterName = theaterName;
     }
 
     /**
@@ -22,7 +28,15 @@ export default class ReservationResponse {
      * @returns {ReservationResponse}
      */
     static createFrom(json) {
-        return new ReservationResponse(json.id, json.checkedIn);
+        return new ReservationResponse(
+            json.id, 
+            json.checkedIn, 
+            json.username, 
+            json.showId, 
+            json.showMovieTitle, 
+            json.seatIds,
+            json.showDateTime,
+            json.theaterName);
     }
 
     /**

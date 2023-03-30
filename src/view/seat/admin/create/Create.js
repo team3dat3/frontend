@@ -1,9 +1,10 @@
+import SeatRowController from "../../../../controller/SeatRowController.js";
 import SeatController from "../../../../controller/SeatController.js";
 import SeatRequest from "../../../../dto/seat/SeatRequest.js";
 import { loadAndRender } from '../../../../util/Render.js';
 import { showToast } from '../../../../components/Toast.js';
 
-// Create a seat controller
+const seatRowController = new SeatRowController();
 const seatController = new SeatController();
 
 /**
@@ -14,14 +15,29 @@ const seatController = new SeatController();
 export default function SeatAdminCreate() {
     // Load and render the seat admin create template
     loadAndRender('src/view/seat/admin/create/template.html', (html) => {
-        // Get seat HTML element wrapper
-        const seatWrapper = html.querySelector('#wrapper');
 
-        html.querySelector('#seat-form').addEventListener('submit', (event) => {
-            event.preventDefault();
+        seatRowController.findAll((seatRowResponses) => {
+            seatRowResponses.forEach(seatRow => {
+                const option = document.createElement('option');
+                option.value = seatRow.id;
+                option.innerText = seatRow.id;
+                html.querySelector('[name="seatRowId"]').appendChild(option);
+            });
+        }, (error) => {
+            console.log(error);
+        });
+
+        // find form by id within the template
+        const form = html.querySelector('#seat-form');
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();            
+
+            // get form data
+            const formData = new FormData(form);
 
             // Create a seat request
-            const seatRequest = new SeatRequest(0, 0, 0);        
+            const seatRequest = new SeatRequest(0, parseInt(formData.get('seatRowId')));        
 
             
         // Create seat

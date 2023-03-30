@@ -1,9 +1,12 @@
+import UserController from "../../../../controller/UserController.js";
+import ShowController from "../../../../controller/ShowController.js";
 import ReservationController from "../../../../controller/ReservationController.js";
 import ReservationRequest from "../../../../dto/reservation/ReservationRequest.js";
 import { loadAndRender } from '../../../../util/Render.js';
 import { showToast } from '../../../../components/Toast.js';
 
-// Create a reservation controller
+const showController = new ShowController();
+const userController = new UserController();
 const reservationController = new ReservationController();
 
 /**
@@ -19,6 +22,20 @@ export default function ReservationAdminEdit(id) {
         reservationController.find(id, (reservationResponse) => {
             // Set the value of the checkin input element to the value of the reservation response
             html.querySelector('[name="checkedIn"]').checked = reservationResponse.checkedIn ? true : false;
+            html.querySelector('[name="showId"]').value = reservationResponse.showId;
+
+            // Find all users
+            userController.findAll((userResponses) => {
+                for (let i = 0; i < userResponses.length; i++) {
+                    const user = userResponses[i];
+                    if (user.username == reservationResponse.username) {
+                        html.querySelector('[name="username"]').value = user.username;
+                        break;
+                    }
+                }
+            }, (error) => {
+                console.log(error);
+            });
         }, (error) => {
             console.log(error);
         });

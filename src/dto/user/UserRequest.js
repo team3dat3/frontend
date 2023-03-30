@@ -11,12 +11,16 @@ import BaseModel from "../BaseModel.js"
 
 
 export default class UserRequest {
-    constructor(username, password, email, phoneNumber, roles) {
+    constructor(username, password, email, phoneNumber, roles, accountNonExpired, accountNonLocked, credentialsNonExpired, enabled) {
         this.username = username;
         this.password = password;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.roles = roles;
+        this.accountNonExpired = accountNonExpired;
+        this.accountNonLocked = accountNonLocked;
+        this.credentialsNonExpired = credentialsNonExpired;
+        this.enabled = enabled;
     }
 
     /**
@@ -27,7 +31,16 @@ export default class UserRequest {
      */
 
     static createFrom(json){
-        return new UserRequest(json.username, json.password, json.email, json.phoneNumber, json.roles);
+        return new UserRequest(
+            json.username, 
+            json.password, 
+            json.email, 
+            json.phoneNumber, 
+            json.roles,
+            json.accountNonExpired, 
+            json.accountNonLocked, 
+            json.credentialsNonExpired, 
+            json.enabled);
     }
 
     /**

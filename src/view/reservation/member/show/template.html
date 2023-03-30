@@ -1,11 +1,35 @@
 <div class="template">
     <header class="page-header">
-        <h1>Reservation</h1>
+        <h1>Check-in reservation</h1>
     </header>
-    <div>
-        <h1>Check-in</h1>
-        <p>Show the QR code to an employee at the chinema's entrance to check-in.</p>
-        <div id="qrcode"></div>
+    
+    <div class="scanner-area">
+        <div class="scanner-area-top">
+            <h2>How to use</h2>
+            <h3>Show the QR code to an employee at the chinema to scan the check-in.</h3>
+            <div id="qrcode"></div>
+        </div>
+        <p>
+            <span>This reservation gives</span>
+            <span class="badge info" style="margin-right: 0;">
+                <span id="reservation-username"></span>
+            </span>
+            <span>access to movie</span>
+            <span class="badge info" style="margin-right: 0;">
+                <span id="reservation-show"></span>
+            </span>
+            <span>on date</span>
+            <span class="badge info" style="margin-right: 0;">
+                <span id="reservation-showDateTime"></span>
+            </span>
+            <span>in theater</span>
+            <span class="badge info" style="margin-right: 0;">
+                <span id="reservation-theater"></span>
+            </span>
+            <span>at the following seats</span>
+            <span id="reservation-seats"></span>
+            <span>.</span>
+        </p>
     </div>
     <div id="wrapper"></div>
 </div>

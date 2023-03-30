@@ -2,7 +2,6 @@ import SeatController from "../../../../controller/SeatController.js";
 import { loadAndRender } from '../../../../util/Render.js';
 import Card from '../../../../components/Card.js';
 
-// Create a seat controller
 const seatController = new SeatController();
 
 /**
@@ -18,17 +17,17 @@ export default function SeatAdminIndex() {
 
         // Find all seats
         seatController.findAll((seatResponses) => {
-            // Loop through all seat responses
+            let i = 0;
             seatResponses.forEach(seat => {
 
                 // Create a new card
                 const card = new Card({
                     type: "primary",
-                    href: `#/admin/seats/${seat.id}/delete`,
+                    image: `https://picsum.photos/200/2${i}`,
+                    href: `#/admin/seats/${seat.id}/edit`,
                     header: `ID: ${seat.id}`,
-                    image: `https://picsum.photos/200/18${seat.id-1}`,
                     body: null,
-                    footer: null,
+                    footer: seat.seatRowId ? `<small class="badge success">Belongs to seat row: ${seat.seatRowId}</small>` : '<small class="badge secondary">No seat row</small>',
                         animation: {
                         onmouseenter: {
                             type: "jello",
@@ -36,7 +35,7 @@ export default function SeatAdminIndex() {
                         },
                     }
                 });
-                
+                i = (i + 1) % 10;
                 seatWrapper.appendChild(card);
             });
         }, (error) => {
