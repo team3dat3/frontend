@@ -9,3 +9,4 @@ window.env = {};
  * @type {string}
  */
 window.env.ENVIRONMENT = 'production';
+
