@@ -7,7 +7,7 @@ import BaseModel from "../BaseModel.js";
  * @param {string} director
  * @param {string} actors
  * @param {number} prodYear
- * @param {number} agelimit
+ * @param {string} rated
  * @param {string} description
  * @param {string[]} genre
  * @param {string} runtime
@@ -15,12 +15,12 @@ import BaseModel from "../BaseModel.js";
  * @returns {MovieResponse}
  */
 export default class MovieResponse {
-    constructor(title, director, actors, prodYear, ageLimit, description, genre, runtime) {
+    constructor(title, director, actors, prodYear, rated, description, genre, runtime) {
         this.title = title;
         this.director = director;
         this.actors = actors;
         this.prodYear = prodYear;
-        this.ageLimit = ageLimit;
+        this.rated = rated;
         this.description = description;
         this.genre = genre;
         this.runtime = runtime;
@@ -34,7 +34,7 @@ export default class MovieResponse {
      * @returns {MovieRequest}
      */
     static createFrom(json) {
-        return new MovieResponse(json.title, json.director, json.actors, json.prodYear, json.ageLimit, json.description, json.genre, json.runtime);
+        return new MovieResponse(json.title, json.director, json.actors, json.prodYear, json.rated, json.description, json.genre, json.runtime);
     }
 
     /**

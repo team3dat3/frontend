@@ -23,7 +23,7 @@ export default function MovieAdminEdit(title) {
             html.querySelector('[name="director"]').value = movieResponse.director;
             html.querySelector('[name="actors"]').value = movieResponse.actors;
             html.querySelector('[name="prodYear"]').value = movieResponse.prodYear;
-            html.querySelector('[name="ageLimit"]').value = movieResponse.ageLimit;
+            html.querySelector('[name="rated"]').value = movieResponse.rated;
             html.querySelector('[name="description"]').value = movieResponse.description;
             html.querySelector('[name="genres"]').value = movieResponse.genre.join(', ');
             html.querySelector('[name="runtime"]').value = movieResponse.runtime;   
@@ -47,7 +47,7 @@ export default function MovieAdminEdit(title) {
                 formData.get('director'),
                 formData.get('actors'),
                 formData.get('prodYear'),
-                formData.get('ageLimit'),
+                formData.get('rated'),
                 formData.get('description'),
                 formData.get('genres').split(',').map(item => item.trim()),
                 formData.get('runtime')
