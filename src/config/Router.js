@@ -19,7 +19,7 @@ import UserAnonymousCreate from "../view/user/anonymous/create/Create.js";
 // Reservation pages
 import ReservationAdminIndex from "../view/reservation/admin/index/Index.js";
 import ReservationAdminEdit from "../view/reservation/admin/edit/Edit.js";
-import ReservationAdminCheckIn from "../view/reservation/admin/checkin/CheckIn.js";
+import ReservationAdminCheckIn from "../view/reservation/admin/checkin/Checkin.js";
 import ReservationMemberShow from "../view/reservation/member/show/Show.js";
 import ReservationMemberIndex from "../view/reservation/member/index/Index.js";
 import ReservationMemberCreate from "../view/reservation/member/create/Create.js";
