@@ -77,6 +77,19 @@
     <!--
         Load the main JavaScript file
     -->
-    <script src="./src/config/Config.js" type="module"></script>
+    <script>
+        /**
+         * Setup environment variables
+         * @type {Object}
+         */
+        window.env = {};
+
+        /**
+         * Set the environment to production or development.
+         * @type {string}
+         */
+        window.env.ENVIRONMENT = 'production';
+
+    </script>
     <script src="./src/App.js" type="module"></script>
 </html>

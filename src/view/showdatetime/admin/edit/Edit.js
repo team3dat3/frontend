@@ -1,6 +1,6 @@
 import ShowController from "../../../../controller/ShowController.js";
 import ShowDateTimeController from "../../../../controller/ShowDateTimeController.js";
-import ShowDateTimeRequest from "../../../../dto/showdatetime/ShowDateTimeRequest.js";
+import ShowDateTimeRequest from "../../../../dto/showDateTime/ShowDateTimeRequest.js";
 import { loadAndRender } from '../../../../util/Render.js';
 import { showToast } from '../../../../components/Toast.js';
 
