@@ -49,17 +49,12 @@ export default function MovieAdminCreate() {
                     getMovie(imdbId, html)
                 }
             });
-            var searchMovie = document.getElementById("search-movie");
-            searchMovie.addEventListener("click", function(event) {
-            
-              // do something with the movie value
-            
-          })
+  
 
         // Add event listener to movie form
         html.querySelector('#movie-form').addEventListener('submit', (event) => {
             event.preventDefault();
-
+console.log("movie created")
             // Create a movie request
             const movieRequest = new MovieRequest(
                 movieTitleElement.value, 
