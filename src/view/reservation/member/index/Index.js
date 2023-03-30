@@ -27,7 +27,7 @@ export default function ReservationMemberIndex() {
                     href: `#/member/reservations/${reservation.id}/show`,
                     header: `${reservation.showMovieTitle}`,
                     image: `https://picsum.photos/200/2${reservation.id % 10}`,
-                    body: `<p><strong>Show datetime:</strong> ${reservation.showDateTime}</p><p><strong>Seats:</strong> ${reservation.seatIds}</p>`,
+                    body: `<p><strong>Theater:</strong> ${reservation.theaterName}</p><p><strong>Show datetime:</strong> ${reservation.showDateTime}</p><p><strong>Seats:</strong> ${reservation.seatIds.toString().split(",").map(seat => `<span class="badge primary">${seat}</span>`).join('')}</p>`,
                     footer: reservation.checkedIn ? '<small class="badge success">Checked in</small>' : '<small class="badge secondary">Not checked in</small>',
                         animation: {
                         onmouseenter: {
@@ -44,3 +44,4 @@ export default function ReservationMemberIndex() {
         });
     });
 }
+

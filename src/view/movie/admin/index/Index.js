@@ -27,9 +27,9 @@ export default function MovieAdminIndex() {
                     type: "primary",
                     href: `#/admin/movies/${movie.title}/edit`,
                     header: movie.title,
-                    image: `https://picsum.photos/200/30${i}`,
-                    body: `${movie.description}`,
-                    footer: `${movie.genre}`,
+                    image: `https://picsum.photos/200/2${i % 10}`,
+                    body: `<p>${movie.description}</p>`,
+                    footer: movie.genre.toString().split(',').map(genre => `<small class="badge secondary">${genre}</small>`).join(''),
                         animation: {
                         onmouseenter: {
                             type: "jello",

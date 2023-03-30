@@ -53,13 +53,13 @@ import AchievementAdminEdit from "../view/achievement/admin/edit/Edit.js";
 import AchievementMemberIndex from "../view/achievement/member/index/Index.js";
 
 // Show pages
+import ShowAdminIndex from "../view/show/admin/index/Index.js";
 import ShowAdminCreate from "../view/show/admin/create/Create.js";
 import ShowAdminEdit from "../view/show/admin/edit/Edit.js";
 import ShowAnonymousIndex from "../view/show/anonymous/index/Index.js";
 import ShowAnonymousShow from "../view/show/anonymous/show/Show.js";
 
 // ShowDateTime pages
-import ShowDateTimeAdminCreate from "../view/showdatetime/admin/create/Create.js";
 import ShowDateTimeAdminEdit from "../view/showdatetime/admin/edit/Edit.js";
 import ShowDateTimeAdminIndex from "../view/showdatetime/admin/index/Index.js";
 
@@ -151,12 +151,12 @@ router
         "/member/achievements": AchievementMemberIndex,
 
         // Shows
+        "/admin/shows": ShowAdminIndex,
         "/admin/shows/create": ShowAdminCreate,
         "/admin/shows/:id/edit": ({data}) => ShowAdminEdit(data.id),
         "/shows/:id/show": ({data}) => ShowAnonymousShow(data.id),
 
         // Show date times
-        "/admin/showdatetimes/create": ShowDateTimeAdminCreate,
         "/admin/showdatetimes/:id/edit": ({data}) => ShowDateTimeAdminEdit(data.id),
         "/admin/showdatetimes": ShowDateTimeAdminIndex,
 

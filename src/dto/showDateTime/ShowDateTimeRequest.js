@@ -4,18 +4,18 @@ import BaseModel from "../BaseModel.js";
  * ShowDateTime request
  * 
  * @param {number} id
- * @param {Date} showdate
- * @param {number} showid
+ * @param {Date} showDate
+ * @param {number} showId
  *  
  *
  * 
  * @returns {ShowDateTimeRequest}
  */
 export default class ShowDateTimeRequest {
-    constructor(id, showdate, showid) {
+    constructor(id, showDate, showId) {
         this.id = id;
-        this.showdate = showdate;
-        this.showid = showid;
+        this.showDate = showDate;
+        this.showId = showId;
     }
 
     /**
@@ -26,7 +26,7 @@ export default class ShowDateTimeRequest {
      * @returns {ShowDateTimeRequest}
      */
     static createFrom(json) {
-        return new ShowDateTimeRequest(json.id, json.showdate, json.showid);
+        return new ShowDateTimeRequest(json.id, json.showDate, json.showId);
     }
 
     /**

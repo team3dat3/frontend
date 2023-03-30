@@ -27,7 +27,7 @@ export default function ReservationAdminIndex() {
                     href: `#/admin/reservations/${reservation.id}/edit`,
                     header: `ID: ${reservation.id}`,
                     image: `https://picsum.photos/200/2${reservation.id % 10}`,
-                    body: `<p><strong>Reserved by:</strong> ${reservation.username}</p><p><strong>Show ID:</strong> ${reservation.showId}</p>`,
+                    body: `<p><strong>Reserved by:</strong> ${reservation.username}</p><p><strong>Show ID:</strong> ${reservation.showId}</p><p><strong>Show Movie Title:</strong> ${reservation.showMovieTitle}</p><p><strong>Show datetime:</strong> ${reservation.showDateTime}</p><p><strong>Seats:</strong> ${reservation.seatIds}</p>`,
                     footer: reservation.checkedIn ? '<small class="badge success">Checked in</small>' : '<small class="badge secondary">Not checked in</small>',
                         animation: {
                         onmouseenter: {

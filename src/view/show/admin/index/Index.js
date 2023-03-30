@@ -1,6 +1,5 @@
 import ShowController from "../../../../controller/ShowController.js";
 import { loadAndRender } from '../../../../util/Render.js';
-import { hasRole } from "../../../../util/Authenticated.js";
 import Card from '../../../../components/Card.js';
 import Button from '../../../../components/Button.js';
 
@@ -8,13 +7,13 @@ import Button from '../../../../components/Button.js';
 const showController = new ShowController();
 
 /**
- * Show index.
+ * Admin Show index.
  *  
  * @returns {undefined}
  */
-export default function ShowAnonymousIndex() {
+export default function ShowAdminIndex() {
     // Load and render the show index template
-    loadAndRender('src/view/show/anonymous/index/template.html', (html) => {
+    loadAndRender('src/view/show/admin/index/template.html', (html) => {
         // Get show HTML element wrapper
         const showWrapper = html.querySelector('#wrapper');
 
@@ -25,7 +24,7 @@ export default function ShowAnonymousIndex() {
                 // Create a new card
                 const card = new Card({
                     type: "primary",
-                    href: `#/shows/${show.id}/show`,
+                    href: `#/admin/shows/${show.id}/edit`,
                     header: `${show.movieTitle}`,
                     image: `https://picsum.photos/200/10${show.id}`,
                     body: `<p><strong>Price:</strong> ${show.price}DKK</p><p><strong>Theater:</strong> ${show.theaterName}</p>`,
@@ -44,8 +43,4 @@ export default function ShowAnonymousIndex() {
             console.log(error);
         });
     });
-}
-
-function createDateTimeBagde(dateTime) {
-    return `<span class="badge primary">${dateTime}</span>`;
 }

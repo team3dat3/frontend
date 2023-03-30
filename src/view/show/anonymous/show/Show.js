@@ -1,5 +1,6 @@
 import ShowController from "../../../../controller/ShowController.js";
 import { loadAndRender } from '../../../../util/Render.js';
+import { hasAnyRole } from "../../../../util/Authenticated.js";
 
 // Create a show controller
 const showController = new ShowController();
@@ -12,29 +13,20 @@ const showController = new ShowController();
 export default function ShowAnonymousShow(id) {
     // Load and render the show show template
     loadAndRender('src/view/show/anonymous/show/template.html', (html) => {
-                
-          // find the show search input
-          const showid = html.querySelector('[name="search-id"]');
-        
-           // Get show HTML element wrapper
-           const showWrapper = html.querySelector('#wrapper');
 
-           html.querySelector('#show-search').addEventListener('submit', (event) => {
-            event.preventDefault();
-        // Find show
-                showController.find(showid, (showResponse) => {
-               // Create a new div element
-               const element = document.createElement('div');
-               // Set the inner HTML of the div element to the JSON string of the movie
-               element.innerHTML = JSON.stringify(showResponse);
-               // Append the div element to the movie HTML element wrapper
-               showWrapper.appendChild(element);
-                }, (error) => {
-                    console.log(error);
-                });
-        
-     
+        // Get show HTML element wrapper
+        const showWrapper = html.querySelector('#wrapper');
 
-    });
-})
+        showController.find(id, (showResponse) => {
+
+            html.querySelector('#movie-title').innerHTML = showResponse.movieTitle;
+            
+        }, (error) => {
+            console.log(error);
+        });
+
+        if (hasAnyRole(['MEMBER', 'ADMIN'])) {
+            // Insert the form allowing the user to reserve the show including seats and datetime
+        }
+    })
 }

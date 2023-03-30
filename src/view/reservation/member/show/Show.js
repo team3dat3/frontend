@@ -24,7 +24,7 @@ export default function ReservationMemberShow(id) {
             html.querySelector('#reservation-show').innerHTML = reservationResponse.showMovieTitle;
             html.querySelector('#reservation-showDateTime').innerHTML = reservationResponse.showDateTime;
             html.querySelector('#reservation-theater').innerHTML = reservationResponse.theaterName;
-            html.querySelector('#reservation-seats').innerHTML = reservationResponse.seatIds;
+            html.querySelector('#reservation-seats').innerHTML = reservationResponse.seatIds.toString().split(",").map(seat => `<span class="badge info">${seat}</span>`).join('');
         }, (error) => {
             console.log(error);
         });

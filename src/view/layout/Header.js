@@ -5,10 +5,12 @@ import { hasRole, hasAnyRole } from "../../util/Authenticated.js";
  * @private
  */
 const adminLinks = [
+    { href: "/#/admin/shows", text: "Shows" },
     { href: "/#/admin/movies", text: "Movies" },
     { href: "/#/admin/theaters", text: "Theaters" },
     { href: "/#/admin/seatrows", text: "Seat rows" },
     { href: "/#/admin/seats", text: "Seats" },
+    { href: "/#/admin/showdatetimes", text: "Show date times"},
     { href: "/#/admin/reservations", text: "Reservations" },
     { href: "/#/admin/users", text: "Users" },
     { href: "/#/admin/coupons", text: "Coupons" },
@@ -53,15 +55,9 @@ export function refreshHeader(html) {
     const showLink = createNavigationElement("/", "Shows");
     wrapper.appendChild(showLink);
 
-    // Add admin links
-    if (hasRole("ADMIN")) {
-        const adminDropdown = createDropdown("Admin", adminLinks);
-        wrapper.appendChild(adminDropdown);
-    }
-
     // Add member links
     if (hasAnyRole(["ADMIN", "MEMBER"])) {
-        const memberDropdown = createDropdown("Member", memberLinks);
+        const memberDropdown = createDropdown("Account", memberLinks);
         wrapper.appendChild(memberDropdown);
     
     // Add authentication links
@@ -79,6 +75,12 @@ export function refreshHeader(html) {
     // Add contact link
     const contactLink = createNavigationElement("/#/contact", "Contact");
     wrapper.appendChild(contactLink);
+
+    // Add admin links
+    if (hasRole("ADMIN")) {
+        const adminDropdown = createDropdown("Admin", adminLinks);
+        wrapper.appendChild(adminDropdown);
+    }
 }
 
 /**
