@@ -7,7 +7,7 @@ import { refreshHeader } from '../view/layout/Header.js';
  * @type {string}
  */
 const baseUrl = window.env?.ENVIRONMENT === 'production' ?
-    'https://api.bergandersen.com/v1' : 'http://localhost:8080/v1';
+    'https://backend123.azurewebsites.net/v1' : 'http://localhost:8080/v1';
 
 /**
  * Debug mode.

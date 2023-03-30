@@ -68,6 +68,7 @@ body {
 .scanner-area .scanner-area-top h2 {
     margin-bottom: 1rem;
 }
+
 .scanner-area .scanner-area-top h3 {
     margin-bottom: 2rem;
 }
@@ -116,4 +117,16 @@ body {
 #movie-image {
     width: 100%;
     border: 1px solid var(--border-color);
+}
+
+@media only screen and (max-width: 1000px) {
+    #main-content {
+        width: auto;
+    }
+}
+
+@media only screen and (max-width: 625px) {
+    #main-content {
+        margin: 160px auto;
+    }
 }
