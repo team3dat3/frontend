@@ -9,7 +9,7 @@ import BaseModel from "../BaseModel.js";
  * @returns {ReservationResponse}
  */
 export default class ReservationResponse {
-    constructor(id, checkedIn, username, showId, showMovieTitle, seatIds, showDateTime) {
+    constructor(id, checkedIn, username, showId, showMovieTitle, seatIds, showDateTime, theaterName) {
         this.id = id;
         this.checkedIn = checkedIn;
         this.username = username;
@@ -17,6 +17,7 @@ export default class ReservationResponse {
         this.showMovieTitle = showMovieTitle;
         this.seatIds = seatIds;
         this.showDateTime = showDateTime;
+        this.theaterName = theaterName;
     }
 
     /**

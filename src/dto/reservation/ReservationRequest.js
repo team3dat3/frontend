@@ -21,7 +21,6 @@ export default class ReservationRequest {
         this.showId = showId;
         this.seatIds = seatIds;
         this.showDateId = showDateId;
-    
     }
 
     /**

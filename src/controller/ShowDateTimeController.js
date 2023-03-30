@@ -35,7 +35,7 @@ export default class ShowDateTimeController extends BaseController {
     }
 
     findShowDatesShow(showId, callback, error) {
-        super.get(`/anonymous/showdates/${showId}/show`, (json) => {callback(ShowDateTimeResponse.createFrom(json))}, error);
+        super.get(`/anonymous/showdates/${showId}/show`, (json) => {callback(ShowDateTimeResponse.createCollectionFrom(json))}, error);
     }
    
 

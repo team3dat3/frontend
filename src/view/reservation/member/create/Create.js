@@ -29,12 +29,12 @@ export default function ReservationMemberCreate(showId) {
         html.querySelector("#backbutton").href = `/#/shows/${showId}/show`
 
         showController.find(showId, (showResponse) =>{
-            seatController.findByTheaterId(showResponse.theaterId, (seatResponses) =>{
+            seatController.findByTheaterId(showResponse.theaterId, (seatResponses) => {
                 seatResponses.forEach(seatResponse => {
                     const option = document.createElement("option")
                     option.value = seatResponse.id;
                     option.innerHTML = seatResponse.id;
-                    html.querySelector("#show-dates").appendChild(option);
+                    html.querySelector("#seats").appendChild(option);
                 });
                 
             }, (error) => {
@@ -47,11 +47,14 @@ export default function ReservationMemberCreate(showId) {
 
 
         showDateTimeController.findShowDatesShow(showId, (showDateTimesResponses) =>{
+            
+            console.log(showDateTimesResponses)
             showDateTimesResponses.forEach(showDateTime => {
                 const option = document.createElement("option")
                 option.value = showDateTime.id;
                 option.innerHTML = showDateTime.showDate;
                 html.querySelector("#show-dates").appendChild(option);
+                
             });
             
         }, (error) => {
@@ -62,6 +65,15 @@ export default function ReservationMemberCreate(showId) {
 
         form.addEventListener("submit", (e) => {
             e.preventDefault();
+
+            // find all seat ids
+            const seatIds = [];
+            const seats = html.querySelector("#seats");
+            for (let i = 0; i < seats.length; i++) {
+                if (seats[i].selected) {
+                    seatIds.push(seats[i].value);
+                }
+            }            
 
             const formData = new FormData(form);
             const request = new ReservationRequest(
