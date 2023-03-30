@@ -36,12 +36,7 @@ export default function MovieAdminCreate() {
         movieTitleElement.onkeyup = () => {
             startTimer(movieTitleElement.value, html);
           };
-          
-   /*        html.querySelector('#search-movie').onclick = () => {
-            let imdbId = this.getAttribute("data-variable1")
-            getMovie(imdbId, html)
 
-          } */
 
             html.querySelector('#search-movie').addEventListener("click", function(event)  {
                 if (event.target.classList.contains("movie-btn")) {

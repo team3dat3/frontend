@@ -1,7 +1,7 @@
 import ShowController from "../../../../controller/ShowController.js";
 import { loadAndRender } from '../../../../util/Render.js';
 import { hasAnyRole } from "../../../../util/Authenticated.js";
-
+import Link from "../../../../components/Link.js"
 // Create a show controller
 const showController = new ShowController();
 
@@ -26,7 +26,20 @@ export default function ShowAnonymousShow(id) {
         });
 
         if (hasAnyRole(['MEMBER', 'ADMIN'])) {
-            // Insert the form allowing the user to reserve the show including seats and datetime
+        
+            const a = Link({
+                type: 'primary',
+                text: 'Reserve show',
+                href: `#/member/reservations/${id}/create`,
+                animation: {
+                    onclick: {
+                        type: 'rubberBand',
+                        duration: 800
+                    }
+                }
+            })
+  
+            html.querySelector("#reserve-show").appendChild(a)
         }
     })
 }

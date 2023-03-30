@@ -22,6 +22,7 @@ import ReservationAdminEdit from "../view/reservation/admin/edit/Edit.js";
 import ReservationAdminCheckIn from "../view/reservation/admin/checkin/CheckIn.js";
 import ReservationMemberShow from "../view/reservation/member/show/Show.js";
 import ReservationMemberIndex from "../view/reservation/member/index/Index.js";
+import ReservationMemberCreate from "../view/reservation/member/create/Create.js";
 
 // Theater pages
 import TheaterAdminEdit from "../view/theater/admin/edit/Edit.js";
@@ -108,6 +109,7 @@ router
         "/admin/reservations/:id/checkin": ({data}) => ReservationAdminCheckIn(data.id),
         "/member/reservations": ReservationMemberIndex,
         "/member/reservations/:id/show": ({data}) => ReservationMemberShow(data.id),
+        "/member/reservations/:showId/create": ({data}) => ReservationMemberCreate(data.showId),
 
         // Authentication
         "/login": Login,
