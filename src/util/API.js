@@ -1,3 +1,6 @@
+import { isExpired } from './Authenticated.js';
+import { showToast } from '../components/Toast.js';
+import { refreshHeader } from '../view/layout/Header.js';
 
 /**
  * The base URL for the API.
@@ -28,7 +31,7 @@ export function setAPIKey(apiKey) {
  * 
  * @returns {boolean}
  */
-function hasAPIKey() {
+export function hasAPIKey() {
     return localStorage.getItem('apiKey') !== null;
 }
 
@@ -37,8 +40,17 @@ function hasAPIKey() {
  * 
  * @returns {string}
  */
-function getAPIKey() {
+export function getAPIKey() {
     return localStorage.getItem('apiKey');
+}
+
+/**
+ * Removes the API key from local storage.
+ * 
+ * @returns {undefined}
+ */
+export function removeAPIKey() {
+    localStorage.removeItem('apiKey');
 }
 
 /**
@@ -50,6 +62,12 @@ function getAPIKey() {
  * @returns {undefined}
  */
 export async function request(endpoint, options) {
+
+    if (hasAPIKey() && isExpired()) {
+        onExpiration();
+        return;
+    }
+
     // Get the fetch options used to send the request
     let fetchOptions = createFetchOptions(
         options.method,
@@ -62,7 +80,7 @@ export async function request(endpoint, options) {
 
     // Fetch the API
     const response = await fetch(`${baseUrl}${endpoint}`, fetchOptions);
-
+    
     // If the response is ok, parse the JSON and call the callback    
     if (response.ok) {
         const json = await response.json();
@@ -74,6 +92,14 @@ export async function request(endpoint, options) {
     }
 }
 
+/**
+ * Prints the debug info.
+ * 
+ * @param {string} endpoint
+ * @param {Object} options
+ * 
+ * @returns {undefined}
+ */
 function printDebugInfo(endpoint, options) {
     console.log(`Request Debug info => Endpoint: ${endpoint} Options: ${JSON.stringify(options)}`);
 }
@@ -92,8 +118,7 @@ function createFetchOptions(method, body) {
         // If method is undefined, use GET as default
         method: method ? method : 'GET',
         // Add headers to the fetch options
-        headers: headers(),
-        mode: 'no-cors',
+        headers: headers()
     };
 
     // If body is defined, stringify it and add it 
@@ -124,4 +149,11 @@ function headers() {
     }
 
     return headers;
+}
+
+function onExpiration() {
+    removeAPIKey();
+    refreshHeader(document);
+    showToast('secondary', 'Your session has expired. Please login again.', 5000);
+    window.router.navigate('/login');
 }

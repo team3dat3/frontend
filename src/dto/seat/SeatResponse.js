@@ -10,10 +10,9 @@ import BaseModel from "../BaseModel.js";
  * @returns {SeatResponse}
  */
 export default class SeatResponse {
-    constructor(id, reservationids, seatrowid) {
+    constructor(id, seatRowId) {
         this.id = id;
-        this.reservationids = reservationids;
-        this.seatrowid = seatrowid;
+        this.seatRowId = seatRowId;
     }
 
     /**
@@ -24,7 +23,7 @@ export default class SeatResponse {
      * @returns {SeatRequest}
      */
     static createFrom(json) {
-        return new SeatResponse(json.id, json.reservationids, json.seatrowid);
+        return new SeatResponse(json.id, json.seatRowId);
     }
 
     /**

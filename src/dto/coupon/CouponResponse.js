@@ -1,3 +1,4 @@
+import BaseModel from "../BaseModel.js"
 
 /**
  * @param {number} id
@@ -11,11 +12,11 @@
  */
 
 export default class CouponResponse{
-    constructor(id, name, discount, user, cost, used){
+    constructor(id, name, discount, username, cost, used){
         this.id = id
         this.name = name
         this.discount = discount
-        this.user = user
+        this.username = username
         this.cost = cost
         this.used = used
     }
@@ -26,7 +27,7 @@ export default class CouponResponse{
      * @returns {CouponResponse}
      */
     static createFrom(json){
-        return new CouponResponse(json.id, json.name, json.discount, json.user, json.cost, json.used);
+        return new CouponResponse(json.id, json.name, json.discount, json.username, json.cost, json.used);
     }
 
     /**
@@ -35,6 +36,6 @@ export default class CouponResponse{
      * @returns {Array}
      */
     static createCollectionFrom(json){
-        return new BaseModel.createCollectionFrom(CouponResponse, json);
+        return BaseModel.createCollectionFrom(CouponResponse, json);
     }
 }

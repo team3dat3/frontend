@@ -1,4 +1,29 @@
 <div class="template">
-    <h1>Member coupon show</h1>
-    <div id="wrapper"></div>
+    <header class="page-header">
+        <h1 id="coupon-name">Coupon</h1>
+    </header>
+    <div class="scanner-area">
+        <div class="scanner-area-top">
+            <h2>How to use</h2>
+            <h3>Show the QR code to an employee at the chinema to scan the coupon.</h3>
+            <div id="qrcode"></div>
+        </div>
+        <p>
+            <span>This coupon gives</span>
+            <span class="badge info" style="margin-right: 0;">
+                <span id="coupon-username"></span>
+            </span>
+            <span>a</span>
+            <span class="badge info" style="margin-right: 0;">
+                <span id="coupon-discount"></span>
+                <span>%</span>
+            </span> 
+            <span>discount on items up to a value of</span>
+            <span class="badge info" style="margin-right: 0;">
+                <span id="coupon-cost"></span>
+                <span>DKK</span>
+            </span>
+            <span>.</span>
+        </p>
+    </div>
 </div>

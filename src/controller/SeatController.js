@@ -34,6 +34,10 @@ export default class SeatController extends BaseController {
         super.get(`/anonymous/seats/${id}`, (json) => {callback(SeatResponse.createFrom(json))}, error);
     }
 
+    findByTheaterId(theaterId, callback, error) {
+        super.get(`/anonymous/seats/${theaterId}/theater`, (json) => {callback(SeatResponse.createCollectionFrom(json))}, error);
+    }
+
     /**
      * Create a seat
      *
@@ -57,7 +61,7 @@ export default class SeatController extends BaseController {
      * @returns {undefined} 
      */
     update(seatRequest, callback, error) {
-        super.patch(`/admin/seats`, seatRequest, (json) => {callback(SeatResponse.createFrom(json))}, error);
+        super.put(`/admin/seats`, seatRequest, (json) => {callback(SeatResponse.createFrom(json))}, error);
     }
 
     /**

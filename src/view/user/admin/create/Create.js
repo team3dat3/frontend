@@ -1,33 +1,48 @@
-import UserController from "../../../../controller/UserController";
-import UserRequest from "../../../../dto/user/UserRequest";
-import { loadAndRender } from "../../../../util/Render";
+import UserController from "../../../../controller/UserController.js"
+import UserRequest from "../../../../dto/user/UserRequest.js";
+import { loadAndRender } from "../../../../util/Render.js"
+import { showToast } from '../../../../components/Toast.js';
 
 const userController = new UserController();
 
 /**
  * User admin create
  * 
- * @returns {undefined}
+ * @param {undefined}
  */
 
-export default function UserAdminCreate(){
+export default function UserAdminCreate() {
     loadAndRender('src/view/user/admin/create/template.html', (html) => {
-        const seatWrapper = html.querySelector('#wrapper');
+        // Find register form
+        const registerForm = html.querySelector('#register-form');
 
-        html.querySelector('#user-form').addEventListener('submit', (event) => {
+        // Add event listener to login form
+        registerForm.addEventListener('submit', (event) => {
+            // Prevent default form submit
             event.preventDefault();
 
-            const userRequest = new userRequest(email, phoneNumber, reservations, achievements, couponse);
+            // Get form data
+            const formData = new FormData(registerForm);
 
-            userController.create(userRequest, (userResponses) => {
-                userResponses.forEach(user => {
-                    const element = document.createElement('div');
-                    element.innerHTML = JSON.stringify(user);
-                    userWrapper.appendChild(element);
-                });
+            // Create a new user request
+            const userRequest = new UserRequest(
+                formData.get('username'),
+                formData.get('password'),
+                formData.get('email'),
+                formData.get('phoneNumber'),
+                [formData.get('role')],
+                formData.get('accountNonExpired'),
+                formData.get('accountNonLocked'),
+                formData.get('credentialsNonExpired'),
+                formData.get('enabled')
+            );
+
+            userController.create(userRequest, (userResponse) => {
+                window.router.navigate('/admin/users');
+                showToast('success', `User saved with username: ${userResponse.username}.`, 5000);
             }, (error) => {
-                console.log(error);
-            });
+                showToast('secondary', "Something went wrong. Contact support for help.", 5000);
+            }); 
         });
     });
 }

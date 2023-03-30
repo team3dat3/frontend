@@ -1,65 +1,109 @@
+import MovieController from "../../../../controller/MovieController.js";
+import ShowDateTimeController from "../../../../controller/ShowDateTimeController.js";
+import TheaterController from "../../../../controller/TheaterController.js";
 import ShowController from "../../../../controller/ShowController.js";
 import ShowRequest from "../../../../dto/show/ShowRequest.js";
 import { loadAndRender } from '../../../../util/Render.js';
+import { showToast } from '../../../../components/Toast.js';
+import DateTimeCreator from '../../../../components/DateTimeCreator.js';
 
-// Create a show controller
+const movieController = new MovieController();
+const showDateTimeController = new ShowDateTimeController();
+const theaterController = new TheaterController();
 const showController = new ShowController();
+
+let showDateTimesIds = [];
 
 /**
  * Show admin edit.
  *  
  * @returns {undefined}
  */
-export default function ShowAdminEdit() {
+export default function ShowAdminEdit(id) {
     // Load and render the show admin show template
     loadAndRender('src/view/show/admin/edit/template.html', (html) => {
-        
-        // find the show search input
-        const id = html.querySelector('[name="search-id"]');
 
-
-        // find show id input element by id within the template
-        const movieTitleElement = html.querySelector('[name="movieTitle"]');
-        // ReservationsIds should not be added until later.
-        //const reservationsIdElement = html.querySelector('[name="reservationsId"]');
-        // How to handle showDateTimeIds.
-        const showDatesIdElement = html.querySelector('[name="showDatesId"]');
-        const priceElement = html.querySelector('[name="price"]');
-        const theaterIdElement = html.querySelector('[name="theaterId"]');
-        
-
-        html.querySelector('#show-search').addEventListener('submit', (event) => {
-            event.preventDefault();
-        // Find show
         showController.find(id, (showResponse) => {
-            // Set the value of the attributes elements to the value of the show response
-            movieTitleElement.value = showResponse.movieTitle;
-            showDatesIdElement.value = showResponse.showDatesids.join('\n');;
-            priceElement.value = showResponse.price;
-            theaterIdElement.value = showResponse.theaterid;
+            html.querySelector('[name="movieTitle"]').value = showResponse.title;
+            html.querySelector('[name="price"]').value = showResponse.price;
+            html.querySelector('[name="theaterId"]').value = showResponse.theaterId;
+
+            showDateTimesIds = showResponse.showDateTimesIds;
+            
+            const options = [];
+            for (let i = 0; i < showResponse.showDateTimes.length; i++) {
+                const option = {};
+                option.id = showResponse.showDateTimesIds[i];
+                option.dateTime = showResponse.showDateTimes[i];
+                options.push(option);
+            }
+
+            html.querySelector('#date-time-creator').appendChild(DateTimeCreator(options, false, true));
+
+            movieController.findAll((movieResponses) => {
+                movieResponses.forEach(movie => {
+                    const option = document.createElement('option');
+                    option.value = movie.title;
+                    option.innerText = movie.title;
+                    if (movie.title === showResponse.movieTitle) {
+                        option.selected = true;
+                    }
+                    html.querySelector('[name="movieTitle"]').appendChild(option);     
+                });
+            }, (error) => {
+                console.log(error);
+            });
+    
+            theaterController.findAll((theaterResponses) => {
+                theaterResponses.forEach(theater => {
+                    const option = document.createElement('option');
+                    option.value = theater.id;
+                    option.innerText = theater.name;
+                    if (theater.id === showResponse.theaterId) {
+                        option.selected = true;
+                    }
+                    html.querySelector('[name="theaterId"]').appendChild(option);
+                });
+            }, (error) => {
+                console.log(error);
+            });
         }, (error) => {
             console.log(error);
         });
-    })
 
-        // Add event listener to show form
-        html.querySelector('#show-form').addEventListener('submit', (event) => {
+        // Find form element by id within the template
+        const form = html.querySelector('#show-form');
+
+        form.addEventListener('submit', (event) => {
             event.preventDefault();
 
-            // Parse the show dates ids textarea value back into an array of numbers
-        const showDatesIds = showDatesIdElement.value.split('\n').map(id => parseInt(id.trim())).filter(id => !isNaN(id));
+            const formData = new FormData(form);
 
+            // Get show date times which are not disabled
+            const showDateTimes = [];
+            const showDateTimesElements = html.querySelectorAll('.dateTimeInput');
+            for (let i = 0; i < showDateTimesElements.length; i++) {
+                const showDateTimeElement = showDateTimesElements[i];
+                if (!showDateTimeElement.disabled) {
+                    showDateTimes.push(showDateTimeElement.value);
+                }
+            }
 
-            // Create a show request
             const showRequest = new ShowRequest(
-                movieTitleElement.value, showDatesIds, priceElement.value, theaterIdElement.value
-            );        
+                id,
+                formData.get('movieTitle'),
+                showDateTimesIds,
+                showDateTimes,
+                formData.get('price'),
+                formData.get('theaterId')
+            );
 
             // Update show
             showController.update(showRequest, (showResponse) => {
-                console.log(showResponse);
+                window.router.navigate('/admin/shows');
+                showToast('success', 'Show updated successfully.', 5000);
             }, (error) => {
-                console.log(error);
+                showToast('secondary', "Something went wrong. Contact support for help.", 5000);
             });
         });
     });

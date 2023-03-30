@@ -1,6 +1,6 @@
 import BaseController from './BaseController.js';
-import ShowRequest from '../dto/ShowRequest.js';
-import ShowResponse from '../dto/ShowResponse.js';
+import ShowRequest from '../dto/show/ShowRequest.js';
+import ShowResponse from '../dto/show/ShowResponse.js';
 
 /**
  * Show controller class.
@@ -57,7 +57,7 @@ export default class ShowController extends BaseController {
      * @returns {undefined}
      */
     update(showRequest, callback, error) {
-        super.patch(`/admin/shows`, showRequest, (json) => {callback(ShowResponse.createFrom(json))}, error);
+        super.put(`/admin/shows`, showRequest, (json) => {callback(ShowResponse.createFrom(json))}, error);
     }
 
     /**

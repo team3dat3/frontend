@@ -10,10 +10,10 @@ import BaseModel from "../BaseModel.js";
  * @returns {ShowDateTimeResponse}
  */
 export default class ShowDateTimeResponse {
-    constructor(id, showdate, showid) {
+    constructor(id, showDate, showId) {
         this.id = id;
-        this.showDate = showdate;
-        this.showid = showid;
+        this.showDate = showDate;
+        this.showId = showId;
     }
 
     /**
@@ -21,10 +21,10 @@ export default class ShowDateTimeResponse {
      * 
      * @param {Object} json
      * 
-     * @returns {ShowResponse}
+     * @returns {ShowDateTimeResponse}
      */
     static createFrom(json) {
-        return new ShowDateTimeResponse(json.id, json.showdate, json.showid);
+        return new ShowDateTimeResponse(json.id, json.showDate, json.showId);
     }
 
     /**

@@ -1,6 +1,6 @@
 import BaseController from './BaseController.js';
-import ShowDatetimeRequest from '../dto/ShowDateTimeRequest.js';
-import ShowDateTimeResponse from '../dto/ShowDateTimeResponse.js';
+import ShowDatetimeRequest from '../dto/showDateTime/ShowDateTimeRequest.js';
+import ShowDateTimeResponse from '../dto/showDateTime/ShowDateTimeResponse.js';
 
 /**
  * Show controller class.
@@ -34,6 +34,11 @@ export default class ShowDateTimeController extends BaseController {
         super.get(`/anonymous/showdates/${id}`, (json) => {callback(ShowDateTimeResponse.createFrom(json))}, error);
     }
 
+    findShowDatesShow(showId, callback, error) {
+        super.get(`/anonymous/showdates/${showId}/show`, (json) => {callback(ShowDateTimeResponse.createCollectionFrom(json))}, error);
+    }
+   
+
     /**
      * Create a showdate
      * 
@@ -57,7 +62,7 @@ export default class ShowDateTimeController extends BaseController {
      * @returns {undefined}
      */
     update(showDateTimeRequest, callback, error) {
-        super.patch(`/admin/showdates`, showDateTimeRequest, (json) => {callback(ShowDateTimeResponse.createFrom(json))}, error);
+        super.put(`/admin/showdates`, showDateTimeRequest, (json) => {callback(ShowDateTimeResponse.createFrom(json))}, error);
     }
 
     /**

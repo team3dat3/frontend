@@ -1,0 +1,69 @@
+.form {
+    margin: 2rem auto;
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form h1,
+.form h2 {
+    text-align: center;
+}
+
+.form .input-group {
+    margin-bottom: 20px;
+}
+
+.form .input-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form .input-group textarea,
+.form .input-group select,
+.form .input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.form .input-group input:focus {
+    outline: none;
+    border-color: #aaa;
+}
+
+.form .input-group input.error {
+    border-color: #f00;
+}
+
+.form .input-group .flex {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.form .input-group .flex button {
+    display: inline-block;
+    margin: 0;
+    width: 200px;
+}
+
+.form a,
+.form button {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: .9rem;
+}
+
+.form button {
+    margin-bottom: .5rem;
+}
+

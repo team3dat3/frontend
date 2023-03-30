@@ -1,5 +1,6 @@
 import TheaterController from "../../../../controller/TheaterController.js";
 import { loadAndRender } from '../../../../util/Render.js';
+import Card from '../../../../components/Card.js';
 
 // Create a theater controller
 const theaterController = new TheaterController();
@@ -19,12 +20,24 @@ export default function TheaterAdminIndex() {
         theaterController.findAll((theaterResponses) => {
             // Loop through all theater responses
             theaterResponses.forEach(theater => {
-                // Create a new div element
-                const element = document.createElement('div');
-                // Set the inner HTML of the div element to the JSON string of the theater
-                element.innerHTML = JSON.stringify(theater);
-                // Append the div element to the theater HTML element wrapper
-                theaterWrapper.appendChild(element);
+
+                // Create a new card
+                const card = new Card({
+                    type: "primary",
+                    href: `#/admin/theaters/${theater.id}/edit`,
+                    header: `${theater.name}`,
+                    image: `https://picsum.photos/200/1${theater.id % 10}`,
+                    body: null,
+                    footer: `Number of seat rows: ${theater.seatRowIds.length}`,
+                        animation: {
+                        onmouseenter: {
+                            type: "jello",
+                            duration: 1000
+                        },
+                    }
+                });
+
+                theaterWrapper.appendChild(card);
             });
         }, (error) => {
             console.log(error);

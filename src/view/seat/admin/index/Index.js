@@ -1,7 +1,7 @@
 import SeatController from "../../../../controller/SeatController.js";
 import { loadAndRender } from '../../../../util/Render.js';
+import Card from '../../../../components/Card.js';
 
-// Create a seat controller
 const seatController = new SeatController();
 
 /**
@@ -17,14 +17,26 @@ export default function SeatAdminIndex() {
 
         // Find all seats
         seatController.findAll((seatResponses) => {
-            // Loop through all seat responses
+            let i = 0;
             seatResponses.forEach(seat => {
-                // Create a new div element
-                const element = document.createElement('div');
-                // Set the inner HTML of the div element to the JSON string of the seat
-                element.innerHTML = JSON.stringify(seat);
-                // Append the div element to the seat HTML element wrapper
-                seatWrapper.appendChild(element);
+
+                // Create a new card
+                const card = new Card({
+                    type: "primary",
+                    image: `https://picsum.photos/200/2${i}`,
+                    href: `#/admin/seats/${seat.id}/edit`,
+                    header: `ID: ${seat.id}`,
+                    body: null,
+                    footer: seat.seatRowId ? `<small class="badge success">Belongs to seat row: ${seat.seatRowId}</small>` : '<small class="badge secondary">No seat row</small>',
+                        animation: {
+                        onmouseenter: {
+                            type: "jello",
+                            duration: 1000
+                        },
+                    }
+                });
+                i = (i + 1) % 10;
+                seatWrapper.appendChild(card);
             });
         }, (error) => {
             console.log(error);

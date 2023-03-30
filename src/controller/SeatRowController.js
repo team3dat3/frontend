@@ -57,7 +57,7 @@ export default class SeatRowController extends BaseController {
      * @returns {undefined} 
      */
     update(seatrowRequest, callback, error) {
-        super.patch(`/admin/seatrows`, seatrowRequest, (json) => {callback(SeatRowResponse.createFrom(json))}, error);
+        super.put(`/admin/seatrows`, seatrowRequest, (json) => {callback(SeatRowResponse.createFrom(json))}, error);
     }
 
     /**

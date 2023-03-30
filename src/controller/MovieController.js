@@ -18,7 +18,7 @@ export default class MovieController extends BaseController {
      * @returns {undefined}
      */
     findAll(callback, error) {
-        super.get("/anonymous/movies", (json) => {callback(MovieResponse.createCollectionFrom(json))}, error);
+        super.get("/anonymous/movies", (json) => { callback(MovieResponse.createCollectionFrom(json)) }, error);
     }
 
     /**
@@ -31,10 +31,10 @@ export default class MovieController extends BaseController {
      * @returns {undefined}
      */
     find(title, callback, error) {
-        super.get(`/anonymous/movies/${title}`, (json) => {callback(MovieResponse.createFrom(json))}, error);
+        super.get(`/anonymous/movies/${title}`, (json) => { callback(MovieResponse.createFrom(json)) }, error);
     }
 
-        /**
+    /**
      * Find a movies by genre
      *
      * @param {string} genre
@@ -43,9 +43,9 @@ export default class MovieController extends BaseController {
      * 
      * @returns {undefined}
      */
-        findByGenre(genre, callback, error) {
-            super.get(`/anonymous/movies/genre/${genre}`, (json) => {callback(MovieResponse.createFrom(json))}, error);
-        }
+    findByGenre(genre, callback, error) {
+        super.get(`/anonymous/movies/genre/${genre}`, (json) => { callback(MovieResponse.createFrom(json)) }, error);
+    }
 
     /**
      * Create a movie
@@ -57,7 +57,7 @@ export default class MovieController extends BaseController {
      * @returns {undefined}
      */
     create(movieRequest, callback, error) {
-        super.post("/admin/movies", movieRequest, (json) => {callback(MovieResponse.createFrom(json))}, error);
+        super.post("/admin/movies", movieRequest, (json) => { callback(MovieResponse.createFrom(json)) }, error);
     }
 
     /**
@@ -70,7 +70,7 @@ export default class MovieController extends BaseController {
      * @returns {undefined} 
      */
     update(movieRequest, callback, error) {
-        super.patch(`/admin/movies`, movieRequest, (json) => {callback(MovieResponse.createFrom(json))}, error);
+        super.put(`/admin/movies`, movieRequest, (json) => { callback(MovieResponse.createFrom(json)) }, error);
     }
 
     /**

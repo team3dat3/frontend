@@ -1,13 +1,18 @@
 <div class="template">
-    <h1>Admin create theater</h1>
-    <form id="seatrow-form">
-        <label>Seatrow IDs from:
-            <input type="number" name="seatRowIdsFrom" value="">
-        </label>
-        <label>to:
-            <input type="number" name="seatRowIdsTo" value="">
-        </label>
-        <button class="button success" type="submit">Create new theater</button>
-    </form>
-    <div id="wrapper"></div>
+    <div class="form">
+        <h1>Create theater</h1>
+        <h2>Enter the following information</h2>
+        <form id="theater-form">
+            <div class="input-group">
+                <label for="name">Name</label>
+                <input type="text" name="name">
+            </div>
+            <div class="input-group">
+                <label for="seatRowIds">Seat row IDs</label>
+                <select name="seatRowIds" multiple></select>
+            </div>
+            <button class="button success" type="submit">Create</button>
+        </form>
+        <a href="/#/admin/theaters" class="button secondary" data-navigo>Cancel</a>
+    </div>
 </div>

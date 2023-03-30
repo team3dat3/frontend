@@ -1,8 +1,10 @@
+import SeatRowController from "../../../../controller/SeatRowController.js";
 import TheaterController from "../../../../controller/TheaterController.js";
 import TheaterRequest from "../../../../dto/theater/TheaterRequest.js";
 import { loadAndRender } from '../../../../util/Render.js';
+import { showToast } from '../../../../components/Toast.js';
 
-// Create a theater controller
+const seatRowController = new SeatRowController();
 const theaterController = new TheaterController();
 
 /**
@@ -13,42 +15,64 @@ const theaterController = new TheaterController();
 export default function TheaterAdminCreate() {
     // Load and render the theater admin create template
     loadAndRender('src/view/theater/admin/create/template.html', (html) => {
-        
-        // find seatrow ids input elements by name within the template
-        const seatRowIdsFromElement = html.querySelector('[name="seatRowIdsFrom"]');
-        const seatRowIdsToElement = html.querySelector('[name="seatRowIdsTo"]');
 
-        // Get theater HTML element wrapper
-        const theaterWrapper = html.querySelector('#wrapper');
-
-        html.querySelector('#theater-form').addEventListener('submit', (event) => {
-            event.preventDefault();
-
-            // Create a theater request
-            const seatRowIdsFrom = parseInt(seatRowIdsFromElement.value);
-            const seatRowIdsTo = parseInt(seatRowIdsToElement.value);
-            const seatRowIds = [];
-            for (let i = seatRowIdsFrom; i <= seatRowIdsTo; i++) {
-                seatRowIds.push(i);
-            }
-            const theaterRequest = new TheaterRequest(
-                id, seatRowIds, showids
-            );
-
-            
-        // Create theater
-        theaterController.create(theaterRequest, (theaterResponses) => {
-            // Loop through all theater responses
-            theaterResponses.forEach(theater => {
-                // Create a new div element
-                const element = document.createElement('div');
-                // Set the inner HTML of the div element to the JSON string of the theater
-                element.innerHTML = JSON.stringify(theater);
-                // Append the div element to the theater HTML element wrapper
-                theaterWrapper.appendChild(element);
+        seatRowController.findAll((seatRowResponses) => {
+            seatRowResponses.forEach(seatRow => {
+                if (seatRow.theaterId == 0) {
+                    const option = document.createElement('option');
+                    option.value = seatRow.id;
+                    option.innerText = seatRow.id;
+                    html.querySelector('[name="seatRowIds"]').appendChild(option);
+                }
             });
+
+            // Check if the seatRowIds select has any options
+            const seatRowIdsElement = html.querySelector('[name="seatRowIds"]');
+            if (seatRowIdsElement.options.length == 0) {
+                showToast('secondary', "No seat rows available. Create a seat row first.", 5000);
+            }
         }, (error) => {
             console.log(error);
         });
+
+        // Find form element by id within the template
+        const form = html.querySelector('#theater-form');
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            // Get form data
+            const formData = new FormData(form);
+
+            // Get all seatRowIds options
+            const seatRowIds = [];
+            const seatRowIdsElement = html.querySelector('[name="seatRowIds"]');
+            const seatRowIdsOptions = seatRowIdsElement.options;
+            for (let i = 0; i < seatRowIdsOptions.length; i++) {
+                if (seatRowIdsOptions[i].selected) {
+                    seatRowIds.push(seatRowIdsOptions[i].value);
+                }
+            }
+
+            if (formData.get('name') == '') {
+                showToast('secondary', "Theater name is required.", 5000);
+                return;
+            }
+
+            // Create a new theater request
+            const theaterRequest = new TheaterRequest(
+                0,
+                formData.get('name'),
+                seatRowIds
+            );
+
+            // Create theater
+            theaterController.create(theaterRequest, (theaterResponse) => {
+                window.router.navigate('/admin/theaters');
+                showToast('success', `Theater saved with id: ${theaterResponse.id}.`, 5000);
+            }, (error) => {
+                showToast('secondary', "Something went wrong. Contact support for help.", 5000);
+            });
+        });
     });
-}); }
+}

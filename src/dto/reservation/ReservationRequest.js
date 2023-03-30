@@ -5,13 +5,22 @@ import BaseModel from "../BaseModel.js";
  * 
  * @param {number} id
  * @param {boolean} checkedIn
+ * @param {string} username
+ * @param {number} showId
+ * @param {long[]} seatIds
+ * @param {long} showDateId
+
  * 
  * @returns {ReservationRequest}
  */
 export default class ReservationRequest {
-    constructor(id, checkedIn) {
+    constructor(id, checkedIn, username, showId, seatIds, showDateId) {
         this.id = id;
         this.checkedIn = checkedIn;
+        this.username = username;
+        this.showId = showId;
+        this.seatIds = seatIds;
+        this.showDateId = showDateId;
     }
 
     /**
@@ -22,7 +31,7 @@ export default class ReservationRequest {
      * @returns {ReservationRequest}
      */
     static createFrom(json) {
-        return new ReservationRequest(json.id, json.checkedIn);
+        return new ReservationRequest(json.id, json.checkedIn, json.username, json.showId, json.seatIds, json.showDateId);
     }
 
     /**

@@ -1,0 +1,33 @@
+<div class="template">
+    <div class="form">
+        <h1>Edit user</h1>
+        <h2>Enter the following information</h2>
+        <form id="user-form">
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" name="username" disabled>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" name="password">
+            </div>
+            <div class="input-group">
+                <label for="email">E-mail</label>
+                <input type="email" name="email">
+            </div>
+            <div class="input-group">
+                <label for="phoneNumber">Phone number</label>
+                <input type="number" name="phoneNumber">
+            </div>
+            <div class="input-group">
+                <label for="role">Role</label>
+                <select name="role" disabled>
+                    <option value="ADMIN">Admin</option>
+                    <option value="MEMBER">Member</option>
+                </select>
+            </div>
+            <button class="button success" type="submit">Update</button>
+        </form>
+        <a href="/#/profile" id="cancel-link" class="button secondary" data-navigo>Cancel</a>
+    </div>
+</div>

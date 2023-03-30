@@ -1,5 +1,5 @@
 import BaseController from './BaseController.js';
-import OmdbResponse from '../dto/movie/OmdbResponse.js';
+import OmdbResponse from '../dto/omdb/OmdbResponse.js';
 
 /**
  * Omdb controller class.
@@ -9,15 +9,29 @@ import OmdbResponse from '../dto/movie/OmdbResponse.js';
 export default class OmdbController extends BaseController {
 
     /**
-     * Find movie
+     * Find movielist
      * @param {string} title
-     * @param {number} year
      * @param {function} callback
      * @param {function} error
      * 
      * @returns {undefined}
      */
-    findMovie(title, year, callback, error) {
-        super.get(`/v1/omdb/${title}/${year}`, (json) => {callback(OmdbResponse.createCollectionFrom(json))}, error);
+    searchMovie(title, callback, error) {
+        super.get(`/admin/omdb/search/${title}`, (json) => {callback(OmdbResponse.createCollectionFrom(json))}, error);
+
+        
+    }
+
+
+        /**
+     * Find movie
+     * @param {string} imdbId
+     * @param {function} callback
+     * @param {function} error
+     * 
+     * @returns {undefined}
+     */
+    getMovie(imdbId, callback, error) {
+        super.get(`/admin/omdb/get/${imdbId}`, (json) => {callback(OmdbResponse.createFrom(json))}, error);
     }
 }

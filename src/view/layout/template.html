@@ -1,0 +1,66 @@
+<div class="template">
+    <!--
+        The page's header
+    -->
+    <header id="main-header">
+        <a href="/#/" data-navigo>
+            <h1>KinoXP</h1>
+        </a>
+        <nav>
+            <ul id="main-navigation-ul">
+                <li><a href="/" data-navigo>Home</a></li>
+
+                <!-- Anonymous -->
+                <li><a href="/#/register" data-navigo>Register</a></li>
+                <li><a href="/#/login" data-navigo>Login</a></li>
+                <li><a href="/#/shows" data-navigo>Shows</a></li>
+                <li class="dropdown">
+                    <a>Admin</a>
+                    <div class="dropdown-content">
+                        <h5>ADMIN MENU</h5>
+                        <nav>
+                            <ul id="admin">
+                                <!-- ADMIN -->
+                                <li><a href="/#/admin/theaters" data-navigo>Theaters</a></li>
+                                <li><a href="/#/admin/movies" data-navigo>Movies</a></li>
+                                <li><a href="/#/admin/users" data-navigo>Users</a></li>
+                                <li><a href="/#/admin/reservations" data-navigo>Reservations</a></li>
+                                <li><a href="/#/admin/seatrows" data-navigo>Seat Rows</a></li>
+                                <li><a href="/#/admin/seats" data-navigo>Seats</a></li>
+                                <li><a href="/#/admin/showdatetimes" data-navigo>Show Dates</a></li>
+                                <li><a href="/#/admin/coupons" data-navigo>Coupons</a></li>
+                                <li><a href="/#/admin/achievements" data-navigo>Achievements</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a>User</a>
+                    <div class="dropdown-content">
+                        <h5>MEMBER MENU</h5>
+                        <nav>
+                            <ul id="member">
+                                <li><a href="/#/profile" data-navigo>View Profile</a></li>
+                                <li><a href="/#/profile/edit" data-navigo>Edit Profile</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    
+    <!--
+        The page's main content.
+        This is where the content of the page is rendered by Render.js
+    -->
+    <div id="main-content"></div>
+    
+    <!--
+        The page's footer
+    -->
+    <footer id="main-footer">
+        <p>&copy; 2023 KinoXP Cinema. All rights reserved.</p>
+    </footer>
+    
+</div>

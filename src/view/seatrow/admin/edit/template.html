@@ -1,0 +1,25 @@
+<div class="template">
+    <div class="form">
+        <h1>Edit seat row</h1>
+        <h2>Enter the following information</h2>
+        
+        <form id="seatrow-form">
+            <div class="input-group">
+                <label for="seatIds">Seat IDs</label>
+                <select name="seatIds" multiple>
+                    <option value="">None</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="theaterId">Theater</label>
+                <select name="theaterId">
+                    <option value="0">None</option>
+                </select>
+            </div>
+
+            <button class="button success" type="submit">Update</button>
+        </form>
+        <a href="/#/admin/seatrows" class="button secondary" data-navigo>Cancel</a>
+    </div>
+</div>

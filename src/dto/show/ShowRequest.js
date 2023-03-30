@@ -4,24 +4,21 @@ import BaseModel from "../BaseModel.js";
  * Show request
  * 
  * @param {number} id
- * @param {string} movietitle
- * @param {number[]} reservationsids
- * @param {number[]} showdatesids
+ * @param {string} movieTitle
+ * @param {number[]} showDateTimesIds
  * @param {number} price
- * @param {number} theaterid
- *  
- *
+ * @param {number} theaterId
  * 
  * @returns {ShowRequest}
  */
 export default class ShowRequest {
-    constructor(id, movietitle, /* reservationsids, */ showdatesids, price, theaterid) {
+    constructor(id, movieTitle, showDateTimesIds, showDateTimes, price, theaterId) {
         this.id = id;
-        this.movietitle = movietitle;
-        //this.reservationsids = reservationsids;
-        this.showdatesids = showdatesids;
+        this.movieTitle = movieTitle;
+        this.showDateTimesIds = showDateTimesIds;
+        this.showDateTimes = showDateTimes;
         this.price = price;
-        this.theaterid = theaterid;
+        this.theaterId = theaterId;
     }
 
     /**
@@ -32,7 +29,7 @@ export default class ShowRequest {
      * @returns {ShowRequest}
      */
     static createFrom(json) {
-        return new ShowRequest(json.id, json.movietitle, /* json.reservations, */ json.showdatesids, json.price, json.theaterid);
+        return new ShowRequest(json.id, json.movieTitle, json.showDateTimesIds, json.showDateTimes, json.price, json.theaterId);
     }
 
     /**

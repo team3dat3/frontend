@@ -1,54 +1,62 @@
+import ShowController from "../../../../controller/ShowController.js";
 import ShowDateTimeController from "../../../../controller/ShowDateTimeController.js";
 import ShowDateTimeRequest from "../../../../dto/showdatetime/ShowDateTimeRequest.js";
 import { loadAndRender } from '../../../../util/Render.js';
+import { showToast } from '../../../../components/Toast.js';
 
-// Create a showdatetime controller
+const showController = new ShowController();
 const showDateTimeController = new ShowDateTimeController();
+
+/**
+ * The id of the date time's show.
+ * 
+ * @type {number}
+ * @private
+ */
+let showId = null;
 
 /**
  * Showdatetime admin edit.
  *  
  * @returns {undefined}
  */
-export default function ShowDateTimeAdminEdit() {
+export default function ShowDateTimeAdminEdit(id) {
     // Load and render the showdatetime admin edit template
-    loadAndRender('src/view/show/admin/edit/template.html', (html) => {
-        
-        // find the showdatetime search input
-        const id = html.querySelector('[name="search-id"]');
+    loadAndRender('src/view/showdatetime/admin/edit/template.html', (html) => {
 
+        showDateTimeController.find(id, (showDateTimeResponse) => {
+            html.querySelector('[name="showDate"]').value = showDateTimeResponse.showDate;
+            showId = showDateTimeResponse.showId;
 
-        // find showdatetime input elements within the template
-        const showDate = html.querySelector('[name="showDate"]');
-        const showId = html.querySelector('[name="showId"]');
-        
-        //eventlistener for submit button find
-        html.querySelector('#showdate-search').addEventListener('submit', (event) => {
-            event.preventDefault();
-        // Find showdate
-        showDateTimeController.find(showDateTimeId, (showDateTimeResponse) => {
-   // Set the value of the attributes elements to the value of the showdatetime response
-   showDate.value = showDateTimeResponse.showDate;
-   showId.value = showDateTimeResponse.showid;
-             }, (error) => {
-                 console.log(error);
-             });
-            })
-        // Add event listener to showdatetime form
-        html.querySelector('#show-form').addEventListener('submit', (event) => {
+            showController.find(showDateTimeResponse.showId, (showResponse) => {
+                html.querySelector('[name="showMovieTitle"]').value = showResponse.movieTitle;
+            }, (error) => {
+                console.log(error);
+            });
+        }, (error) => {
+            console.log(error);
+        });
+
+        const form = html.querySelector('#showdatetime-form');
+
+        form.addEventListener('submit', (event) => {
             event.preventDefault();
 
+            // Get form data
+            const formData = new FormData(form);
 
             // Create a showdatetime request
             const showDateTimeRequest = new ShowDateTimeRequest(
-                showDate.value, showId.value
-            );        
+                id,
+                formData.get('showDate'),
+                showId
+            );
 
-            // Update showdatetime
             showDateTimeController.update(showDateTimeRequest, (showDateTimeResponse) => {
-                console.log(showDateTimeResponse);
+                window.router.navigate('/admin/showdatetimes');
+                showToast('success', 'ShowDateTime updated successfully.', 5000);
             }, (error) => {
-                console.log(error);
+                showToast('secondary', "Something went wrong. Contact support for help.", 5000);
             });
         });
     });

@@ -37,7 +37,7 @@ function createToast (options) {
  * 
  * @returns {HTMLElement}
  */
-export default function displayToast (options) {
+export function displayToast (options) {
     // Search body for toast wrapper
     const body = document.querySelector('body');
     let toastWrapper = body.querySelector('.toast-wrapper');
@@ -66,4 +66,36 @@ export default function displayToast (options) {
 
     // Append toast to toast wrapper
     toastWrapper.appendChild(toast);
+}
+
+/**
+ * Quick display method for Toast component.
+ * 
+ * @param {String} type
+ * @param {String} text
+ * @param {Number} showDuration
+ * @param {Number} animationDuration
+ * @param {String} showAnimation
+ * @param {String} hideAnimation
+ * 
+ * @returns {HTMLElement}
+ */
+export function showToast(type, text, showDuration) {
+    displayToast({
+        type: type,
+        text: text,
+        duration: showDuration,
+        show: {
+            animation: {
+                type: 'backInUp',
+                duration: 500
+            }
+        },
+        hide: {
+            animation: {
+                type: 'backOutDown',
+                duration: 200
+            }
+        },
+    });
 }

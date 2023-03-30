@@ -1,22 +1,26 @@
-import BaseModel from "../BaseModel"
+import BaseModel from "../BaseModel.js"
 
 /**
  * User request
+ * @param {string} username
+ * @param {string} password
  * @param {string} email
  * @param {string} phoneNumber
- * @param {number[]} achievements
- * @param {number[]} reservations
- * @param {number[]} coupons
+ * @param {string[]} roles
  */
 
 
 export default class UserRequest {
-    constructor(email, phoneNumber, achievements, reservations, coupons){
+    constructor(username, password, email, phoneNumber, roles, accountNonExpired, accountNonLocked, credentialsNonExpired, enabled) {
+        this.username = username;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
         this.email = email;
-        this.phoneNumber = phoneNumber
-        this.achievements = achievements
-        this.reservations = reservations
-        this.coupons = coupons
+        this.roles = roles;
+        this.accountNonExpired = accountNonExpired;
+        this.accountNonLocked = accountNonLocked;
+        this.credentialsNonExpired = credentialsNonExpired;
+        this.enabled = enabled;
     }
 
     /**
@@ -27,7 +31,16 @@ export default class UserRequest {
      */
 
     static createFrom(json){
-        return new UserRequest(json.email, json.phoneNumber, json.achievements, json.reservations, json.coupons);
+        return new UserRequest(
+            json.username, 
+            json.password, 
+            json.email, 
+            json.phoneNumber, 
+            json.roles,
+            json.accountNonExpired, 
+            json.accountNonLocked, 
+            json.credentialsNonExpired, 
+            json.enabled);
     }
 
     /**

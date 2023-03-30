@@ -4,16 +4,16 @@ import BaseModel from "../BaseModel.js";
  * Theater response class.
  * 
  * @param {number} id
- * @param {number[]} seatrowids
- * @param {number[]} showids
+ * @param {string} name
+ * @param {number[]} seatRowIds
  * 
  * @returns {TheaterResponse}
  */
 export default class TheaterResponse {
-    constructor(id, seatrowids, showids) {
+    constructor(id, name, seatRowIds) {
         this.id = id;
-        this.seatrowids = seatrowids;
-        this.showids = showids;
+        this.name = name;
+        this.seatRowIds = seatRowIds || [];
     }
 
     /**
@@ -24,7 +24,7 @@ export default class TheaterResponse {
      * @returns {TheaterRequest}
      */
     static createFrom(json) {
-        return new TheaterResponse(json.id, json.seatrowids, json.showids);
+        return new TheaterResponse(json.id, json.name, json.seatRowIds);
     }
 
     /**

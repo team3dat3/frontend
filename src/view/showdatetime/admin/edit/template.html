@@ -1,16 +1,19 @@
 <div class="template">
-    <h1>Edit showdate</h1>
-    <form id="showdate-search"></form>
-    <input type="text" name="search-id" value="">
-    <button class="button success" type="submit">Search show date</button>
-</form>
+    <div class="form">
+        <h1>Edit show datetime</h1>
+        <h2>Enter the following information</h2>
 
-<form id="showdatetime-form">
-    <label for="showdate">Select date and time</label>
-    <input type="datetime-local" name="showdate" value="">
-    <label for="showId">Show ID</label>
-    <input type="number" name="showId" value="">
-    <button class="button success" type="submit">Save</button>
-</form>
-
+        <form id="showdatetime-form">
+            <div class="input-group">
+                <label for="showDate">Select date and time</label>
+                <input type="datetime-local" name="showDate">
+            </div>
+            <div class="input-group">
+                <label for="showMovieTitle">Show</label>
+                <input type="text" name="showMovieTitle" disabled>
+            </div>
+            <button class="button success" type="submit">Update</button>
+        </form>
+        <a href="/#/admin/showdatetimes" class="button secondary" data-navigo>Cancel</a>
+    </div>
 </div>

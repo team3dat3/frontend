@@ -1,6 +1,7 @@
 import ShowController from "../../../../controller/ShowController.js";
 import { loadAndRender } from '../../../../util/Render.js';
-
+import { hasAnyRole } from "../../../../util/Authenticated.js";
+import Link from "../../../../components/Link.js"
 // Create a show controller
 const showController = new ShowController();
 
@@ -9,32 +10,40 @@ const showController = new ShowController();
  *  
  * @returns {undefined}
  */
-export default function ShowAnonymousShow() {
+export default function ShowAnonymousShow(id) {
     // Load and render the show show template
     loadAndRender('src/view/show/anonymous/show/template.html', (html) => {
-                
-          // find the show search input
-          const showid = html.querySelector('[name="search-id"]');
-        
-           // Get show HTML element wrapper
-           const showWrapper = html.querySelector('#wrapper');
 
-           html.querySelector('#show-search').addEventListener('submit', (event) => {
-            event.preventDefault();
-        // Find show
-                showController.find(showid, (showResponse) => {
-               // Create a new div element
-               const element = document.createElement('div');
-               // Set the inner HTML of the div element to the JSON string of the movie
-               element.innerHTML = JSON.stringify(showResponse);
-               // Append the div element to the movie HTML element wrapper
-               showWrapper.appendChild(element);
-                }, (error) => {
-                    console.log(error);
-                });
-        
-     
+        // Get show HTML element wrapper
+        const showWrapper = html.querySelector('#wrapper');
 
-    });
-})
+        showController.find(id, (showResponse) => {
+
+            html.querySelector('#movie-title').innerHTML = showResponse.movieTitle;
+
+            if (showResponse.poster) {
+                html.querySelector('#movie-image').src = showResponse.poster;
+            }
+            
+        }, (error) => {
+            console.log(error);
+        });
+
+        if (hasAnyRole(['MEMBER', 'ADMIN'])) {
+        
+            const a = Link({
+                type: 'primary',
+                text: 'Reserve show',
+                href: `#/member/reservations/${id}/create`,
+                animation: {
+                    onclick: {
+                        type: 'rubberBand',
+                        duration: 800
+                    }
+                }
+            })
+  
+            html.querySelector("#reserve-show").appendChild(a)
+        }
+    })
 }

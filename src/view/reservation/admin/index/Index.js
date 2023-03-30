@@ -1,5 +1,6 @@
 import ReservationController from "../../../../controller/ReservationController.js";
 import { loadAndRender } from '../../../../util/Render.js';
+import Card from '../../../../components/Card.js';
 
 // Create a reservation controller
 const reservationController = new ReservationController();
@@ -19,12 +20,24 @@ export default function ReservationAdminIndex() {
         reservationController.findAll((reservationResponses) => {
             // Loop through all reservation responses
             reservationResponses.forEach(reservation => {
-                // Create a new div element
-                const element = document.createElement('div');
-                // Set the inner HTML of the div element to the JSON string of the reservation
-                element.innerHTML = JSON.stringify(reservation);
-                // Append the div element to the reservation HTML element wrapper
-                reservationWrapper.appendChild(element);
+
+                // Create a new card
+                const card = new Card({
+                    type: "primary",
+                    href: `#/admin/reservations/${reservation.id}/edit`,
+                    header: `ID: ${reservation.id}`,
+                    image: `https://picsum.photos/200/2${reservation.id % 10}`,
+                    body: `<p><strong>Reserved by:</strong> ${reservation.username}</p><p><strong>Show ID:</strong> ${reservation.showId}</p><p><strong>Show Movie Title:</strong> ${reservation.showMovieTitle}</p><p><strong>Show datetime:</strong> ${reservation.showDateTime}</p><p><strong>Seats:</strong> ${reservation.seatIds}</p>`,
+                    footer: reservation.checkedIn ? '<small class="badge success">Checked in</small>' : '<small class="badge secondary">Not checked in</small>',
+                        animation: {
+                        onmouseenter: {
+                            type: "jello",
+                            duration: 1000
+                        },
+                    }
+                });
+
+                reservationWrapper.appendChild(card);
             });
         }, (error) => {
             console.log(error);
