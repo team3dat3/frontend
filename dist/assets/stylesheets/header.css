@@ -77,3 +77,10 @@
     background-color: var(--secondary-color);
     color: #fff;
 }
+
+@media only screen and (max-width: 625px) {
+    #main-header {
+        display: block;
+        height: 160px;
+    }
+}

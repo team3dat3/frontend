@@ -47,8 +47,6 @@ export default function ReservationMemberCreate(showId) {
 
 
         showDateTimeController.findShowDatesShow(showId, (showDateTimesResponses) =>{
-            
-            console.log(showDateTimesResponses)
             showDateTimesResponses.forEach(showDateTime => {
                 const option = document.createElement("option")
                 option.value = showDateTime.id;
