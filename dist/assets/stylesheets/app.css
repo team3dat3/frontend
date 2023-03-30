@@ -112,3 +112,8 @@ body {
     line-height: 1.5;
     letter-spacing: .5px;
 }
+
+#movie-image {
+    width: 100%;
+    border: 1px solid var(--border-color);
+}

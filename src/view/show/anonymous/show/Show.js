@@ -1,8 +1,10 @@
 import ShowController from "../../../../controller/ShowController.js";
+import MovieController from "../../../../controller/MovieController.js";
 import { loadAndRender } from '../../../../util/Render.js';
 import { hasAnyRole } from "../../../../util/Authenticated.js";
-import Link from "../../../../components/Link.js"
-// Create a show controller
+import Button from "../../../../components/Button.js"
+
+const movieController = new MovieController();
 const showController = new ShowController();
 
 /**
@@ -19,7 +21,13 @@ export default function ShowAnonymousShow(id) {
 
         showController.find(id, (showResponse) => {
 
-            html.querySelector('#movie-title').innerHTML = showResponse.movieTitle;
+            html.querySelector('#movie-title').innerHTML = `${showResponse.movieTitle} - Theater ${showResponse.theaterName}`;
+
+            movieController.find(showResponse.movieTitle, (movieResponse) => {
+                html.querySelector('#movie-description').innerHTML = movieResponse.description;
+            }, (error) => {
+                console.log(error);
+            });
 
             if (showResponse.poster) {
                 html.querySelector('#movie-image').src = showResponse.poster;
@@ -31,10 +39,9 @@ export default function ShowAnonymousShow(id) {
 
         if (hasAnyRole(['MEMBER', 'ADMIN'])) {
         
-            const a = Link({
+            const b = Button({
                 type: 'primary',
                 text: 'Reserve show',
-                href: `#/member/reservations/${id}/create`,
                 animation: {
                     onclick: {
                         type: 'rubberBand',
@@ -42,8 +49,12 @@ export default function ShowAnonymousShow(id) {
                     }
                 }
             })
-  
-            html.querySelector("#reserve-show").appendChild(a)
+
+            b.onclick = () => {
+                window.router.navigate(`/member/reservations/${id}/create`);
+            }
+
+            html.querySelector("#reserve-show").appendChild(b)
         }
     })
 }

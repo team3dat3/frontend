@@ -20,7 +20,6 @@ export default function ReservationMemberShow(id) {
 
         // Find reservation
         reservationController.findUserReservation(id, (reservationResponse) => {
-            console.log(reservationResponse);
             html.querySelector('#reservation-username').innerHTML = reservationResponse.username;
             html.querySelector('#reservation-show').innerHTML = reservationResponse.showMovieTitle;
             html.querySelector('#reservation-showDateTime').innerHTML = reservationResponse.showDateTime;
